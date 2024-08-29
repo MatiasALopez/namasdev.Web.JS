@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" sizes="24x24" />
+    <title>@(ViewBag.Title != null ? (string)ViewBag.Title + " - " : "")namasdev JS Sample</title>
+    @Styles.Render(
+        "~/Content/bootstrap.min.css",
+        "~/Content/bootstrap-datepicker3.css",
+        "~/Content/bootstrap-select.min.css",
+        "~/Content/ajax-bootstrap-select.min.css",
+        "~/Content/font-awesome.min.css",
+        "~/Content/css")
+    @RenderSection("headStyles", required: false)
+    @Scripts.Render(
+        "~/scripts/modernizr-2.8.3.min.js",
+        "~/Scripts/jquery-3.4.1.min.js")
+    @RenderSection("headScripts", required: false)
+</head>
+<body class="@((string)ViewBag.BodyCss ?? "")">
+    <script type="text/javascript">
+        var urlRaiz = '@Url.Content("~/")';
+    </script>
+    @if (Request.IsAuthenticated)
+    {
+        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+        }
+    }
+    @RenderBody()
+
+    @Scripts.Render(
+        "~/Scripts/jquery.validate.min.js",
+        "~/Scripts/jquery.validate.unobtrusive.min.js",
+        "~/Scripts/popper.min.js",
+        "~/Scripts/bootstrap.min.js",
+        "~/Scripts/moment.min.js",
+        "~/Scripts/moment.locale-es.js",
+        "~/Scripts/jquery.validate-es.js",
+        "~/Scripts/bootstrap-datepicker.min.js",
+        "~/Scripts/bootstrap-datepicker.es.min.js",
+        "~/Scripts/bs-custom-file-input.min.js",
+        "~/Scripts/bootstrap-select.min.js",
+        "~/Scripts/bootstrap-select.es_ES.min.js",
+        "~/Scripts/ajax-bootstrap-select.min.js",
+        "~/Scripts/ajax-bootstrap-select.es-ES.min.js",
+        "~/Scripts/bootbox.min.js",
+        "~/Scripts/bootbox.locales.min.js",
+        "~/Scripts/loadingoverlay.min.js",
+        "~/Scripts/jquery.numeric.js",
+        "~/Scripts/numeral.min.js",
+        "~/Scripts/numeral-locale-es-mx.min.js",
+        "~/Scripts/jquery.charactercounter.min.js",
+        "~/scripts/namasdev.js",
+        "~/scripts/site")
+    <script type="text/javascript">
+        $(function () {
+            sampleApp.init();
+        });
+    </script>
+    @RenderSection("bodyScripts", required: false)
+    @RenderSection("modals", required: false)
+</body>
+</html>

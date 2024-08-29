@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+}
+@section headStyles {
+    @RenderSection("headStyles", required: false)
+}
+@section headScripts {
+    @RenderSection("headScripts", required: false)
+}
+<header class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="#">namasdev JS Sample</a>
+    </nav>
+</header>
+<div id="mainWrapper">
+    <main id="mainContent" class="p-3">
+        @RenderBody()
+    </main>
+</div>
+@section bodyScripts {
+    @RenderSection("bodyScripts", required: false)
+}
+@section modals {
+    @RenderSection("modals", required: false)
+}
