@@ -1,1 +1,35 @@
-﻿initElapsedTime
+﻿<div class="row">
+    <div class="col-sm-6">
+        <div class="border border-dark p-3">
+            Started: <span id="spET1Started">-</span><br/>
+            Elapsed: <span id="spET1Elapsed">-</span>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div id="divET2" class="border border-dark p-3">
+            Started: <span id="spET2Started">-</span><br />
+            Max. allowed: 1min<br />
+            Elapsed: <span id="spET2Elapsed">-</span>
+        </div>
+    </div>
+</div>
+<button id="btnETStart" class="btn btn-primary">Start</button>
+<script type="text/javascript">
+    $('#btnETStart').on('click', function () {
+        var started = new Date();
+
+        $('#spET1Started').text(nmd.format.formateDateTime(started));
+        nmd.ui.controls.initElapsedTime('spET1Elapsed', started);
+
+        $('#divET2').addClass('bg-success');
+        $('#spET2Started').text(nmd.format.formateDateTime(started));
+        nmd.ui.controls.initElapsedTime('spET2Elapsed', started, {
+            minutesReachedValue: 1,
+            minutesReachedCallback: function () {
+                $('#divET2')
+                    .removeClass('bg-success')
+                    .addClass('bg-danger');
+            }
+        });
+    });
+</script>

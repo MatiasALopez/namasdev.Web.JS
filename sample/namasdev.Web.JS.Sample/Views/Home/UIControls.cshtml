@@ -20,11 +20,9 @@
                 initAutopostback
             </button>
         </div>
-        <div id="initAutopostback" class="collapse">
+        <div id="initAutopostback" class="collapse @(Request["section"] == "apb" ? "show" : "")">
             <div class="card-body">
-                <div class="row">
-                    @Html.Partial("~/Views/Home/UIControls/_initAutopostback.cshtml")
-                </div>
+                @Html.Partial("~/Views/Home/UIControls/_initAutopostback.cshtml")
             </div>
         </div>
     </div>

@@ -1,85 +1,39 @@
-﻿<h6 class="mt-3">Multiple forms</h6>
-<div class="row">
+﻿<div class="row">
     <div class="col-sm-6">
-        <form id="form2a" class="form2-class">
-            <input type="hidden" value="hidden" />
+        <form id="frmAPB" action="UIControls" method="get">
+            <input type="hidden" name="section" value="apb" />
             <div class="form-group">
-                <label for="text2a">Text</label>
-                <input id="text2a" type="text" value="text" class="form-control" />
+                <label for="txtAPBText">Text</label>
+                <input id="txtAPBText" name="txtAPBText" type="text" value="@Request["txtAPBText"]" class="form-control autopostback" />
             </div>
             <div class="form-group">
-                <label for="password2a">Password</label>
-                <input id="password2a" type="password" value="password" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="text2a">Text area</label>
-                <textarea id="textArea2a" class="form-control">text</textarea>
+                <label for="txtAPBTextarea">Text area</label>
+                <textarea id="txtAPBTextarea" name="txtAPBTextarea" class="form-control autopostback">@Request["txtAPBTextarea"]</textarea>
             </div>
             <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="check2a" checked>
-                <label class="form-check-label" for="check2a">Check</label>
+                <input id="chkAPB" name="chkAPB" type="checkbox" class="form-check-input autopostback" @{ if (Request["chkAPB"] != null) { <text> checked</text> }}>
+                <label class="form-check-label" for="chkAPB">Check</label>
             </div>
             <div class="form-group form-radio">
-                <input type="radio" class="form-radio-input" id="radio2a" checked>
-                <label class="form-radio-label" for="radio2a">Radio</label>
+                <input id="rbAPB" name="rbAPB" type="radio" class="form-radio-input autopostback" @{ if (Request["rbAPB"] != null) { <text> checked</text> }}>
+                <label class="form-radio-label" for="rbAPB">Radio</label>
             </div>
             <div class="form-group">
                 <div class="custom-file">
-                    <input type="file" id="file2a" class="custom-file-input">
-                    <label class="custom-file-label" for="file2a"></label>
+                    <input id="fiAPB" name="fiAPB" type="file" class="custom-file-input autopostback">
+                    <label class="custom-file-label" for="fiAPB"></label>
+                    @if (Request["fiAPB"] != null)
+                    {<span>@Request["fiAPB"]</span>}
                 </div>
             </div>
             <div class="form-group">
-                <label for="select2a">Select</label>
-                <select id="select2a" class="form-control">
-                    <option>A</option>
-                    <option selected>B</option>
-                </select>
-            </div>
-        </form>
-    </div>
-    <div class="col-sm-6">
-        <form id="form2b" class="form2-class">
-            <input type="hidden" value="hidden" />
-            <div class="form-group">
-                <label for="text2b">Text</label>
-                <input id="text2b" type="text" value="text" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="password2b">Password</label>
-                <input id="password2b" type="password" value="password" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label for="text2b">Text area</label>
-                <textarea id="textArea2b" class="form-control">text</textarea>
-            </div>
-            <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="check2b" checked>
-                <label class="form-check-label" for="check2b">Check</label>
-            </div>
-            <div class="form-group form-radio">
-                <input type="radio" class="form-radio-input" id="radio2b" checked>
-                <label class="form-radio-label" for="radio2b">Radio</label>
-            </div>
-            <div class="form-group">
-                <div class="custom-file">
-                    <input type="file" id="file2b" class="custom-file-input">
-                    <label class="custom-file-label" for="file2b"></label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="select2b">Select</label>
-                <select id="select2b" class="form-control">
-                    <option>A</option>
-                    <option selected>B</option>
+                <label for="ddlAPB">Select</label>
+                <select id="ddlAPB" name="ddlAPB" class="form-control autopostback">
+                    <option></option>
+                    <option value="a" @{ if (Request["ddlAPB"] == "a") { <text> selected</text> }}>A</option>
+                    <option value="b" @{ if (Request["ddlAPB"] == "b") { <text> selected</text> }}>B</option>
                 </select>
             </div>
         </form>
     </div>
 </div>
-<button id="btnClear2" class="btn btn-primary">Clear</button>
-<script type="text/javascript">
-    $('#btnClear2').on('click', function () {
-        nmd.ui.controls.clearControls('.form2-class input,.form2-class textarea,.form2-class select');
-    });
-</script>
