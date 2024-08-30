@@ -1,0 +1,28 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        <form id="formCFI">
+            <input type="hidden" value="hidden" />
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" id="fileFCI1" class="custom-file-input" />
+                    <label class="custom-file-label" for="fileFCI1"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" id="fileFCI2" class="custom-file-input" multiple />
+                    <label class="custom-file-label" for="fileFCI2" data-selected-file="Archivos" data-browse="Elegir"></label>
+                </div>
+            </div>
+            <button type="reset" class="btn btn-danger">Reset form</button>
+            <button type="button" id="btnCFIClear" class="btn btn-info">Clear selection</button>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#btnCFIClear').on('click', function (ev) {
+        ev.preventDefault();
+        nmd.ui.controls.clearBootstrapCustomFileInput('#formCFI .custom-file-input');
+        return false;
+    });
+</script>

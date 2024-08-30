@@ -180,6 +180,32 @@
     <Content Include="Views\Home\Format.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
     <Content Include="Views\Home\Utils.cshtml" />
+    <Content Include="Views\Home\UIControls\_clearControls.cshtml" />
+    <Content Include="Views\Home\UIControls\_initAutopostback.cshtml" />
+    <Content Include="Views\Home\UIControls\_showAlert.cshtml" />
+    <Content Include="Views\Home\UIControls\_initModals.cshtml" />
+    <Content Include="Views\Home\UIControls\_initScrollFocus.cshtml" />
+    <Content Include="Views\Home\UIControls\_initBootstrapTooltips.cshtml" />
+    <Content Include="Views\Home\UIControls\_initBootstrapCustomFileInput.cshtml" />
+    <Content Include="Views\Home\UIControls\_loadCombo.cshtml" />
+    <Content Include="Views\Home\UIControls\_initPrintButton.cshtml" />
+    <Content Include="Views\Home\UIControls\_initInputFileButtons.cshtml" />
+    <Content Include="Views\Home\UIControls\_initInputFiltering.cshtml" />
+    <Content Include="Views\Home\UIControls\_loadComboAjax.cshtml" />
+    <Content Include="Views\Home\UIControls\_initComboCascadeAjax.cshtml" />
+    <Content Include="Views\Home\UIControls\_initComboCascadeJson.cshtml" />
+    <Content Include="Views\Home\UIControls\_initElapsedTime.cshtml" />
+    <Content Include="Views\Home\UIControls\_initTableCheckBoxSelection.cshtml" />
+    <Content Include="Views\Home\UIControls\_initTableOrdering.cshtml" />
+    <Content Include="Views\Home\UIControls\_initTableOrderLinkPOST.cshtml" />
+    <Content Include="Views\Home\UIControls\_initIframeModalsLinks.cshtml" />
+    <Content Include="Views\Home\UIControls\_initSessionTimeoutCheck.cshtml" />
+    <Content Include="Views\Home\UIControls\_showLoading.cshtml" />
+    <Content Include="Views\Home\UIControls\_initMultiSelect.cshtml" />
+    <Content Include="Views\Home\UIControls\_initSelectpickerAjax.cshtml" />
+    <Content Include="Views\Home\UIControls\_initDatePicker.cshtml" />
+    <Content Include="Views\Home\UIControls\_initCharacterCounter.cshtml" />
+    <Content Include="Views\Home\UIControls\_initNumeric.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

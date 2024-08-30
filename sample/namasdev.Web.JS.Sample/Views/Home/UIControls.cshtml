@@ -4,153 +4,17 @@
 <h1>UI Controls</h1>
 
 <div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#clearControls">clearControls</button>
         </div>
         <div id="clearControls" class="collapse">
             <div class="card-body">
-                <h6>Single form</h6>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <form id="form1">
-                            <input type="hidden" value="hidden" />
-                            <div class="form-group">
-                                <label for="text1">Text</label>
-                                <input id="text1" type="text" value="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="password1">Password</label>
-                                <input id="password1" type="password" value="password" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="text1">Text area</label>
-                                <textarea id="textArea1" class="form-control">text</textarea>
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="check1" checked>
-                                <label class="form-check-label" for="check1">Check</label>
-                            </div>
-                            <div class="form-group form-radio">
-                                <input type="radio" class="form-radio-input" id="radio1" checked>
-                                <label class="form-radio-label" for="radio1">Radio</label>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" id="file1" class="custom-file-input">
-                                    <label class="custom-file-label" for="file1"></label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="select1">Select</label>
-                                <select id="select1" class="form-control">
-                                    <option>A</option>
-                                    <option selected>B</option>
-                                </select>
-                            </div>
-                            <button id="btnClear1" class="btn btn-primary">Clear</button>
-                        </form>
-                    </div>
-                </div>
-                <script type="text/javascript">
-                    $('#btnClear1').on('click', function (ev) {
-                        ev.preventDefault();
-                        nmd.ui.controls.clearControls('#form1 input,#form1 textarea,#file1,#select1');
-                        return false;
-                    });
-                </script>
-
-                <h6 class="mt-3">Multiple forms</h6>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <form id="form2a" class="form2-class">
-                            <input type="hidden" value="hidden" />
-                            <div class="form-group">
-                                <label for="text2a">Text</label>
-                                <input id="text2a" type="text" value="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="password2a">Password</label>
-                                <input id="password2a" type="password" value="password" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="text2a">Text area</label>
-                                <textarea id="textArea2a" class="form-control">text</textarea>
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="check2a" checked>
-                                <label class="form-check-label" for="check2a">Check</label>
-                            </div>
-                            <div class="form-group form-radio">
-                                <input type="radio" class="form-radio-input" id="radio2a" checked>
-                                <label class="form-radio-label" for="radio2a">Radio</label>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" id="file2a" class="custom-file-input">
-                                    <label class="custom-file-label" for="file2a"></label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="select2a">Select</label>
-                                <select id="select2a" class="form-control">
-                                    <option>A</option>
-                                    <option selected>B</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-sm-6">
-                        <form id="form2b" class="form2-class">
-                            <input type="hidden" value="hidden" />
-                            <div class="form-group">
-                                <label for="text2b">Text</label>
-                                <input id="text2b" type="text" value="text" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="password2b">Password</label>
-                                <input id="password2b" type="password" value="password" class="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label for="text2b">Text area</label>
-                                <textarea id="textArea2b" class="form-control">text</textarea>
-                            </div>
-                            <div class="form-group form-check">
-                                <input type="checkbox" class="form-check-input" id="check2b" checked>
-                                <label class="form-check-label" for="check2b">Check</label>
-                            </div>
-                            <div class="form-group form-radio">
-                                <input type="radio" class="form-radio-input" id="radio2b" checked>
-                                <label class="form-radio-label" for="radio2b">Radio</label>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" id="file2b" class="custom-file-input">
-                                    <label class="custom-file-label" for="file2b"></label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="select2b">Select</label>
-                                <select id="select2b" class="form-control">
-                                    <option>A</option>
-                                    <option selected>B</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <button id="btnClear2" class="btn btn-primary">Clear</button>
-                <script type="text/javascript">
-                    $('#btnClear2').on('click', function (ev) {
-                        ev.preventDefault();
-                        nmd.ui.controls.clearControls('.form2-class input,.form2-class textarea,.form2-class select');
-                        return false;
-                    });
-                </script>
+                @Html.Partial("~/Views/Home/UIControls/_clearControls.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initAutopostback">
                 initAutopostback
@@ -159,212 +23,24 @@
         <div id="initAutopostback" class="collapse">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <form id="form3" action="UIControls" method="get">
-                            <div class="form-group">
-                                <label for="text3">Text</label>
-                                <input id="text3" name="text3" type="text" value="@Request["text3"]" class="form-control autopostback" />
-                            </div>
-                            <div class="form-group">
-                                <label for="text3">Text area</label>
-                                <textarea id="textArea3" name="textArea3" class="form-control autopostback">@Request["textArea3"]</textarea>
-                            </div>
-                            <div class="form-group form-check">
-                                <input id="check3" name="check3" type="checkbox" class="form-check-input autopostback" @{ if (Request["check3"] != null) { <text> checked</text> }}>
-                                <label class="form-check-label" for="check3">Check</label>
-                            </div>
-                            <div class="form-group form-radio">
-                                <input id="radio3" name="radio3" type="radio" class="form-radio-input autopostback" @{ if (Request["radio3"] != null) { <text> checked</text> }}>
-                                <label class="form-radio-label" for="radio3">Radio</label>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input id="file3" name="file3" type="file" class="custom-file-input autopostback">
-                                    <label class="custom-file-label" for="file3"></label>
-                                    @if (Request["file3"] != null)
-                                    {<span>@Request["file3"]</span>}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="select3">Select</label>
-                                <select id="select3" name="select3" class="form-control autopostback">
-                                    <option></option>
-                                    <option value="a" @{ if (Request["select3"] == "a") { <text> selected</text> }}>A</option>
-                                    <option value="b" @{ if (Request["select3"] == "b") { <text> selected</text> }}>B</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
+                    @Html.Partial("~/Views/Home/UIControls/_initAutopostback.cshtml")
                 </div>
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showAlertControl">
-                showAlertControl
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showAlert">
+                showAlert / hideAlert
             </button>
         </div>
-        <div id="showAlertControl" class="collapse">
+        <div id="showAlert" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_showAlert.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#clearAlertControl">
-                clearAlertControl
-            </button>
-        </div>
-        <div id="clearAlertControl" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initMessageModals">
-                initMessageModals
-            </button>
-        </div>
-        <div id="initMessageModals" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showErrorModal">
-                showErrorModal
-            </button>
-        </div>
-        <div id="showErrorModal" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showSuccessModal">
-                showSuccessModal
-            </button>
-        </div>
-        <div id="showSuccessModal" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showMessageModal">
-                showMessageModal
-            </button>
-        </div>
-        <div id="showMessageModal" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showMessageConfirm">
-                showMessageConfirm
-            </button>
-        </div>
-        <div id="showMessageConfirm" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initScrollFocus">
-                initScrollFocus
-            </button>
-        </div>
-        <div id="initScrollFocus" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initBootstrapTooltips">
-                initBootstrapTooltips
-            </button>
-        </div>
-        <div id="initBootstrapTooltips" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initBootstrapCustomFileInput">
-                initBootstrapCustomFileInput
-            </button>
-        </div>
-        <div id="initBootstrapCustomFileInput" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#resetBootstrapCustomFileInput">
-                resetBootstrapCustomFileInput
-            </button>
-        </div>
-        <div id="resetBootstrapCustomFileInput" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#loadCombo">
-                loadCombo
-            </button>
-        </div>
-        <div id="loadCombo" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#loadComboAjax">
-                loadComboAjax
-            </button>
-        </div>
-        <div id="loadComboAjax" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initComboCascadeAjax">
-                initComboCascadeAjax
-            </button>
-        </div>
-        <div id="initComboCascadeAjax" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initComboCascadeJson">
-                initComboCascadeJson
-            </button>
-        </div>
-        <div id="initComboCascadeJson" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initPrintButton">
                 initPrintButton
@@ -372,21 +48,35 @@
         </div>
         <div id="initPrintButton" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initPrintButton.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initScrollFocus">
+                initScrollFocus
+            </button>
+        </div>
+        <div id="initScrollFocus" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initScrollFocus.cshtml")
+            </div>
+        </div>
+    </div>
+    <div id="divIFB" class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initInputFileButtons">
                 initInputFileButtons
             </button>
         </div>
-        <div id="initInputFileButtons" class="collapse">
+        <div id="initInputFileButtons" class="collapse @(Request["section"] == "ifb" ? "show" : "")">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initInputFileButtons.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initInputFiltering">
                 initInputFiltering
@@ -394,87 +84,95 @@
         </div>
         <div id="initInputFiltering" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initInputFiltering.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initMultiSelect">
-                initMultiSelect
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initBootstrapTooltips">
+                initBootstrapTooltips
             </button>
         </div>
-        <div id="initMultiSelect" class="collapse">
+        <div id="initBootstrapTooltips" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initBootstrapTooltips.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initSelectpickerAjax">
-                initSelectpickerAjax
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initBootstrapCustomFileInput">
+                initBootstrapCustomFileInput / clearBootstrapCustomFileInput
             </button>
         </div>
-        <div id="initSelectpickerAjax" class="collapse">
+        <div id="initBootstrapCustomFileInput" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initBootstrapCustomFileInput.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initDatePicker">
-                initDatePicker
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#loadCombo">
+                loadCombo
             </button>
         </div>
-        <div id="initDatePicker" class="collapse">
+        <div id="loadCombo" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_loadCombo.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initNumeric">
-                initNumeric
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#loadComboAjax">
+                loadComboAjax
             </button>
         </div>
-        <div id="initNumeric" class="collapse">
+        <div id="loadComboAjax" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_loadComboAjax.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initCharacterCounter">
-                initCharacterCounter
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initComboCascadeAjax">
+                initComboCascadeAjax
             </button>
         </div>
-        <div id="initCharacterCounter" class="collapse">
+        <div id="initComboCascadeAjax" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initComboCascadeAjax.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initComboCascadeJson">
+                initComboCascadeJson
+            </button>
+        </div>
+        <div id="initComboCascadeJson" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initComboCascadeJson.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initElapsedTime">
-                initElapsedTime
+                initElapsedTime / stopElapsedTime
             </button>
         </div>
         <div id="initElapsedTime" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initElapsedTime.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
-        <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#stopElapsedTime">
-                stopElapsedTime
-            </button>
-        </div>
-        <div id="stopElapsedTime" class="collapse">
-            <div class="card-body">
-            </div>
-        </div>
-    </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initTableCheckBoxSelection">
                 initTableCheckBoxSelection
@@ -482,10 +180,11 @@
         </div>
         <div id="initTableCheckBoxSelection" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initTableCheckBoxSelection.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initTableOrdering">
                 initTableOrdering
@@ -493,10 +192,11 @@
         </div>
         <div id="initTableOrdering" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initTableOrdering.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initTableOrderLinkPOST">
                 initTableOrderLinkPOST
@@ -504,10 +204,23 @@
         </div>
         <div id="initTableOrderLinkPOST" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initTableOrderLinkPOST.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initModals">
+                initModals / showErrorModal / showSuccessModal / showMessageModal / showConfirmModal
+            </button>
+        </div>
+        <div id="initModals" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initModals.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initIframeModalsLinks">
                 initIframeModalsLinks
@@ -515,10 +228,11 @@
         </div>
         <div id="initIframeModalsLinks" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initIframeModalsLinks.cshtml")
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card mb-2">
         <div class="card-header p-0">
             <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initSessionTimeoutCheck">
                 initSessionTimeoutCheck
@@ -526,7 +240,84 @@
         </div>
         <div id="initSessionTimeoutCheck" class="collapse">
             <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initSessionTimeoutCheck.cshtml")
             </div>
         </div>
     </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showLoading">
+                showLoading / hideLoading
+            </button>
+        </div>
+        <div id="showLoading" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_showLoading.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initMultiSelect">
+                initMultiSelect
+            </button>
+        </div>
+        <div id="initMultiSelect" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initMultiSelect.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initSelectpickerAjax">
+                initSelectpickerAjax
+            </button>
+        </div>
+        <div id="initSelectpickerAjax" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initSelectpickerAjax.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initDatePicker">
+                initDatePicker
+            </button>
+        </div>
+        <div id="initDatePicker" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initDatePicker.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initCharacterCounter">
+                initCharacterCounter
+            </button>
+        </div>
+        <div id="initCharacterCounter" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initCharacterCounter.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initNumeric">
+                initNumeric
+            </button>
+        </div>
+        <div id="initNumeric" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initNumeric.cshtml")
+            </div>
+        </div>
+    </div>
+    @if (Request["scrollFocus"] == "1")
+    {
+        <div class="alert alert-success scroll-focus">Scroll focus test complete!</div>
+    }
 </div>

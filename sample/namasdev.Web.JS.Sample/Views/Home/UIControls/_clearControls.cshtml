@@ -1,0 +1,138 @@
+﻿@{
+    Layout = null;
+}
+<h6>Single form</h6>
+<div class="row">
+    <div class="col-sm-6">
+        <form id="frmCC1">
+            <input type="hidden" value="hidden" />
+            <div class="form-group">
+                <label for="txtCC1Text">Text</label>
+                <input id="txtCC1Text" type="text" value="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtCC1Password">Password</label>
+                <input id="txtCC1Password" type="password" value="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtCC1Textarea">Text area</label>
+                <textarea id="txtCC1Textarea" class="form-control">text</textarea>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="chkCC1" checked>
+                <label class="form-check-label" for="chkCC1">Check</label>
+            </div>
+            <div class="form-group form-radio">
+                <input type="radio" class="form-radio-input" id="rbCC1" checked>
+                <label class="form-radio-label" for="rbCC1">Radio</label>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" id="ifCC1" class="custom-file-input">
+                    <label class="custom-file-label" for="ifCC1"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ddlCC1">Select</label>
+                <select id="ddlCC1" class="form-control">
+                    <option>A</option>
+                    <option selected>B</option>
+                </select>
+            </div>
+            <button id="btnCC1" class="btn btn-primary">Clear</button>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#btnCC1').on('click', function (ev) {
+        ev.preventDefault();
+        nmd.ui.controls.clearControls('#frmCC1 input,#frmCC1 textarea,#ifCC1,#ddlCC1');
+        return false;
+    });
+</script>
+
+<h6 class="mt-3">Multiple forms</h6>
+<div class="row">
+    <div class="col-sm-6">
+        <form id="frmCC2a" class="form2-class">
+            <input type="hidden" value="hidden" />
+            <div class="form-group">
+                <label for="txtCC2aText">Text</label>
+                <input id="txtCC2aText" type="text" value="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtCC2aPassword">Password</label>
+                <input id="txtCC2aPassword" type="password" value="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtCC2aTextarea">Text area</label>
+                <textarea id="txtCC2aTextarea" class="form-control">text</textarea>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="chkCC2a" checked>
+                <label class="form-check-label" for="chkCC2a">Check</label>
+            </div>
+            <div class="form-group form-radio">
+                <input type="radio" class="form-radio-input" id="rbCC2a" checked>
+                <label class="form-radio-label" for="rbCC2a">Radio</label>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" id="ifCC2a" class="custom-file-input">
+                    <label class="custom-file-label" for="ifCC2a"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ddlCC2a">Select</label>
+                <select id="ddlCC2a" class="form-control">
+                    <option>A</option>
+                    <option selected>B</option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-6">
+        <form id="frmCC2b" class="form2-class">
+            <input type="hidden" value="hidden" />
+            <div class="form-group">
+                <label for="txtCC2bText">Text</label>
+                <input id="txtCC2bText" type="text" value="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtCC2bPassword">Password</label>
+                <input id="txtCC2bPassword" type="password" value="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="txtCC2bTextarea">Text area</label>
+                <textarea id="txtCC2bTextarea" class="form-control">text</textarea>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="chkCC2b" checked>
+                <label class="form-check-label" for="chkCC2b">Check</label>
+            </div>
+            <div class="form-group form-radio">
+                <input type="radio" class="form-radio-input" id="rbCC2b" checked>
+                <label class="form-radio-label" for="rbCC2b">Radio</label>
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" id="ifCC2b" class="custom-file-input">
+                    <label class="custom-file-label" for="ifCC2b"></label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ddlCC2b">Select</label>
+                <select id="ddlCC2b" class="form-control">
+                    <option>A</option>
+                    <option selected>B</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
+<button id="btnCC2" class="btn btn-primary">Clear</button>
+<script type="text/javascript">
+    $('#btnCC2').on('click', function () {
+        nmd.ui.controls.clearControls('.form2-class input,.form2-class textarea,.form2-class select');
+    });
+</script>

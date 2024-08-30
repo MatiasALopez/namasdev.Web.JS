@@ -1,0 +1,102 @@
+﻿<div class="mt-2">
+    <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Init modals
+        </button>
+        <div class="dropdown-menu">
+            <button id="btnInitModals1" class="dropdown-item">Default</button>
+            <button id="btnInitModals2" class="dropdown-item">Lang: EN, Swap buttons: No</button>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Show Error
+        </button>
+        <div class="dropdown-menu">
+            <button id="btnShowErrorModal" class="dropdown-item">Default</button>
+            <button id="btnShowErrorModalWCallback" class="dropdown-item">With callback</button>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Show Success
+        </button>
+        <div class="dropdown-menu">
+            <button id="btnShowSuccessModal" class="dropdown-item">Default</button>
+            <button id="btnShowSuccessModalWCallback" class="dropdown-item">With callback</button>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Show message
+        </button>
+        <div class="dropdown-menu">
+            <button id="btnShowMessageModal" class="dropdown-item">Default</button>
+            <button id="btnShowMessageModalWCallback" class="dropdown-item">With callback</button>
+        </div>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+            Show confirm
+        </button>
+        <div class="dropdown-menu">
+            <button id="btnShowConfirmModal" class="dropdown-item">Default</button>
+            <button id="btnShowConfirmModalCustom" class="dropdown-item">Custom buttons</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#btnInitModals1').on('click', function () {
+        nmd.ui.controls.initModals();
+    });
+    $('#btnInitModals2').on('click', function () {
+        nmd.ui.controls.initModals({ locale: 'en', swapButtonOrder: false });
+    });
+
+    $('#btnShowErrorModal').on('click', function () {
+        nmd.ui.controls.showErrorModal('This is an error modal');
+    });
+    $('#btnShowErrorModalWCallback').on('click', function () {
+        nmd.ui.controls.showErrorModal('This is an error modal with callback', function () { alert('This is a callback'); });
+    });
+
+    $('#btnShowSuccessModal').on('click', function () {
+        nmd.ui.controls.showSuccessModal('This is a success modal');
+    });
+    $('#btnShowSuccessModalWCallback').on('click', function () {
+        nmd.ui.controls.showSuccessModal('This is a success modal with callback', function () { alert('This is a callback'); });
+    });
+
+    $('#btnShowMessageModal').on('click', function () {
+        nmd.ui.controls.showMessageModal('This is a message modal', 'info', 'fa fa-bell');
+    });
+    $('#btnShowMessageModalWCallback').on('click', function () {
+        nmd.ui.controls.showMessageModal('This is a message modal with callback', 'warning', 'fa fa-eye', function () { alert('This is a callback'); });
+    });
+
+    $('#btnShowConfirmModal').on('click', function () {
+        nmd.ui.controls.showConfirmModal(
+            'Confirm modal title',
+            'This is a confirm modal',
+            function (confirmation) { alert('You said ' + (confirmation ? 'yes' : 'no')); });
+    });
+    $('#btnShowConfirmModalCustom').on('click', function () {
+        nmd.ui.controls.showConfirmModal(
+            'Confirm modal title',
+            'This is a confirm modal',
+            function (confirmation) { alert('You said ' + (confirmation ? 'yes' : 'no')); },
+            {
+                buttons: {
+                    confirm: {
+                        label: 'Yep',
+                        className: 'btn btn-outline-success',
+                    },
+                    cancel: {
+                        label: 'Nope',
+                        className: 'btn btn-outline-danger'
+                    }
+                }
+            }
+        );
+    });
+</script>

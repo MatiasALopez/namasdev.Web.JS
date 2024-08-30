@@ -1,0 +1,35 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        <form id="frmIF">
+            <div class="form-group">
+                <label for="txtIFUsername">Username</label>
+                <input id="text1" type="text" class="form-control input-filtering" data-regex="a-zA-Z\d" />
+                <small class="text-muted">Only digits and letters</small>
+            </div>
+            <div class="form-group">
+                <label for="txtIFNumber1">Number 1</label>
+                <input id="txtIFNumber1" type="text" class="form-control if-number" />
+                <small class="text-muted">Only digits</small>
+            </div>
+            <div class="form-group">
+                <label for="txtIFNumber2">Number 2</label>
+                <input id="txtIFNumber2" type="text" class="form-control if-number" />
+                <small class="text-muted">Only digits</small>
+            </div>
+            <div class="form-group">
+                <label for="txtIFPhone">Phone</label>
+                <input id="txtIFPhone" type="text" class="form-control input-filtering" data-regex="\d\(\)\-\+" />
+            </div>
+            <div class="form-group">
+                <label for="txtIFSure">Are you sure?</label>
+                <input id="txtIFSure" type="text" class="form-control input-filtering" maxlength="1" data-regex="yYnN" />
+                <small class="text-muted">Only "y" or "n"</small>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initInputFiltering('.if-number', '\d');
+    });
+</script>

@@ -1,0 +1,20 @@
+﻿<form id="formIFB1" action="UIControls" method="get">
+    <input type="hidden" name="section" value="ifb" />
+    <input type="file" id="fileIFB1" name="fileIFB" class="autopostback">
+    <button type="button" class="btn btn-primary mb-2" data-input-file="fileIFB1">Upload</button>
+</form>
+<form id="formIFB2" action="UIControls" method="get">
+    <input type="hidden" name="section" value="ifb" />
+    <input type="file" id="fileIFB2" name="fileIFB" class="autopostback d-none">
+    <button type="button" class="btn btn-info" data-input-file="fileIFB2" name="Operation" value="Save">Upload with value</button>
+</form>
+@if (Request["section"] == "ifb")
+{
+    <div>
+        <span><strong>File:</strong> @Request["fileIFB"]</span><br />
+        @if (Request["Operation"] != null)
+        {
+            <span><strong>Operation:</strong> @Request["Operation"]</span><br />
+        }
+    </div>
+}
