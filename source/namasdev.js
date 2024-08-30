@@ -12,15 +12,15 @@
 var nmd = function () {
 
     var utils = function () {
-        function stringFormat(format) {
+        function stringFormat(format, ...args) {
             if (!format) {
                 return format;
             }
 
             var values =
-                $.isArray(arguments[0])
-                    ? arguments[0]
-                    : arguments;
+                $.isArray(args[0])
+                    ? args[0]
+                    : args;
 
             for (var i = 0; i < values.length; i++) {
                 format = format.replace(new RegExp("\\{" + i + "\\}", "gm"), values[i]);
@@ -184,8 +184,14 @@ var nmd = function () {
                 clearBootstrapCustomFileInput(selector);
             }
 
+            var autopostbackConstants = {
+                class: {
+                    autopostback: 'autopostback'
+                }
+            };
+
             function initAutopostback() {
-                $('.autopostback').on('change', function () {
+                $('.' + autopostbackConstants.class.autopostback).on('change', function () {
                     var $this = $(this),
                         $form = $this.closest('form'),
                         hiddenField = $this.data('autopostback-hf');
@@ -200,7 +206,7 @@ var nmd = function () {
                     $form.submit();
                 });
 
-                $(document).on('change', 'input.autopostback,select.autopostback,textarea.autopostback', function () {
+                $(document).on('change', utils.stringFormat('input.{0},select.{0},textarea.{0}', autopostbackConstants.class.autopostback), function () {
                     $(this).closest('form').submit();
                 });
             }
@@ -224,7 +230,7 @@ var nmd = function () {
             function initPrintButton() {
                 $('.btn-print').on('click', function (ev) {
                     ev.preventDefault();
-                    nmd.page.print();
+                    page.print();
                     return false;
                 });
             }
@@ -237,11 +243,18 @@ var nmd = function () {
                 }
             }
 
+            var inputFileButtonsConstants = {
+                dataAttr: {
+                    inputFile: 'input-file',
+                    autopostbackHF: 'autopostback-hf',
+                },
+            };
+
             function initInputFileButtons() {
-                $('input[data-input-file],button[data-input-file]')
+                $(utils.stringFormat('input[data-{0}],button[data-{0}]', inputFileButtonsConstants.dataAttr.inputFile))
                     .each(function () {
                         var $btn = $(this),
-                            file = $btn.data('input-file'),
+                            file = $btn.data(inputFileButtonsConstants.dataAttr.inputFile),
                             $file = $('#' + file);
 
                         if (!$file.hasClass('d-none')) {
@@ -251,20 +264,29 @@ var nmd = function () {
                         if ($btn.attr('name')) {
                             var btnName = $btn.attr('name'),
                                 btnValue = $btn.attr('value');
-                            $file.data('autopostback-hf', btnName + '=' + btnValue);
+                            $file.data(inputFileButtonsConstants.dataAttr.autopostbackHF, btnName + '=' + btnValue);
                         }
                     })
                     .on('click', function (ev) {
                         ev.preventDefault();
 
                         var $btn = $(this),
-                            file = $btn.data('input-file');
+                            file = $btn.data(inputFileButtonsConstants.dataAttr.inputFile);
 
                         $('#' + file).click();
 
                         return false;
                     });
             }
+
+            var inputFilteringConstants = {
+                class: {
+                    inputFiltering: 'input-filtering'
+                },
+                dataAttr: {
+                    regex: 'regex'
+                }
+            };
 
             function initInputFiltering(selector, options) {
                 var optsDefaults = {
@@ -273,7 +295,7 @@ var nmd = function () {
 
                 var opts = $.extend({}, optsDefaults, options);
 
-                $(selector || '.input-filtering')
+                $(selector || '.' + inputFilteringConstants.class.inputFiltering)
                     .on('keypress', function (ev) {
                         if (!getRegexForInput($(this)).test(String.fromCharCode(ev.keyCode))) {
                             ev.preventDefault();
@@ -286,7 +308,7 @@ var nmd = function () {
                     });
 
                 function getRegexForInput($input, negate) {
-                    return new RegExp('[' + (negate == true ? '^' : '') + ($input.data('regex') || opts.pattern) + ']', 'g');
+                    return new RegExp('[' + (negate == true ? '^' : '') + ($input.data(inputFilteringConstants.dataAttr.regex) || opts.pattern) + ']', 'g');
                 }
             }
 
@@ -297,6 +319,19 @@ var nmd = function () {
             //---
 
             // bootstrap custom file input (requires bs-input)
+            var customFileInputConstants = {
+                class: {
+                    input: 'custom-file-input',
+                    label: 'custom-file-label',
+                },
+                dataAttr: {
+                    browse: 'browse',
+                    browseWithPrefix: 'data-browse',
+                    selectedFile: 'selected-file',
+                    selectedFileWithPrefix: 'data-selected-file'
+                }
+            };
+
             function initBootstrapCustomFileInput(selector, options) {
                 var optsDefaults = {
                     browseText: 'Buscar',
@@ -308,15 +343,15 @@ var nmd = function () {
                 var inputBrowseText,
                     inputSelectedFileText;
 
-                $(selector || '.custom-file-label').each(function () {
-                    var $input = $(this);
+                $(selector || '.' + customFileInputConstants.class.input).each(function () {
+                    var $label = _getBootstrapCustomFileInputLabelForInput($(this));
 
-                    inputBrowseText = $input.attr('data-browse') || opts.browseText;
-                    inputSelectedFileText = $input.attr('data-selected-file') || opts.selectedFileText;
+                    inputBrowseText = $label.attr(customFileInputConstants.dataAttr.browseWithPrefix) || opts.browseText;
+                    inputSelectedFileText = $label.attr(customFileInputConstants.dataAttr.selectedFileWithPrefix) || opts.selectedFileText;
 
-                    $input
-                        .attr('data-selected-file', inputSelectedFileText)
-                        .attr('data-browse', inputBrowseText)
+                    $label
+                        .attr(customFileInputConstants.dataAttr.browseWithPrefix, inputBrowseText)
+                        .attr(customFileInputConstants.dataAttr.selectedFileWithPrefix, inputSelectedFileText)
                         .text(inputSelectedFileText);
                 });
 
@@ -324,11 +359,14 @@ var nmd = function () {
             }
 
             function clearBootstrapCustomFileInput(selector) {
-                $(selector).filter('.custom-file-input').each(function () {
-                    var $input = $(this),
-                        $label = $input.parent().find('.custom-file-label');
-                    $label.text($label.data('selected-file'));
+                $(selector || '.' + customFileInputConstants.class.input).each(function () {
+                    var $label = _getBootstrapCustomFileInputLabelForInput($(this));
+                    $label.text($label.data(customFileInputConstants.dataAttr.selectedFile));
                 });
+            }
+
+            function _getBootstrapCustomFileInputLabelForInput($input) {
+                return $input.siblings('.' + customFileInputConstants.class.label);
             }
             //---
 
@@ -519,7 +557,14 @@ var nmd = function () {
             }
             //---
 
-            // Elapsed time
+            // Elapsed time (requires: moment)
+            var elapsedTimeConstants = {
+                dataAttr: {
+                    intervalId: 'elapsed-time-interval-id',
+                    minutesReachedTriggered: 'elapsed-time-minutes-reached-triggered'
+                }
+            };
+
             function initElapsedTime(controlId, dateTimeStart, options) {
                 var optsDefaults = {
                     minutesReachedValue: null,
@@ -537,7 +582,7 @@ var nmd = function () {
                 var timeNow = null;
 
                 var intervalId = setInterval(function () {
-                    $control = $('#' + elementoTiempoId);
+                    $control = $('#' + controlId);
                     timeNow = moment();
 
                     var diff = timeNow - timeStart;
@@ -550,17 +595,23 @@ var nmd = function () {
                             : diffDuracion.humanize()
                     );
 
-                    if (opts.minutesReachedValue && opts.minutesReachedCallback && diffMin > opts.minutesReachedValue) {
-                        optsDefaults.minutesReachedCallback();
+                    if (opts.minutesReachedValue && opts.minutesReachedCallback
+                        && diffMin > opts.minutesReachedValue
+                        && !$control.data(elapsedTimeConstants.dataAttr.minutesReachedTriggered)) {
+                        try {
+                            opts.minutesReachedCallback();
+                        } catch (e) { }
+
+                        $control.data(elapsedTimeConstants.dataAttr.minutesReachedTriggered, true);
                     }
 
                 }, 800);
 
-                $control.data('elapsedTimeIntervalId', intervalId);
+                $control.data(elapsedTimeConstants.dataAttr.intervalId, intervalId);
             }
 
             function stopElapsedTime(controlId) {
-                var intervalId = $('#' + controlId).data('elapsedTimeIntervalId');
+                var intervalId = $('#' + controlId).data(elapsedTimeConstants.dataAttr.intervalId);
                 if (intervalId) {
                     clearInterval(parseInt(intervalId));
                 }
@@ -603,43 +654,57 @@ var nmd = function () {
                 }
             }
 
+            var tableOrderingConstants = {
+                dataAttr: {
+                    order: 'order',
+                    orderAsc: 'order-asc'
+                }
+            };
+
             function initTableOrdering(tableSelector) {
                 $(tableSelector)
-                    .on('click', 'th > a[data-order]', function (ev) {
+                    .on('click', utils.stringFormat('th > a[data-{0}]', tableOrderingConstants.dataAttr.order), function (ev) {
                         ev.preventDefault();
 
                         var $link = $(this),
                             $tbody = $(tableSelector).find('tbody'),
-                            columnCss = $link.data('order'),
-                            asc = ($link.data('order-asc') || '1') === '1';
+                            columnCss = $link.data(tableOrderingConstants.dataAttr.order),
+                            asc = ($link.data(tableOrderingConstants.dataAttr.orderAsc) || '1') === '1';
 
                         $tbody.find('tr').sort(function (a, b) {
                             var res = $(a).find('td.' + columnCss).text().localeCompare($(b).find('td.' + columnCss).text());
                             return asc ? res : -res;
                         }).appendTo($tbody);
 
-                        $link.data('order-asc', asc ? '0' : '1');
+                        $link.data(tableOrderingConstants.dataAttr.orderAsc, asc ? '0' : '1');
 
                         return false;
                     });
             }
 
+            var tableOrderLinkPOSTConstants = {
+                dataAttr: {
+                    order: 'order',
+                    operation: 'operation'
+                }
+            };
+
             function initTableOrderLinkPOST(tableSelector, options) {
                 var optsDefaults = {
-                    orderInputName: null,
+                    orderInputName: 'Orden',
                     operationInputName: null,
                 }
 
                 var opts = $.extend({}, optsDefaults, options);
 
                 $(tableSelector)
-                    .on('click', 'a[data-order]', function (ev) {
+                    .on('click', utils.stringFormat('a[data-{0}]', tableOrderLinkPOSTConstants.dataAttr.order), function (ev) {
                         ev.preventDefault();
 
                         var $link = $(this),
                             $form = $link.closest('form'),
-                            order = $link.data('order');
-                        operation = $link.data('operation');
+                            order = $link.data(tableOrderingOrderDataAttr),
+                            operation = $link.data(tableOrderLinkPOSTConstants.dataAttr.operation);
 
                         $form.append('<input type="hidden" name="' + opts.orderInputName + '" value="' + order + '" />');
 
