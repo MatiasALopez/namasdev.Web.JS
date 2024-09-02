@@ -722,39 +722,35 @@ var nmd = function () {
                 }
             }
 
-            var tableOrderLinkPOSTConstants = {
+            var tableOrderPOSTConstants = {
+                class: {
+                    tableOrderPost: 'table-order-post',
+                },
                 dataAttr: {
                     order: 'order',
-                    operation: 'operation'
                 }
             };
 
-            function initTableOrderLinkPOST(tableSelector, options) {
+            function initTableOrderPOST(tableSelector, options) {
                 var optsDefaults = {
                     orderInputName: 'Orden',
-                    operationInputName: null,
-                }
+                };
 
                 var opts = $.extend({}, optsDefaults, options);
 
+                tableSelector = tableSelector || '.' + tableOrderPOSTConstants.class.tableOrderPost;
+
+                var sortableColHeadSelector = utils.stringFormat('th[data-{0}]', tableOrderPOSTConstants.dataAttr.order);
+
                 $(tableSelector)
-                    .on('click', utils.stringFormat('a[data-{0}]', tableOrderLinkPOSTConstants.dataAttr.order), function (ev) {
-                        ev.preventDefault();
+                    .on('click', sortableColHeadSelector, function () {
+                        var $col = $(this),
+                            $form = $col.closest('form'),
+                            order = $col.data(tableOrderPOSTConstants.dataAttr.order);
 
-                        var $link = $(this),
-                            $form = $link.closest('form'),
-                            order = $link.data(tableOrderLinkPOSTConstants.dataAttr.order),
-                            operation = $link.data(tableOrderLinkPOSTConstants.dataAttr.operation);
-
-                        $form.append('<input type="hidden" name="' + opts.orderInputName + '" value="' + order + '" />');
-
-                        if (operation) {
-                            $form.append('<input type="hidden" name="' + opts.operationInputName + '" value="' + operation + '" />');
-                        }
-
-                        $form.submit();
-
-                        return false;
+                        $form
+                            .append('<input type="hidden" name="' + opts.orderInputName + '" value="' + order + '" />')
+                            .submit();
                     });
             }
             //---
@@ -1081,7 +1077,7 @@ var nmd = function () {
 
                 initTableCheckBoxSelection,
                 initTableSorting,
-                initTableOrderLinkPOST,
+                initTableOrderPOST,
 
                 initModals,
                 showErrorModal,
