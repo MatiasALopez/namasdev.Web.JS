@@ -197,7 +197,7 @@
     <Content Include="Views\Home\UIControls\_initElapsedTime.cshtml" />
     <Content Include="Views\Home\UIControls\_initTableCheckBoxSelection.cshtml" />
     <Content Include="Views\Home\UIControls\_initTableSorting.cshtml" />
-    <Content Include="Views\Home\UIControls\_initTableOrderLinkPOST.cshtml" />
+    <Content Include="Views\Home\UIControls\_initTableOrderPOST.cshtml" />
     <Content Include="Views\Home\UIControls\_initIframeModalsLinks.cshtml" />
     <Content Include="Views\Home\UIControls\_initSessionTimeoutCheck.cshtml" />
     <Content Include="Views\Home\UIControls\_showLoading.cshtml" />

@@ -1,0 +1,52 @@
+﻿<div class="row">
+    <div class="col-sm-6">
+        @{ string orden = Request["Orden"]; }
+        <form action="UIControls" method="get">
+            <input type="hidden" name="section" value="top" />
+            <div class="table-responsive">
+                <table class="table table-bordered table-order-post">
+                    <thead>
+                        <tr>
+                            <th data-order="@GenerateOrderExp("ID")">ID</th>
+                            <th data-order="@GenerateOrderExp("Name")">Name</th>
+                            <th data-order="@GenerateOrderExp("CreationDate")">Creation Date</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>John</td>
+                            <td>7/5/2024</td>
+                            <td>Long long long long long long long long long text</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Abel</td>
+                            <td>4/6/2024</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Mary</td>
+                            <td>5/5/2024</td>
+                            <td>Long long long long long long long long long text</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Jane</td>
+                            <td>10/6/2024</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+@functions {
+    public string GenerateOrderExp(string order)
+    {
+        return $"{order}{(Request["orden"] == order ? " desc" : "")}";
+    }
+}

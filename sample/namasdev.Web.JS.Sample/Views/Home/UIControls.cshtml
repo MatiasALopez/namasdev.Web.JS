@@ -196,13 +196,13 @@
     </div>
     <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initTableOrderLinkPOST">
-                initTableOrderLinkPOST
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initTableOrderPOST">
+                initTableOrderPOST
             </button>
         </div>
-        <div id="initTableOrderLinkPOST" class="collapse">
+        <div id="initTableOrderPOST" class="collapse @(Request["section"] == "top" ? "show" : "")">
             <div class="card-body">
-                @Html.Partial("~/Views/Home/UIControls/_initTableOrderLinkPOST.cshtml")
+                @Html.Partial("~/Views/Home/UIControls/_initTableOrderPOST.cshtml")
             </div>
         </div>
     </div>

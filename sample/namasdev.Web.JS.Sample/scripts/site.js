@@ -14,7 +14,7 @@
         nmd.ui.controls.initBootstrapCustomFileInput();
         nmd.ui.controls.initTableCheckBoxSelection();
         nmd.ui.controls.initTableSorting();
-        nmd.ui.controls.initTableOrderLinkPOST();
+        nmd.ui.controls.initTableOrderPOST();
         nmd.ui.controls.initModals();
         nmd.ui.controls.initIframeModalsLinks();
         nmd.ui.controls.initMultiSelect();

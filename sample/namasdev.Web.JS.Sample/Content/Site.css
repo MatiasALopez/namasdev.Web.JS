@@ -15,6 +15,9 @@
 .table-sortable th.sorted-desc::after { content: '\f0dd'; }
 .table-sortable th.sorted-asc::after { content: '\f0de'; }
 
+.table-order-post th[data-order] { cursor: pointer; }
+    .table-order-post th[data-order]::after { font: normal normal normal 14px/1 FontAwesome; margin-left: 10px; content: '\f0dc'; }
+
 /** Bootstrap fixes **/
 .col-form-label { font-weight: bold; } 
 .text-success { color: #008542 !important; } 
