@@ -619,22 +619,30 @@ var nmd = function () {
             //---
 
             // Tablas
-            function initTableCheckBoxSelection(containerSelector) {
+            var tableCheckBoxSelectionConstants = {
+                class: {
+                    checkBoxSelection: 'checkbox-selection'
+                }
+            };
+
+            function initTableCheckBoxSelection(tableSelector) {
+                tableSelector = tableSelector || '.' + tableCheckBoxSelectionConstants.class.checkBoxSelection;
+
                 var selectAllSelector = 'thead input[type=checkbox]',
                     selectOneSelector = 'tbody input[type=checkbox]',
-                    selectAllFullSelector = containerSelector + ' ' + selectAllSelector,
-                    selectOneFullSelector = containerSelector + ' ' + selectOneSelector;
+                    selectAllFullSelector = tableSelector + ' ' + selectAllSelector,
+                    selectOneFullSelector = tableSelector + ' ' + selectOneSelector;
 
                 setCheckboxSelectAllState();
 
-                $(containerSelector).on('change', selectAllSelector, function (e) {
+                $(tableSelector).on('change', selectAllSelector, function (e) {
                     setCheckboxState(
                         $(selectOneFullSelector),
                         $(this).is(':checked')
                     );
                 });
 
-                $(containerSelector).on('change', selectOneSelector, function (e) {
+                $(tableSelector).on('change', selectOneSelector, function (e) {
                     setCheckboxSelectAllState();
                 });
 
@@ -654,32 +662,64 @@ var nmd = function () {
                 }
             }
 
-            var tableOrderingConstants = {
+            var tableSortingConstants = {
+                class: {
+                    sortable: 'table-sortable',
+                    sortedNone: 'sorted-none',
+                    sortedAsc: 'sorted-asc',
+                    sortedDesc: 'sorted-desc'
+                },
                 dataAttr: {
-                    order: 'order',
-                    orderAsc: 'order-asc'
+                    sort: 'sort',
+                    sortValue: 'sort-value',
+                    sortAsc: 'sort-asc',
+                    noSort: 'no-sort'
                 }
             };
 
-            function initTableOrdering(tableSelector) {
+            function initTableSorting(tableSelector) {
+                tableSelector = tableSelector || '.' + tableSortingConstants.class.sortable;
+
+                var sortableColHeadSelector = utils.stringFormat('th:not([data-{0}])', tableSortingConstants.dataAttr.noSort);
+
+                setColSortedStatusAndUI();
+
                 $(tableSelector)
-                    .on('click', utils.stringFormat('th > a[data-{0}]', tableOrderingConstants.dataAttr.order), function (ev) {
-                        ev.preventDefault();
-
-                        var $link = $(this),
+                    .on('click', sortableColHeadSelector, function () {
+                        var $col = $(this),
                             $tbody = $(tableSelector).find('tbody'),
-                            columnCss = $link.data(tableOrderingConstants.dataAttr.order),
-                            asc = ($link.data(tableOrderingConstants.dataAttr.orderAsc) || '1') === '1';
+                            columnIndex = $col.index(),
+                            asc = ($col.data(tableSortingConstants.dataAttr.sortAsc) || '1') === '1';
 
-                        $tbody.find('tr').sort(function (a, b) {
-                            var res = $(a).find('td.' + columnCss).text().localeCompare($(b).find('td.' + columnCss).text());
+                        $tbody.find('tr').sort(function (tr1, tr2) {
+                            var res = getRowColSortValue($(tr1), columnIndex).localeCompare(getRowColSortValue($(tr2), columnIndex));
                             return asc ? res : -res;
                         }).appendTo($tbody);
 
-                        $link.data(tableOrderingConstants.dataAttr.orderAsc, asc ? '0' : '1');
-
-                        return false;
+                        setColSortedStatusAndUI($col, asc);
                     });
+
+                function getRowColSortValue($row, colIndex) {
+                    var $col = $row.find(utils.stringFormat('td:nth-child({0})', colIndex + 1));
+                    return $col.data(tableSortingConstants.dataAttr.sortValue) || $col.text();
+                }
+
+                function setColSortedStatusAndUI($col, asc) {
+                    var $theadSortableCols = $(tableSelector + ' ' + sortableColHeadSelector);
+                    $theadSortableCols
+                        .removeClass(tableSortingConstants.class.sortedNone)
+                        .removeClass(tableSortingConstants.class.sortedAsc)
+                        .removeClass(tableSortingConstants.class.sortedDesc);
+
+                    $theadSortableCols.addClass(tableSortingConstants.class.sortedNone);
+
+                    if ($col && $col.length == 1) {
+                        $col
+                            .removeClass(tableSortingConstants.class.sortedNone)
+                            .addClass(asc ? tableSortingConstants.class.sortedAsc : tableSortingConstants.class.sortedDesc)
+                            .data(tableSortingConstants.dataAttr.sortAsc, asc ? '0' : '1');
+                    } 
+                }
             }
 
             var tableOrderLinkPOSTConstants = {
@@ -703,7 +743,7 @@ var nmd = function () {
 
                         var $link = $(this),
                             $form = $link.closest('form'),
-                            order = $link.data(tableOrderingOrderDataAttr),
+                            order = $link.data(tableOrderLinkPOSTConstants.dataAttr.order),
                             operation = $link.data(tableOrderLinkPOSTConstants.dataAttr.operation);
 
                         $form.append('<input type="hidden" name="' + opts.orderInputName + '" value="' + order + '" />');
@@ -1040,7 +1080,7 @@ var nmd = function () {
                 stopElapsedTime,
 
                 initTableCheckBoxSelection,
-                initTableOrdering,
+                initTableSorting,
                 initTableOrderLinkPOST,
 
                 initModals,

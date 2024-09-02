@@ -1,1 +1,98 @@
-﻿initTableCheckBoxSelection
+﻿<div class="row">
+    <div class="col-sm-6">
+        <div class="table-responsive">
+            <table class="table table-bordered checkbox-selection">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" />
+                        </th>
+                        <th>Col A</th>
+                        <th>Col B</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A1</td>
+                        <td>Val B1</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A2</td>
+                        <td>Val B2</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A3</td>
+                        <td>Val B3</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A4</td>
+                        <td>Val B4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="table-responsive">
+            <table id="tblCBS" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" />
+                        </th>
+                        <th>Col A</th>
+                        <th>Col B</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A1</td>
+                        <td>Val B1</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A2</td>
+                        <td>Val B2</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A3</td>
+                        <td>Val B3</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" />
+                        </td>
+                        <td>Val A4</td>
+                        <td>Val B4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initTableCheckBoxSelection();
+        nmd.ui.controls.initTableCheckBoxSelection('#tblCBS');
+    });
+</script>

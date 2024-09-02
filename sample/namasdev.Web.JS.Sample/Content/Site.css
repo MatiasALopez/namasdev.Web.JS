@@ -8,24 +8,29 @@
     #mainWrapper { display: block; }
 }
 
+.table-sortable th:not([data-no-sort]) { cursor: pointer; }
+.table-sortable th:not([data-no-sort])::after { font: normal normal normal 14px/1 FontAwesome; margin-left: 10px; }
+
+.table-sortable th.sorted-none::after { content: '\f0dc'; }
+.table-sortable th.sorted-desc::after { content: '\f0dd'; }
+.table-sortable th.sorted-asc::after { content: '\f0de'; }
+
 /** Bootstrap fixes **/
-.col-form-label { font-weight: bold; }
-.text-success { color: #008542 !important; }
-.bg-lightgray { background-color: #f8f9fa !important; }
+.col-form-label { font-weight: bold; } 
+.text-success { color: #008542 !important; } 
+.bg-lightgray { background-color: #f8f9fa !important; } 
 
-.dropdown-menu[role=combobox] { z-index: 1060 !important; }
-    .dropdown-menu[role=combobox] ul.dropdown-menu li.selected {
-        background-color: #ddd;
-    }
+.dropdown-menu[role=combobox] { z-index: 1060 !important; } 
+.dropdown-menu[role=combobox] ul.dropdown-menu li.selected { background-color: #ddd; } 
 
-    .dropdown-menu[role=combobox] ul.dropdown-menu li a.dropdown-item:focus,
-    .dropdown-menu[role=combobox] ul.dropdown-menu li a.dropdown-item:hover {
-        color: #fff;
-        background-color: #495057;
-    }
+.dropdown-menu[role=combobox] ul.dropdown-menu li a.dropdown-item:focus, 
+.dropdown-menu[role=combobox] ul.dropdown-menu li a.dropdown-item:hover {
+    color: #fff;
+    background-color: #495057;
+} 
 
-.btn-warning { color: white; }
-    .btn-warning:hover { color: white; }
+.btn-warning { color: white; } 
+.btn-warning:hover { color: white; } 
 
 .bootstrap-select > .dropdown-toggle {
     background-color: #fff;
