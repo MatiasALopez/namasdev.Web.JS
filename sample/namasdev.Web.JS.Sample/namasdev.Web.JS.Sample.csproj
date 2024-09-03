@@ -206,6 +206,9 @@
     <Content Include="Views\Home\UIControls\_initDatePicker.cshtml" />
     <Content Include="Views\Home\UIControls\_initCharacterCounter.cshtml" />
     <Content Include="Views\Home\UIControls\_initNumeric.cshtml" />
+    <Content Include="Views\Home\iframeContent1.cshtml" />
+    <Content Include="Views\Home\iframeContent2.cshtml" />
+    <Content Include="Views\Home\SessionExpired.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

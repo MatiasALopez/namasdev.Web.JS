@@ -1,6 +1,5 @@
 ﻿<div class="row">
     <div class="col-sm-6">
-        @{ string orden = Request["Orden"]; }
         <form action="UIControls" method="get">
             <input type="hidden" name="section" value="top" />
             <div class="table-responsive">
@@ -47,6 +46,6 @@
 @functions {
     public string GenerateOrderExp(string order)
     {
-        return $"{order}{(Request["orden"] == order ? " desc" : "")}";
+        return $"{order}{(Request["Order"] == order ? " desc" : "")}";
     }
 }

@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutBase.cshtml";
+    ViewBag.BodyCss = "no-header";
+}
+<div class="container-fluid">
+    <p>This is the iframe very very very very very very very very very very very very very long content</p>
+    <form>
+        <div class="form-group">
+            <label for="txtCC1Text">Text</label>
+            <input id="txtCC1Text" type="text" value="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="txtCC1Password">Password</label>
+            <input id="txtCC1Password" type="password" value="password" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="txtCC1Textarea">Text area</label>
+            <textarea id="txtCC1Textarea" class="form-control">text</textarea>
+        </div>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="chkCC1" checked>
+            <label class="form-check-label" for="chkCC1">Check</label>
+        </div>
+        <div class="form-group form-radio">
+            <input type="radio" class="form-radio-input" id="rbCC1" checked>
+            <label class="form-radio-label" for="rbCC1">Radio</label>
+        </div>
+        <div class="form-group">
+            <div class="custom-file">
+                <input type="file" id="ifCC1" class="custom-file-input">
+                <label class="custom-file-label" for="ifCC1"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="ddlCC1">Select</label>
+            <select id="ddlCC1" class="form-control">
+                <option>A</option>
+                <option selected>B</option>
+            </select>
+        </div>
+    </form>
+</div>

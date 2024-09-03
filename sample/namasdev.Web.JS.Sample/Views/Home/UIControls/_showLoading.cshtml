@@ -1,1 +1,30 @@
-﻿showLoading
+﻿@{ int hideTimeInSec = 3; }
+<div id="divSL">
+    <button id="btnSL1" class="btn btn-primary">Show</button>
+    <button id="btnSL2" class="btn btn-primary">Show for element</button>
+    <div class="mt-2">
+        <small class="text-muted">Loading screen will hide after @(hideTimeInSec)sec.</small>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var timeToHideInMil = @(hideTimeInSec)000;
+
+        $('#btnSL1').on('click', function () {
+            nmd.ui.controls.showLoading();
+            setTimeout(function () {
+                nmd.ui.controls.hideLoading();
+            }, timeToHideInMil);
+        })
+
+        $('#btnSL2').on('click', function () {
+            var selector = '#divLoadingSection';
+
+            nmd.ui.controls.showLoading(selector);
+
+            setTimeout(function () {
+                nmd.ui.controls.hideLoading(selector);
+            }, timeToHideInMil);
+        })
+    });
+</script>

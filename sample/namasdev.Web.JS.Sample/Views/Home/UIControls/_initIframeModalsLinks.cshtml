@@ -1,1 +1,11 @@
-﻿initIframeModalsLinks
+﻿<div class="mt-2">
+    <a href="IFrameContent1" class="btn btn-primary" data-iframe>Modal</a>
+    <a href="IFrameContent1" class="btn btn-primary" data-iframe data-iframe-onhidden="iframe_onHidden">Modal with callback</a>
+    <a href="IFrameContent2" class="btn btn-primary" data-iframe data-iframe-title="Title" data-iframe-modal-size="lg" data-iframe-height="550px">Modal with title, modal-size and height</a>
+</div>
+<script type="text/javascript">
+    function iframe_onHidden(ev, $link) {
+        alert('This is the modal callback.');
+        console.log({ ev, $link });
+    }
+</script>

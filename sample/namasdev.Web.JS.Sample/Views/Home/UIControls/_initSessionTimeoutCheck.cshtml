@@ -1,1 +1,31 @@
-﻿initSessionTimeoutCheck
+﻿<form>
+    @Html.AntiForgeryToken()
+</form>
+<div>
+    <p>Click any of the check button options below and wait 30sec for session check modal to show.</p>
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">Check</button>
+    <div class="dropdown-menu">
+        <button id="btnSTC1" class="dropdown-item">Default</button>
+        <button id="btnSTC2" class="dropdown-item">Custom templates</button>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnSTC1').on('click', function () {
+            nmd.ui.controls.initSessionTimeoutCheck({
+                timeoutInMin: 1,
+                timeoutAlertInMin: 0.5
+            });
+        });
+
+        $('#btnSTC2').on('click', function () {
+            nmd.ui.controls.initSessionTimeoutCheck({
+                timeoutInMin: 1,
+                timeoutAlertInMin: 0.5,
+                confirmModalTitle: 'Sesión',
+                confirmModalMessage: 'Tu sesión expirará pronto.<br />Haz clic en el botón <strong>Continuar conectado</strong> para mantener tu sesión activa.',
+                confirmModalExtendSessionButtonText: 'Continuar conectado',
+            });
+        });
+    }); 
+</script>
