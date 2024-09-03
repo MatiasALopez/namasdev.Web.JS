@@ -733,7 +733,7 @@ var nmd = function () {
 
             function initTableOrderPOST(tableSelector, options) {
                 var optsDefaults = {
-                    orderInputName: 'Orden',
+                    orderInputName: 'Order',
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -802,40 +802,41 @@ var nmd = function () {
             //---
 
             // (TODO: try bootbox, requires bootbox)
-            function initIframeModalsLinks(owner) {
-                var $elements;
-                if (owner) {
-                    $elements = $('a[data-iframe]', owner);
-                } else {
-                    $elements = $('a[data-iframe]');
+            var iframeModalsConstants = {
+                templates: {
+                    modal: '<div class="modal fade" id="{0}" tabindex="-1" role="dialog" aria-labelledby="{0}Label"  aria-hidden="true"><div class="modal-dialog" role="document" ><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="{0}Label"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"></div></div></div></div>',
+                },
+                defaults: {
+                    height: '350px',
+                },
+                dataAttr: {
+                    iframe: 'iframe',
+                    title: 'iframe-title',
+                    modalSize: 'iframe-modal-size',
+                    height: 'iframe-height',
+                    onHidden: 'iframe-onhidden',
                 }
+            };
 
-                $elements.each(function () {
-                    var $a = $(this),
+            function initIframeModalsLinks() {
+                $(utils.stringFormat('a[data-{0}]', iframeModalsConstants.dataAttr.iframe)).each(function () {
+                    var $link = $(this),
                         modalId = 'mdIframe' + Math.floor(Math.random() * 99999),
                         modalSelector = '#' + modalId;
+
                     if ($(modalSelector).length == 0) {
-                        $('body').append(
-                            '<div class="modal fade" id="' + modalId + '" tabindex="-1" role="dialog" aria-labelledby="' + modalId + 'Label"  aria-hidden="true">\
-                        <div class="modal-dialog" role="document" >\
-                            <div class="modal-content">\
-                                <div class="modal-header"\>\
-                                    <h5 class="modal-title" id="' + modalId + 'Label"></h5>\
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>\
-                                </div>\
-                                <div class="modal-body"></div>\
-                            </div>\
-                        </div>\
-                    </div>');
+                        $('body').append(utils.stringFormat(iframeModalsConstants.templates.modal, modalId));
                     }
-                    $a.attr('data-toggle', 'modal')
+
+                    $link
+                        .attr('data-toggle', 'modal')
                         .attr('data-target', modalSelector);
 
                     $(modalSelector)
                         .on('shown.bs.modal', function () {
                             var $modal = $(this),
-                                modalTitle = $a.data('iframe-title') || '',
-                                modalSize = $a.data('iframe-modal-size');
+                                modalTitle = $link.data(iframeModalsConstants.dataAttr.title) || '',
+                                modalSize = $link.data(iframeModalsConstants.dataAttr.modalSize);
 
                             $modal.find('.modal-title')
                                 .html(modalTitle);
@@ -850,21 +851,21 @@ var nmd = function () {
                             $modal
                                 .find('.modal-body')
                                 .empty()
-                                .append('<iframe src="' + $a.prop('href') + '" class="border-0 w-100" style="height: ' + ($a.data('iframe-height') || '350px') + '"></iframe>');
+                                .append('<iframe src="' + $link.prop('href') + '" class="border-0 w-100" style="height: ' + ($link.data(iframeModalsConstants.dataAttr.height) || iframeModalsConstants.defaults.height) + '"></iframe>');
                         })
                         .on('hidden.bs.modal', function (ev) {
                             $(this)
                                 .find('.modal-body')
                                 .empty();
 
-                            if ($a.data('iframe-onhidden')) {
+                            if ($link.data(iframeModalsConstants.dataAttr.onHidden)) {
                                 var context = window;
-                                var namespaces = $a.data('iframe-onhidden').split(".");
+                                var namespaces = $link.data(iframeModalsConstants.dataAttr.onHidden).split('.');
                                 var func = namespaces.pop();
                                 for (var i = 0; i < namespaces.length; i++) {
                                     context = context[namespaces[i]];
                                 }
-                                return context[func].apply(context, [ev, $a]);
+                                return context[func].apply(context, [ev, $link]);
                             }
                         });
                 });
@@ -879,15 +880,15 @@ var nmd = function () {
                     checkSessionUrl: '/Home/CheckSession',
                     extendSessionUrl: '/Home/ExtendSession',
                     sessionExpiredUrl: '/Home/SessionExpired',
-                    confirmModalTitle: 'Sesión',
-                    confirmModalMessage: 'Tu sesión expirará pronto.<br />Haz clic en el botón <strong>Continuar conectado</strong> para mantener tu sesión activa.',
-                    confirmModalButton: 'Continuar conectado'
+                    confirmModalTitle: 'Session',
+                    confirmModalMessage: 'Your session is expiring soon.',
+                    confirmModalExtendSessionButton: 'Extend session',
                 }
 
                 var opts = $.extend({}, optsDefaults, options);
 
                 var timeoutInMil = opts.timeoutInMin * 60000,
-                    timeoutAlertInMil = opts.timeoutInMil - (opts.timeoutAlertInMin * 60000);
+                    timeoutAlertInMil = timeoutInMil - (opts.timeoutAlertInMin * 60000);
 
                 var checkSessionTimeoutId;
 
@@ -925,7 +926,7 @@ var nmd = function () {
                                     if (resp) {
                                         $.post(
                                             opts.extendSessionUrl,
-                                            createDataWithAntiForgeryToken(),
+                                            nmd.ui.forms.createDataWithAntiForgeryToken(),
                                             function () {
                                                 scheduleCheckSession();
                                                 scheduleAlert();
@@ -936,8 +937,11 @@ var nmd = function () {
                                 {
                                     buttons: {
                                         confirm: {
-                                            label: opts.confirmModalButton,
+                                            label: opts.confirmModalExtendSessionButton,
                                             className: 'btn-primary'
+                                        },
+                                        cancel: {
+                                            className: 'd-none'
                                         }
                                     }
                                 }
@@ -951,7 +955,7 @@ var nmd = function () {
 
             // loading (requires: LoadingOverlay)
             function showLoading(selector) {
-                var options = { image: "", fontawesome: "fa fa-spinner fa-spin", size: 15 };
+                var options = { image: '', fontawesome: 'fa fa-spinner fa-spin', size: 15 };
                 if (selector) {
                     $(selector).LoadingOverlay('show', options);
                 } else {
@@ -963,7 +967,7 @@ var nmd = function () {
                 if (selector) {
                     $(selector).LoadingOverlay('hide');
                 } else {
-                    $.LoadingOverlay("hide");
+                    $.LoadingOverlay('hide');
                 }
             }
             //---
