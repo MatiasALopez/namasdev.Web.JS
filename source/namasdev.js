@@ -396,14 +396,14 @@ var nmd = function () {
                     $combo.append('<option value="' + itemValue + '" ' + (opts.itemsSelectedValue === itemValue || item[opts.itemsSelectedProperty] ? 'selected="selected"' : '') + '>' + item[opts.itemsTextProperty] + '</option>');
                 });
 
-                var isSelectpicker = $combo.hasClass('selectpicker');
-                var isMultiselect = $combo.hasClass('multiselect');
+                var isSelectpicker = $combo.hasClass(selectpickerConstants.class.selectpicker);
+                var isMultiselect = $combo.hasClass(multiselectConstants.class.multiselect);
                 if (isSelectpicker || isMultiselect) {
                     if (opts.destroyAndRecreateSelectpicker) {
                         $combo.selectpicker('destroy');
 
                         if (isMultiselect) {
-                            initMultiSelect('#' + idCombo);
+                            initMultiSelect('#' + comboId, $combo.data(multiselectConstants.dataAttr.options));
                         } else {
                             $combo.selectpicker();
                         }
@@ -490,7 +490,7 @@ var nmd = function () {
 
                     var ids = $(parentComboIdSelector).map(function () {
                         var $parentCombo = $(this);
-                        var value = $parentCombo.hasClass('multiselect')
+                        var value = $parentCombo.hasClass(multiselectConstants.class.multiselect)
                             ? $parentCombo.val().join(',')
                             : $parentCombo.val();
 
@@ -974,81 +974,145 @@ var nmd = function () {
 
 
             // Selectpicker (requires: boostrap-select)
+            var selectpickerConstants = {
+                class: {
+                    selectpicker: 'selectpicker'
+                }
+            };
+
+            var multiselectConstants = {
+                class: {
+                    multiselect: 'multiselect'
+                },
+                dataAttr: {
+                    options: 'multiselect-opts'
+                }
+            };
+
             function initMultiSelect(selector, options) {
                 var optsDefaults = {
-                    allSelectedText: 'Todos',
-                    countSelectedTextFormat: '{0} de {1}',
+                    maxIndividualOptions: 3,
+                    allSelectedText: 'All',
+                    countSelectedTextFormat: '{0} of {1}',
                 }
 
                 var opts = $.extend({}, optsDefaults, options);
 
-                $(selector || '.multiselect').selectpicker({
-                    actionsBox: true,
-                    selectedTextFormat: 'count > 3',
-                    countSelectedText: function (selected, total) {
-                        if (selected == total) {
-                            return opts.allSelectedText;
-                        } else {
-                            return stringFormat(allSelectedText.countSelectedTextFormat, selected, total);
+                $(selector || '.' + multiselectConstants.class.multiSelect)
+                    .selectpicker({
+                        actionsBox: true,
+                        selectedTextFormat: 'count > ' + opts.maxIndividualOptions,
+                        countSelectedText: function (selected, total) {
+                            if (selected == total) {
+                                return opts.allSelectedText;
+                            } else {
+                                return utils.stringFormat(opts.countSelectedTextFormat, selected, total);
+                            }
                         }
-                    }
-                });
+                    })
+                    .data(multiselectConstants.dataAttr.options, opts);
             }
             //---
 
             // selectpicker-ajax (requires: ajax-bootstrap-select)
-            function initSelectpickerAjax() {
-                $('.selectpicker-ajax')
+            var selectpickerAjaxConstants = {
+                class: {
+                    selectpickerAjax: 'selectpicker-ajax'
+                }
+            };
+
+            function initSelectpickerAjax(selector, options) {
+                var optsDefaults = {
+                    minLength: 3,
+                    preserveSelected: false,
+                }
+
+                var opts = $.extend({}, optsDefaults, options);
+
+                $(selector || '.' + selectpickerAjaxConstants.class.selectpickerAjax)
                     .selectpicker({ liveSearch: true })
-                    .ajaxSelectPicker({ minLength: 3, preserveSelected: false });
+                    .ajaxSelectPicker(opts);
             }
             //---
 
             // datepicker (requires: datepicker)
-            function initDatePicker() {
-                $('.datepicker').datepicker({
-                    format: 'dd/mm/yyyy',
+            var datepickerConstants = {
+                class: {
+                    datepicker: 'datepicker'
+                }
+            };
+
+            function initDatePicker(selector, options) {
+                var optsDefaults = {
                     maxViewMode: 2,
-                    todayBtn: "linked",
+                    todayBtn: 'linked',
                     clearBtn: true,
-                    language: "es",
                     autoclose: true
-                }).on('hide', function (e) {
-                    e.stopPropagation();
-                });
-            }
-            //---
+                }
 
-            // CharacterCounter (requires: characterCounter)
-            function initCharacterCounter() {
-                $(".character-counter")
-                    .each(function () {
-                        var $this = $(this),
-                            limit = $this.attr('maxlength') || 100;
+                var opts = $.extend({}, optsDefaults, options);
 
-                        $(this).characterCounter({
-                            maximumCharacters: limit,
-                            renderTotal: true,
-                            countNewLineChars: true,
-                            counterWrapper: 'small',
-                            counterCssClass: 'text-muted',
-                            counterFormat: '%1',
-                            counterExceededCssClass: 'text-danger',
-                            customFields: {
-                                'class': 'float-right'
-                            }
-                        });
+                $(selector || '.' + datepickerConstants.class.datepicker)
+                    .datepicker(opts)
+                    .on('hide', function (e) {
+                        e.stopPropagation();
                     });
             }
             //---
 
-            // numeric (requires: numeric)
-            function initNumeric(selectorContainer) {
-                $((selectorContainer || '') + ' .numeric').numeric();
+            // CharacterCounter (requires: characterCounter)
+            var characterCounterConstants = {
+                class: {
+                    characterCounter: 'character-counter'
+                }
+            };
 
-                $((selectorContainer || '') + ' .numeric-integer').numeric({
-                    decimal: false,
+            function initCharacterCounter(selector, options) {
+                var optsDefaults = {
+                    renderTotal: true,
+                    countNewLineChars: false,
+                    counterWrapper: 'small',
+                    counterCssClass: 'float-right',
+                    counterFormat: '%1',
+                    counterExceededCssClass: 'text-danger',
+                };
+
+                var opts = $.extend({}, optsDefaults, options);
+
+                $(selector || '.' + characterCounterConstants.class.characterCounter).characterCounter(opts);
+            }
+            //---
+
+            // numeric (requires: numeric)
+            var numericConstants = {
+                class: {
+                    numeric: 'numeric',
+                    numericInteger: 'numeric-integer'
+                }
+            };
+
+            function initNumeric(selector, options) {
+                var optsDefaults = {
+                    decimal: '.',
+                    negative: false,
+                    decimalPlaces: -1
+                };
+
+                var opts = $.extend({}, optsDefaults, options);
+
+                $(selector || '.' + numericConstants.class.numeric).numeric(opts);
+            }
+
+            function initNumericInteger(selector, options) {
+                var optsDefaults = {
                     negative: false
+                };
+
+                var opts = $.extend({}, optsDefaults, options);
+
+                $(selector || '.' + numericConstants.class.numericInteger).numeric({
+                    decimal: false,
+                    negative: opts.negative
                 });
             }
             //---
@@ -1105,6 +1169,7 @@ var nmd = function () {
                 initCharacterCounter,
 
                 initNumeric,
+                initNumericInteger
             };
         }();
 
@@ -1128,13 +1193,6 @@ var nmd = function () {
                 $(document).on('keydown', 'form', function (event) {
                     return event.key != 'Enter';
                 });
-            }
-
-            // validation (requires: jQuery validator)
-            function configJQueryValidationDates() {
-                $.validator.methods.date = function (value, element) {
-                    return this.optional(element) || moment(value, 'DD/MM/YYYY').isValid() || moment(value, 'MM/YYYY').isValid();
-                }
             }
 
             function initDisableOnSubmitButtons() {
@@ -1175,7 +1233,6 @@ var nmd = function () {
                 setAntiForgeryTokenToFormData,
                 disableEnterSubmit,
 
-                configJQueryValidationDates,
                 initDisableOnSubmitButtons,
                 setValidationSummaryVisibility,
             };
