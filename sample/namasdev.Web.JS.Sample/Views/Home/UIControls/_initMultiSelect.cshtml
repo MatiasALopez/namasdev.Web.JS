@@ -1,1 +1,33 @@
-﻿initMultiSelect
+﻿<form id="frmMS">
+    <div class="form-row">
+        <div class="form-group col-sm-6">
+            <label for="ddlMS1">Select (default)</label>
+            <select id="ddlMS1" class="form-control multiselect" multiple>
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <option value="@i">Option @i</option>
+                }
+            </select>
+            <small class="text-muted">Select/Total label shown for more than 3 selected options</small>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="ddlMS2">Select custom</label>
+            <select id="ddlMS2" class="form-control" multiple>
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <option value="@i">Option @i</option>
+                }
+            </select>
+            <small class="text-muted">Select/Total label shown for more than 5 selected options</small>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initMultiSelect('#ddlMS2', {
+            maxIndividualOptions: 5,
+            allSelectedText: 'Todos',
+            countSelectedTextFormat: '{0} de {1}',
+        });
+    });
+</script>

@@ -1,1 +1,25 @@
-﻿initSelectpickerAjax
+﻿<form id="frmSPA">
+    <div class="form-row">
+        <div class="form-group col-sm-6">
+            <label for="ddlSPA1">Select (default)</label>
+            <select id="ddlSPA1" class="form-control selectpicker-ajax" data-abs-ajax-url="@Url.Action("GetSelectpickerAjaxItems")"></select>
+            <small class="text-muted">Type 3 chars to start searching</small>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="ddlSPA2">Select custom</label>
+            <select id="ddlSPA2" class="form-control selectpicker-ajax" data-abs-ajax-url="@Url.Action("GetSelectpickerAjaxItems")"></select>
+            <small class="text-muted">Type 2 chars to start searching</small>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initSelectpickerAjax('#ddlSPA2', {
+            minLength: 2,
+            preserveSelected: true,
+            locale: {
+                currentlySelected: 'Seleccionado'
+            }
+        });
+    });
+</script>

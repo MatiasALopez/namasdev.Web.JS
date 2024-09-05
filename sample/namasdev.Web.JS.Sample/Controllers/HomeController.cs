@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using System.Web.Security;
 
 namespace namasdev.Web.JS.Sample.Controllers
@@ -68,6 +69,14 @@ namespace namasdev.Web.JS.Sample.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult GetSelectpickerAjaxItems(string q)
+        {
+            var items = Enumerable.Range(1, 10)
+                .Select(i => new { value = $"{q.Replace(" ", "")}_{i}", text = $"{q} {i}" })
+                .ToArray();
+            return Json(items, JsonRequestBehavior.AllowGet);
         }
     }
 }

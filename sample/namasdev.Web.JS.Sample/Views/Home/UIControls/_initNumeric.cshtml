@@ -1,1 +1,37 @@
-﻿initNumeric
+﻿<form id="frmNum">
+    <div class="form-row">
+        <div class="form-group col-sm-3">
+            <label for="ddlNum1">Number (default)</label>
+            <input type="text" id="txtNum1" class="form-control numeric" />
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="txtNum2">Number (custom)</label>
+            <input type="text" id="txtNum2" class="form-control" />
+            <small class="text-muted">Allow negatives, ',' separator, 2 decimal places</small>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-3">
+            <label for="txtNumInt1">Integer (default)</label>
+            <input type="text" id="txtNumInt1" class="form-control numeric-integer" />
+        </div>
+        <div class="form-group col-sm-3">
+            <label for="txtNumInt2">Integer (custom)</label>
+            <input type="text" id="txtNumInt2" class="form-control" />
+            <small class="text-muted">Allow negatives</small>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initNumeric('#txtNum2', {
+            decimal: ',',
+            negative: true,
+            decimalPlaces: 2
+        });
+
+        nmd.ui.controls.initNumericInteger('#txtNumInt2', {
+            negative: true,
+        });
+    });
+</script>

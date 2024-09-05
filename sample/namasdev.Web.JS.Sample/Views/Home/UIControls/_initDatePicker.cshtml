@@ -1,1 +1,20 @@
-﻿initDatePicker
+﻿<form id="frmDP">
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            <label for="txtDP1">Datepicker (default)</label>
+            <input type="text" id="txtDP1" class="form-control datepicker" />
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="txtDP2">Datepicker custom</label>
+            <input type="text" id="txtDP2" class="form-control" />
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initDatePicker('#txtDP2', {
+            format: 'dd/mm/yyyy',
+            language: 'es',
+        });
+    });
+</script>

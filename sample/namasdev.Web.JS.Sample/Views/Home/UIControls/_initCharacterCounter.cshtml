@@ -1,1 +1,29 @@
-﻿initCharacterCounter
+﻿<div class="row">
+    <div class="col-sm-4">
+        <form>
+            <div class="form-group">
+                <label for="txtCC1">Character counter (default)</label>
+                <textarea id="txtCC1" class="form-control character-counter"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="txtCC2">Character counter (with max-length)</label>
+                <textarea id="txtCC2" class="form-control character-counter" maxlength="50"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="txtCC3">Character counter custom</label>
+                <textarea id="txtCC3" class="form-control"></textarea>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initCharacterCounter('#txtCC3', {
+            limit: 100,
+            renderTotal: false,
+            countNewLineChars: false,
+            counterWrapper: 'div',
+            counterCssClass: 'text-center',
+        });
+    });
+</script>

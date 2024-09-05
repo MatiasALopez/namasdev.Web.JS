@@ -1,7 +1,6 @@
 ﻿var sampleApp = function () {
 
     function init() {
-        nmd.ui.forms.configJQueryValidationDates();
         nmd.ui.forms.initDisableOnSubmitButtons();
         nmd.ui.forms.setValidationSummaryVisibility();
 
@@ -22,6 +21,7 @@
         nmd.ui.controls.initDatePicker();
         nmd.ui.controls.initCharacterCounter();
         nmd.ui.controls.initNumeric();
+        nmd.ui.controls.initNumericInteger();
     }
 
     return {
