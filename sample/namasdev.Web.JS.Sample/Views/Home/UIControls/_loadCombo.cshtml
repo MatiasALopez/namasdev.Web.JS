@@ -1,16 +1,28 @@
-﻿<div class="row">
-    <div class="col-sm-6">
-        <form id="frmLC">
-            <label for="ddlLC">Select</label>
-            <select id="ddlLC" class="form-control">
-                <option>A</option>
-                <option selected>B</option>
-            </select>
-        </form>
+﻿<form id="frmLC">
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            <label for="ddlLC1">Combo (default)</label>
+            <select id="ddlLC1" class="form-control"></select>
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="ddlLC2">Combo (custom)</label>
+            <select id="ddlLC2" class="form-control"></select>
+        </div>
     </div>
-</div>
-<script type="text/javascript">
-    $(function () {
-        
-    });
-</script>
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            <label for="ddlLC3">Combo selectpicker</label>
+            <select id="ddlLC3" class="form-control selectpicker"></select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            <label for="ddlLC4">Combo multiselect (default)</label>
+            <select id="ddlLC4" class="form-control multiselect" multiple></select>
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="ddlLC5">Combo multiselect (custom)</label>
+            <select id="ddlLC5" class="form-control multiselect" multiple></select>
+        </div>
+    </div>
+</form>

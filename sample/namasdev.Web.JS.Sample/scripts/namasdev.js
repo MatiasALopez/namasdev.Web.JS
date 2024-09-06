@@ -393,7 +393,8 @@ var nmd = function () {
 
                 $.each(items, function (i, item) {
                     var itemValue = item[opts.itemsValueProperty];
-                    $combo.append('<option value="' + itemValue + '" ' + (opts.itemsSelectedValue === itemValue || item[opts.itemsSelectedProperty] ? 'selected="selected"' : '') + '>' + item[opts.itemsTextProperty] + '</option>');
+                    var isSelected = opts.itemsSelectedValue === itemValue || item[opts.itemsSelectedProperty] === true;
+                    $combo.append('<option value="' + itemValue + '" ' + (isSelected ? 'selected="selected"' : '') + '>' + item[opts.itemsTextProperty] + '</option>');
                 });
 
                 var isSelectpicker = $combo.hasClass(selectpickerConstants.class.selectpicker);
@@ -409,7 +410,7 @@ var nmd = function () {
                         }
                     } else {
                         $combo
-                            .selectpicker('val', null)
+                            .selectpicker('val', $combo.val())
                             .selectpicker('refresh');
 
                         if (opts.selectAllByDefault && isMultiselect) {
@@ -998,7 +999,7 @@ var nmd = function () {
 
                 var opts = $.extend({}, optsDefaults, options);
 
-                $(selector || '.' + multiselectConstants.class.multiSelect)
+                $(selector || '.' + multiselectConstants.class.multiselect)
                     .selectpicker({
                         actionsBox: true,
                         selectedTextFormat: 'count > ' + opts.maxIndividualOptions,

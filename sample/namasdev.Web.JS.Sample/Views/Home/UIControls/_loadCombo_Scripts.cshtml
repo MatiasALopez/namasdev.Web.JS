@@ -1,0 +1,47 @@
+﻿<script type="text/javascript">
+    $(function () {
+        // Combo (default)
+        var items1 = [];
+        for (var i = 1; i <= 10; i++) {
+            items1.push({
+                Text: nmd.utils.stringFormat('Option {0}', i),
+                Value: i.toString(),
+                Selected: i == 5
+            });
+        }
+        nmd.ui.controls.loadCombo('ddlLC1', items1);
+        //---
+
+        // Combo (custom)
+        var items2 = [];
+        for (var i = 1; i <= 10; i++) {
+            items2.push({
+                name: nmd.utils.stringFormat('Option {0}', i),
+                id: i.toString(),
+            });
+        }
+        var options2 = {
+            emptyOptionText: 'Select...',
+            itemsTextProperty: 'name',
+            itemsValueProperty: 'id',
+            itemsSelectedProperty: 'checked',
+            itemsSelectedValue: '2',
+        };
+        nmd.ui.controls.loadCombo('ddlLC2', items2, options2);
+        //---
+
+        // Combo selectpicker
+        nmd.ui.controls.loadCombo('ddlLC3', items1);
+        //---
+
+        // Combo multiselect (default) --
+        items1[0].Selected = true;
+        items1[1].Selected = true;
+        nmd.ui.controls.loadCombo('ddlLC4', items1);
+        //---
+
+        // Combo multiselect (custom)
+        nmd.ui.controls.loadCombo('ddlLC5', items1, { selectAllByDefault: true });
+        //---
+    });
+</script>
