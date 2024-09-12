@@ -78,5 +78,35 @@ namespace namasdev.Web.JS.Sample.Controllers
                 .ToArray();
             return Json(items, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetComboItems(
+            bool fail = false)
+        {
+            System.Threading.Thread.Sleep(1000);
+            if (fail)
+            {
+                return Json(new { error = "Items not available." }, JsonRequestBehavior.AllowGet);
+            }
+
+            var items = Enumerable.Range(1, 10)
+                .Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() })
+                .ToArray();
+            return Json(new { items }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetComboItemsCustomProperties(
+            bool fail = false)
+        {
+            System.Threading.Thread.Sleep(1000);
+            if (fail)
+            {
+                return Json(new { ErrorMessage = "Users not available." }, JsonRequestBehavior.AllowGet);
+            }
+
+            var items = Enumerable.Range(1, 10)
+                .Select(i => new { ID = i.ToString(), Name = $"Name {i}", Checked = i == 5 })
+                .ToArray();
+            return Json(new { Users = items }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

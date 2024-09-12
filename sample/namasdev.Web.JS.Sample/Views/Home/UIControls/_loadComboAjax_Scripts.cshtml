@@ -1,0 +1,110 @@
+﻿<script type="text/javascript">
+    $(function () {
+        setupDefault();
+        setupCustom1();
+        setupCustom2();
+
+        setupSelectpickerDefault();
+        setupSelectpickerCustom();
+
+        setupMultiselectDefault();
+        setupMultiselectCustom();
+
+        function setupCombo(comboId, options) {
+            $(nmd.utils.stringFormat('label[for="{0}"]', comboId))
+                .after('<button class="btn btn-sm btn-primary dropdown-toggle ml-2" type="button" data-toggle="dropdown" aria-expanded="false">Load</button><div class="dropdown-menu" ><button class="dropdown-item" data-error="0">Success</button><button class="dropdown-item" data-error="1">Error</button></div >');
+
+            var $combo = $('#' + comboId);
+            $combo
+                .closest('div.form-group')
+                .find('button.dropdown-item')
+                .on('click', function (ev) {
+                    ev.preventDefault();
+
+                    loadCombo($(this));
+                });
+
+            function loadCombo($btn) {
+                var url = options && options.ajaxItemsProperty
+                    ? generateComboItemsCustomPropertiesUrl($btn)
+                    : generateComboItemsUrl($btn);
+
+                nmd.ui.controls.loadComboAjax(comboId, url, options);
+            }
+        }
+
+        function generateComboItemsUrl($btn) {
+            return generateUrl('@Url.Action("GetComboItems", "Home")', $btn);
+        }
+
+        function generateComboItemsCustomPropertiesUrl($btn) {
+            return generateUrl('@Url.Action("GetComboItemsCustomProperties", "Home")', $btn);
+        }
+
+        function generateUrl(baseUrl, $btn) {
+            if ($btn != null
+                && typeof $btn !== 'undefined'
+                && $btn.data('error')) {
+                baseUrl += '?fail=true';
+            }
+            return baseUrl;
+        }
+
+        function setupDefault() {
+            setupCombo('ddlLCADef');
+        }
+
+        function setupCustom1() {
+            // Loading full, ajax custom properties
+            var options = {
+                loadingEnabled: true,
+                ajaxItemsProperty: 'Users',
+                ajaxErrorProperty: 'ErrorMessage',
+                itemsValueProperty: 'ID',
+                itemsTextProperty: 'Name',
+                itemsSelectedProperty: 'Checked',
+            };
+            setupCombo('ddlLCACus1', options);
+        }
+
+        function setupCustom2() {
+            // Loading scoped, itemsAddedCallback, selected value
+            var options = {
+                loadingEnabled: true,
+                loadingSelector: '#divLCACus2',
+                itemsSelectedValue: '2',
+                itemsAddedCallback: function ($combo) {
+                    alert('This is the "Combo (custom 2)" items added callback.');
+                    console.log($combo);
+                }
+            };
+            setupCombo('ddlLCACus2', options);
+        }
+
+        function setupSelectpickerDefault() {
+            setupCombo('ddlLCASPDef');
+        }
+
+        function setupSelectpickerCustom() {
+            var options = {
+                loadingEnabled: true,
+                loadingSelector: '#divLCASPCus',
+                itemsSelectedValue: '2',
+            };
+            setupCombo('ddlLCASPCus', options);
+        }
+
+        function setupMultiselectDefault() {
+            setupCombo('ddlLCAMSDef');
+        }
+
+        function setupMultiselectCustom() {
+            var options = {
+                selectAllByDefault: true,
+                loadingEnabled: true,
+                loadingSelector: '#divLCAMSCus',
+            };
+            setupCombo('ddlLCAMSCus', options);
+        }
+    });
+</script>

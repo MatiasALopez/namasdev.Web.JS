@@ -374,12 +374,12 @@ var nmd = function () {
             function loadCombo(comboId, items, options) {
                 var optsDefaults = {
                     emptyOptionText: null,
+                    selectAllByDefault: false,
+                    destroyAndRecreateSelectpicker: false,
                     itemsValueProperty: 'Value',
                     itemsTextProperty: 'Text',
                     itemsSelectedProperty: 'Selected',
                     itemsSelectedValue: null,
-                    selectAllByDefault: false,
-                    destroyAndRecreateSelectpicker: false,
                 }
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -423,16 +423,14 @@ var nmd = function () {
             }
 
             function loadComboAjax(comboId, url, options) {
+                // NOTE: see "loadCombo" options also
                 var optsDefaults = {
-                    emptyOptionText: null,
-                    selectAllByDefault: true,
-                    itemsAddedCallback: null,
-                    destroyAndRecreateSelectpicker: false,
-                    ajaxErrorDefaultMessage: 'An error occurred.',
-                    ajaxErrorProperty: 'error',
-                    ajaxItemsProperty: 'items',
                     loadingEnabled: false,
                     loadingSelector: null,
+                    itemsAddedCallback: null,
+                    ajaxItemsProperty: 'items',
+                    ajaxErrorProperty: 'error',
+                    ajaxErrorDefaultMessage: 'An error occurred.',
                 }
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -447,7 +445,7 @@ var nmd = function () {
                 $.getJSON(
                     url,
                     function (response) {
-                        var error = response[opts.ajaxItemsProperty];
+                        var error = response[opts.ajaxErrorProperty];
                         if (error) {
                             alert(error);
                             loadCombo(comboId, [], opts);
@@ -455,7 +453,7 @@ var nmd = function () {
                             return;
                         }
 
-                        loadCombo(comboId, response[opts.ajaxErrorProperty], opts);
+                        loadCombo(comboId, response[opts.ajaxItemsProperty], opts);
 
                         if (opts.itemsAddedCallback) {
                             opts.itemsAddedCallback($('#' + comboId));
@@ -465,7 +463,7 @@ var nmd = function () {
                         alert(opts.ajaxErrorDefaultMessage);
                     })
                     .always(function () {
-                        if (opts.showLoading) {
+                        if (opts.loadingEnabled) {
                             hideLoading(opts.loadingSelector);
                         }
 

@@ -1,1 +1,40 @@
-﻿_loadComboAjax
+﻿<form id="frmLCA" class="mt-3">
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            <label for="ddlLCADef">Combo (default)</label>
+            <select id="ddlLCADef" class="form-control"></select>
+        </div>
+        <div class="form-group col-sm-4">
+            <label for="ddlLCACus1">Combo (custom 1)</label>
+            <select id="ddlLCACus1" class="form-control"></select>
+            <small class="text-muted">Loading full, ajax custom properties</small>
+        </div>
+        <div id="divLCACus2" class="form-group col-sm-4">
+            <label for="ddlLCACus2">Combo (custom 2)</label>
+            <select id="ddlLCACus2" class="form-control"></select>
+            <small class="text-muted">Loading scoped, itemsAddedCallback, selected value</small>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            <label for="ddlLCASPDef">Combo selectpicker (default)</label>
+            <select id="ddlLCASPDef" class="form-control selectpicker"></select>
+        </div>
+        <div id="divLCASPCus" class="form-group col-sm-4">
+            <label for="ddlLCASPCus">Combo selectpicker (custom)</label>
+            <select id="ddlLCASPCus" class="form-control selectpicker"></select>
+            <small class="text-muted">Loading scoped, selected value</small>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4">
+            <label for="ddlLCAMSDef">Combo multiselect (default)</label>
+            <select id="ddlLCAMSDef" class="form-control multiselect" multiple></select>
+        </div>
+        <div id="divLCAMSCus" class="form-group col-sm-4">
+            <label for="ddlLCAMSCus">Combo multiselect (custom)</label>
+            <select id="ddlLCAMSCus" class="form-control multiselect" multiple></select>
+            <small class="text-muted">Loading scoped, select all</small>
+        </div>
+    </div>
+</form>
