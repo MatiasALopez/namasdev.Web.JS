@@ -478,6 +478,7 @@ var nmd = function () {
                     .on('change', function () {
                         var url = buildUrl();
                         if (!url) {
+                            loadCombo(comboId, [], options);
                             return;
                         }
 
@@ -497,11 +498,11 @@ var nmd = function () {
                             hasEmptyIDs = true;
                         }
 
-                        return valor;
+                        return value;
                     }).get();
 
                     return !hasEmptyIDs
-                        ? stringFormat(urlFormat, ids)
+                        ? nmd.utils.stringFormat(urlFormat, ids)
                         : null;
                 }
             }
