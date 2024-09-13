@@ -1,0 +1,18 @@
+﻿@model namasdev.Web.JS.Sample.Models.ControlContainer
+<div @{if (!string.IsNullOrWhiteSpace(Model.Id)){<text>id="@Model.Id"</text>}} class="card mb-3 control-container @Model.CssClass">
+    <div class="card-body">
+        @if (!string.IsNullOrWhiteSpace(Model.Title))
+        {
+            <span class="card-title font-weight-bold">@Model.Title</span>
+        }
+        @if (Model.PreMainHtml != null)
+        {
+            @Model.PreMainHtml(null);
+        }
+        @Model.MainHtml(null)
+        @if (Model.PostMainHtml != null)
+        {
+            @Model.PostMainHtml(null);
+        }
+    </div>
+</div>

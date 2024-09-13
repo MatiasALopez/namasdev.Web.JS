@@ -124,6 +124,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComboControlContainer.cs" />
+    <Compile Include="Models\ControlContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -211,10 +213,12 @@
     <Content Include="Views\Home\SessionExpired.cshtml" />
     <Content Include="Views\Home\UIControls\_loadCombo_Scripts.cshtml" />
     <Content Include="Views\Home\UIControls\_loadComboAjax_Scripts.cshtml" />
+    <Content Include="Views\Home\UIControls\_initComboCascadeAjax_Scripts.cshtml" />
+    <Content Include="Views\Home\_ControlContainer.cshtml" />
+    <Content Include="Views\Home\_ComboControlContainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.eot" />

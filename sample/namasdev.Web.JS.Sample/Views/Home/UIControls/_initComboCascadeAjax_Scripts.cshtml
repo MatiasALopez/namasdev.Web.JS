@@ -1,0 +1,125 @@
+﻿<script type="text/javascript">
+    $(function () {
+        setupDefault();
+        setupMultiParentDefault();
+        setupCustom1();
+        setupCustom2();
+
+        //setupSelectpickerDefault();
+        //setupSelectpickerCustom();
+
+        //setupMultiselectDefault();
+        //setupMultiselectCustom();
+
+        function setupCombo(comboId, parentComboId, options) {
+            var $combo = $('#' + comboId),
+                $groupContainer = $combo.closest('div.group-container');
+
+            $groupContainer
+                .find('span')
+                .first()
+                .after('');
+
+            $groupContainer
+                .on('click', 'button.btn-init-item', function (ev) {
+                    ev.preventDefault();
+
+                    var $btn = $(this);
+                    initCombo($btn);
+
+                    $groupContainer.find('.btn-init-container').remove();
+                });
+
+            function initCombo($btn) {
+                var parentCount = parentComboId.split(',').length;
+                var url = options && options.ajaxItemsProperty
+                    ? generateItemsCustomPropertiesUrl($btn, parentCount)
+                    : generateItemsUrl($btn, parentCount);
+
+                nmd.ui.controls.initComboCascadeAjax(comboId, parentComboId, url, options);
+            }
+        }
+
+        function generateItemsUrl($btn, parentsCount) {
+            return generateUrl('@Url.Action("GetComboCascadeItems", "Home")', $btn, parentsCount);
+        }
+
+        function generateItemsCustomPropertiesUrl($btn, parentsCount) {
+            return generateUrl('@Url.Action("GetComboCascadeItemsCustomProperties", "Home")', $btn, parentsCount);
+        }
+
+        function generateUrl(urlBase, $btn, parentsCount) {
+            var qs = [];
+            for (var i = 0; i < parentsCount; i++) {
+                qs.push('parent' + (i+1) + '={' + i + '}');
+            }
+            if ($btn != null
+                && typeof $btn !== 'undefined'
+                && $btn.data('error')) {
+                qs.push('fail=true');
+            }
+            return urlBase + '?' + qs.join('&');
+        }
+
+        function setupDefault() {
+            setupCombo('ddlCCADefChild', 'ddlCCADefParent');
+        }
+
+        function setupMultiParentDefault() {
+            setupCombo('ddlCCAMPDefChild', 'ddlCCAMPDefParent1,ddlCCAMPDefParent2');
+        }
+
+        function setupCustom1() {
+            // Loading full, ajax custom properties
+            var options = {
+                loadingEnabled: true,
+                ajaxItemsProperty: 'Users',
+                ajaxErrorProperty: 'ErrorMessage',
+                itemsValueProperty: 'ID',
+                itemsTextProperty: 'Name',
+                itemsSelectedProperty: 'Checked',
+            };
+            setupCombo('ddlCCACus1Child', 'ddlCCACus1Parent', options);
+        }
+
+        function setupCustom2() {
+            // Loading scoped, itemsAddedCallback, selected value
+            var options = {
+                loadingEnabled: true,
+                loadingSelector: '#divCCACus2',
+                itemsSelectedValue: '1_4',
+                itemsAddedCallback: function ($combo) {
+                    alert('This is the "Combo (custom 2)" items added callback.');
+                    console.log($combo);
+                }
+            };
+            setupCombo('ddlCCACus2Child', 'ddlCCACus2Parent', options);
+        }
+
+        function setupSelectpickerDefault() {
+            setupCombo('ddlLCASPDef');
+        }
+
+        function setupSelectpickerCustom() {
+            var options = {
+                loadingEnabled: true,
+                loadingSelector: '#divLCASPCus',
+                itemsSelectedValue: '2',
+            };
+            setupCombo('ddlLCASPCus', options);
+        }
+
+        function setupMultiselectDefault() {
+            setupCombo('ddlLCAMSDef');
+        }
+
+        function setupMultiselectCustom() {
+            var options = {
+                selectAllByDefault: true,
+                loadingEnabled: true,
+                loadingSelector: '#divLCAMSCus',
+            };
+            setupCombo('ddlLCAMSCus', options);
+        }
+    });
+</script>

@@ -1,1 +1,86 @@
-﻿initComboCascadeAjax
+﻿@using namasdev.Web.JS.Sample.Models;
+@{ 
+    var parent1SelectList = new SelectList(Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = $"P{i}", Value = i.ToString() }), "Value", "Text");
+    var parent2SelectList = new SelectList(Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = $"PP{i}", Value = i.ToString() }), "Value", "Text");
+}
+<form id="frmCCA">
+    <div class="form-row">
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ComboControlContainer", new ControlContainer
+            {
+                Title = "Combo",
+                MainHtml = 
+                @<text>
+                    <div class="form-group">
+                        <label for="ddlCCADefParent">Parent</label>
+                        @Html.DropDownList("ddlCCADefParent", parent1SelectList, "", new { id = "ddlCCADefParent", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlCCADefChild">Child</label>
+                        <select id="ddlCCADefChild" class="form-control"></select>
+                    </div>
+                </text>
+            })
+        </div>
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ComboControlContainer", new ControlContainer
+            {
+                Title = "Combo multi-parent",
+                MainHtml = 
+                @<text>
+                    <div class="form-group">
+                        <label for="ddlCCAMPDefParent1">Parent 1</label>
+                        @Html.DropDownList("ddlCCAMPDefParent1", parent1SelectList, "", new { id = "ddlCCAMPDefParent1", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlCCAMPDefParent2">Parent 2</label>
+                        @Html.DropDownList("ddlCCAMPDefParent2", parent2SelectList, "", new { id = "ddlCCAMPDefParent2", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlCCAMPDefChild">Child</label>
+                        <select id="ddlCCAMPDefChild" class="form-control"></select>
+                    </div>
+                </text>
+            })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ComboControlContainer", new ControlContainer
+            {
+                Title = "Combo (custom 1)",
+                MainHtml =
+                @<text>
+                    <div class="form-group">
+                        <label for="ddlCCACus1Parent">Parent</label>
+                        @Html.DropDownList("ddlCCACus1Parent", parent1SelectList, "", new { id = "ddlCCACus1Parent", @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label for="ddlCCACus1Child">Child</label>
+                        <select id="ddlCCACus1Child" class="form-control"></select>
+                    </div>
+                    <small class="text-muted">Loading full, ajax custom properties</small>
+                </text>,
+            })
+        </div>
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ComboControlContainer", new ControlContainer
+            {
+                Id = "divCCACus2",
+                Title = "Combo (custom 2)",
+                MainHtml =
+                @<text>
+                <div class="form-group">
+                    <label for="ddlCCACus2Parent">Parent</label>
+                    @Html.DropDownList("ddlCCACus2Parent", parent1SelectList, "", new { id = "ddlCCACus2Parent", @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="ddlCCACus2Child">Child</label>
+                    <select id="ddlCCACus2Child" class="form-control"></select>
+                </div>
+                <small class="text-muted">Loading scoped, itemsAddedCallback, selected value</small>
+                </text>,
+            })
+        </div>
+    </div>
+</form>

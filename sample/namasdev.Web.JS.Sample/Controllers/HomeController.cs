@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -106,6 +108,61 @@ namespace namasdev.Web.JS.Sample.Controllers
             var items = Enumerable.Range(1, 10)
                 .Select(i => new { ID = i.ToString(), Name = $"Name {i}", Checked = i == 5 })
                 .ToArray();
+            return Json(new { Users = items }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetComboCascadeItems(
+            string parent1 = null, 
+            string parent2 = null,
+            bool fail = false)
+        {
+            System.Threading.Thread.Sleep(1000);
+
+            if (fail)
+            {
+                return Json(new { ErrorMessage = "Items not available." }, JsonRequestBehavior.AllowGet);
+            }
+
+            var items = new SelectListItem[0];
+
+            if (!string.IsNullOrWhiteSpace(parent1))
+            {
+                items = Enumerable.Range(1, 10)
+                    .Select(i => new SelectListItem 
+                    { 
+                        Value = $"{parent1}{(!string.IsNullOrWhiteSpace(parent2) ? $"_{parent2}" : "")}_{i}", 
+                        Text = $"P{parent1}{(!string.IsNullOrWhiteSpace(parent2) ? $" - PP{parent2}" : "")} - C{i}" 
+                    })
+                    .ToArray();
+            }
+            
+            return Json(new { items }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetComboCascadeItemsCustomProperties(
+            string parent1 = null,
+            string parent2 = null,
+            bool fail = false)
+        {
+            System.Threading.Thread.Sleep(1000);
+
+            if (fail)
+            {
+                return Json(new { ErrorMessage = "Users not available." }, JsonRequestBehavior.AllowGet);
+            }
+
+            var items =
+                !string.IsNullOrWhiteSpace(parent1)
+                ? Enumerable.Range(1, 10)
+                    .Select(i => new
+                    {
+                        ID = $"{parent1}{(!string.IsNullOrWhiteSpace(parent2) ? $"_{parent2}" : "")}_{i}",
+                        Name = $"P{parent1}{(!string.IsNullOrWhiteSpace(parent2) ? $" - PP{parent2}" : "")} - Name {i}",
+                        Checked = i % 3 == 0
+                    })
+                    .ToArray()
+                : new object[0];
+
             return Json(new { Users = items }, JsonRequestBehavior.AllowGet);
         }
     }
