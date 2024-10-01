@@ -5,29 +5,24 @@
         setupCustom1();
         setupCustom2();
 
-        //setupSelectpickerDefault();
-        //setupSelectpickerCustom();
+        setupSelectpickerDefault();
+        setupSelectpickerCustom();
 
         //setupMultiselectDefault();
         //setupMultiselectCustom();
 
         function setupCombo(comboId, parentComboId, options) {
             var $combo = $('#' + comboId),
-                $groupContainer = $combo.closest('div.group-container');
+                $btnInitContainer = $combo.closest('div.control-container').find('.btn-init-container');
 
-            $groupContainer
-                .find('span')
-                .first()
-                .after('');
-
-            $groupContainer
+            $btnInitContainer
                 .on('click', 'button.btn-init-item', function (ev) {
                     ev.preventDefault();
 
                     var $btn = $(this);
                     initCombo($btn);
 
-                    $groupContainer.find('.btn-init-container').remove();
+                    $btnInitContainer.remove();
                 });
 
             function initCombo($btn) {
@@ -97,16 +92,16 @@
         }
 
         function setupSelectpickerDefault() {
-            setupCombo('ddlLCASPDef');
+            setupCombo('ddlCCASPDefChild', 'ddlCCASPDefParent');
         }
 
         function setupSelectpickerCustom() {
             var options = {
                 loadingEnabled: true,
-                loadingSelector: '#divLCASPCus',
-                itemsSelectedValue: '2',
+                loadingSelector: '#divCCASPCus',
+                itemsSelectedValue: '1_4',
             };
-            setupCombo('ddlLCASPCus', options);
+            setupCombo('ddlCCASPCusChild','ddlCCASPCusParent', options);
         }
 
         function setupMultiselectDefault() {
