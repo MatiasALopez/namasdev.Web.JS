@@ -121,4 +121,59 @@
             })
         </div>
     </div>
+    <div class="form-row">
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ComboControlContainer", new ControlContainer
+            {
+                Title = "Combo multiselect (default)",
+                MainHtml =
+                        @<text>
+                            <div class="form-group">
+                                <label for="ddlCCAMSDefParent">Parent</label>
+                                @Html.DropDownList("ddlCCAMSDefParent", parent1SelectList, "", new { id = "ddlCCAMSDefParent", @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="ddlCCAMSDefChild">Child</label>
+                                <select id="ddlCCAMSDefChild" class="form-control multiselect" multiple></select>
+                            </div>
+                        </text>,
+         })
+        </div>
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ComboControlContainer", new ControlContainer
+            {
+                Title = "Combo multiselect & parent multiple (default)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCAMSPMDefParent">Parent</label>
+                            @Html.DropDownList("ddlCCAMSPMDefParent", parent1SelectList, "", new { id = "ddlCCAMSPMDefParent", @class = "form-control multiselect", multiple = "" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCAMSPMDefChild">Child</label>
+                            <select id="ddlCCAMSPMDefChild" class="form-control multiselect" multiple></select>
+                        </div>
+                    </text>,
+         })
+        </div>
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ComboControlContainer", new ControlContainer
+            {
+                Id = "divCCAMSCus",
+                Title = "Combo multiselect (custom)",
+                MainHtml =
+                        @<text>
+                            <div class="form-group">
+                                <label for="ddlCCAMSCusParent">Parent</label>
+                                @Html.DropDownList("ddlCCAMSCusParent", parent1SelectList, "", new { id = "ddlCCAMSCusParent", @class = "form-control" })
+                            </div>
+                            <div class="form-group">
+                                <label for="ddlCCAMSCusChild">Child</label>
+                                <select id="ddlCCAMSCusChild" class="form-control multiselect" multiple></select>
+                            </div>
+                            <small class="text-muted">Loading scoped, select all</small>
+                        </text>,
+         })
+        </div>
+    </div>
 </form>

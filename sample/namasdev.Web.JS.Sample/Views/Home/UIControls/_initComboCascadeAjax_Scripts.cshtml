@@ -8,8 +8,9 @@
         setupSelectpickerDefault();
         setupSelectpickerCustom();
 
-        //setupMultiselectDefault();
-        //setupMultiselectCustom();
+        setupMultiselectDefault();
+        setupMultiselectParentMultipleDefault();
+        setupMultiselectCustom();
 
         function setupCombo(comboId, parentComboId, options) {
             var $combo = $('#' + comboId),
@@ -105,16 +106,20 @@
         }
 
         function setupMultiselectDefault() {
-            setupCombo('ddlLCAMSDef');
+            setupCombo('ddlCCAMSDefChild', 'ddlCCAMSDefParent');
+        }
+
+        function setupMultiselectParentMultipleDefault() {
+            setupCombo('ddlCCAMSPMDefChild', 'ddlCCAMSPMDefParent');
         }
 
         function setupMultiselectCustom() {
             var options = {
                 selectAllByDefault: true,
                 loadingEnabled: true,
-                loadingSelector: '#divLCAMSCus',
+                loadingSelector: '#divCCAMSCus',
             };
-            setupCombo('ddlLCAMSCus', options);
+            setupCombo('ddlCCAMSCusChild', 'ddlCCAMSCusParent', options);
         }
     });
 </script>
