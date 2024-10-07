@@ -1,0 +1,53 @@
+﻿<script type="text/javascript">
+    $(function () {
+        setupDefault();
+        setupCustom();
+
+        setupSelectpickerDefault();
+        setupSelectpickerCustom();
+
+        setupMultiselectDefault();
+        setupMultiselectCustom();
+
+        function setupCombo(comboId, parentComboId, options) {
+            nmd.ui.controls.initComboCascadeJson(comboId, parentComboId, ccjItemsJson, options);
+        }
+
+        function setupDefault() {
+            setupCombo('ddlCCJDefChild', 'ddlCCJDefParent');
+        }
+
+        function setupCustom() {
+            // Selected values
+            var options = {
+                comboSelectedValue: '4_5',
+                parentComboSelectedValue: '4'
+            };
+            setupCombo('ddlCCJCusChild', 'ddlCCJCusParent', options);
+        }
+
+        function setupSelectpickerDefault() {
+            setupCombo('ddlCCJSPDefChild', 'ddlCCJSPDefParent');
+        }
+
+        function setupSelectpickerCustom() {
+            var options = {
+                comboSelectedValue: '4_5',
+                parentComboSelectedValue: '4'
+            };
+            setupCombo('ddlCCJSPCusChild','ddlCCJSPCusParent', options);
+        }
+
+        function setupMultiselectDefault() {
+            setupCombo('ddlCCJMSDefChild', 'ddlCCJMSDefParent');
+        }
+
+        function setupMultiselectCustom() {
+            var options = {
+                parentComboSelectedValue: '4',
+                selectAllByDefault: true,
+            };
+            setupCombo('ddlCCJMSCusChild', 'ddlCCJMSCusParent', options);
+        }
+    });
+</script>

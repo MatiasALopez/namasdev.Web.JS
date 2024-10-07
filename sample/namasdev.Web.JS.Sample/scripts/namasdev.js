@@ -552,7 +552,7 @@ var nmd = function () {
                         items = itemsObj[parentComboValue];
                     }
 
-                    loadCombo(comboId, items, { itemsSelectedValue: selectedValue });
+                    loadCombo(comboId, items, $.extend({}, opts, { itemsSelectedValue: selectedValue }));
                 }
             }
             //---

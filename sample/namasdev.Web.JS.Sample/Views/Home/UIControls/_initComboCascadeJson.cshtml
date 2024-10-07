@@ -1,1 +1,134 @@
-﻿initComboCascadeJson
+﻿@using namasdev.Web.JS.Sample.Models;
+@{ 
+    var parentsSelectList = new SelectList(Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = $"P{i}", Value = i.ToString() }), "Value", "Text");
+    var itemsJson = parentsSelectList
+        .Select(i => new
+        {
+            Text = i.Text,
+            Value = i.Value,
+            Items = Enumerable.Range(1, 10)
+                .Select(j => new
+                {
+                    Text = $"{i.Text} - C{j}",
+                    Value = $"{i.Value}_{j}",
+                })
+                .ToArray()
+        })
+        .ToArray();
+}
+<form id="frmCCJ">
+    <div class="form-row">
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCJDefParent">Parent</label>
+                            @Html.DropDownList("ddlCCJDefParent", parentsSelectList, "", new { id = "ddlCCJDefParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCJDefChild">Child</label>
+                            <select id="ddlCCJDefChild" class="form-control"></select>
+                        </div>
+                    </text>
+            })
+        </div>
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo (custom)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCJCusParent">Parent</label>
+                            @Html.DropDownList("ddlCCJCusParent", parentsSelectList, "", new { id = "ddlCCJCusParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCJCusChild">Child</label>
+                            <select id="ddlCCJCusChild" class="form-control"></select>
+                        </div>
+                        <small class="text-muted">Selected values</small>
+                    </text>,
+            })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo selectpicker (default)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCJSPDefParent">Parent</label>
+                            @Html.DropDownList("ddlCCJSPDefParent", parentsSelectList, "", new { id = "ddlCCJSPDefParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCJSPDefChild">Child</label>
+                            <select id="ddlCCJSPDefChild" class="form-control selectpicker"></select>
+                        </div>
+                    </text>,
+            })
+        </div>
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo selectpicker (custom)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCJSPCusParent">Parent</label>
+                            @Html.DropDownList("ddlCCJSPCusParent", parentsSelectList, "", new { id = "ddlCCJSPCusParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCJSPCusChild">Child</label>
+                            <select id="ddlCCJSPCusChild" class="form-control selectpicker"></select>
+                        </div>
+                        <small class="text-muted">Selected value</small>
+                    </text>,
+            })
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo multiselect (default)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCJMSDefParent">Parent</label>
+                            @Html.DropDownList("ddlCCJMSDefParent", parentsSelectList, "", new { id = "ddlCCJMSDefParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCJMSDefChild">Child</label>
+                            <select id="ddlCCJMSDefChild" class="form-control multiselect" multiple></select>
+                        </div>
+                    </text>,
+         })
+        </div>
+        <div class="col-lg-5 col-md-6">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo multiselect (custom)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCJMSCusParent">Parent</label>
+                            @Html.DropDownList("ddlCCJMSCusParent", parentsSelectList, "", new { id = "ddlCCJMSCusParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCJMSCusChild">Child</label>
+                            <select id="ddlCCJMSCusChild" class="form-control multiselect" multiple></select>
+                        </div>
+                        <small class="text-muted">Parent: selected value, Child: Select all</small>
+                    </text>,
+         })
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    var ccjItemsJson = @Html.Raw(Json.Encode(itemsJson));
+</script>

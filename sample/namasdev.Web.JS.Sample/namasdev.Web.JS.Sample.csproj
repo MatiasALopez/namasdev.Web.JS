@@ -216,6 +216,7 @@
     <Content Include="Views\Home\UIControls\_initComboCascadeAjax_Scripts.cshtml" />
     <Content Include="Views\Home\_ControlContainer.cshtml" />
     <Content Include="Views\Home\_ComboControlContainer.cshtml" />
+    <Content Include="Views\Home\UIControls\_initComboCascadeJSON_Scripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
