@@ -1,15 +1,30 @@
-﻿<form id="frmDP">
+﻿@using namasdev.Web.JS.Sample.Models;
+<div>
     <div class="form-row">
-        <div class="form-group col-sm-4">
-            <label for="txtDP1">Datepicker (default)</label>
-            <input type="text" id="txtDP1" class="form-control datepicker" />
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Datepicker (default selector)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <input type="text" id="txtDP1" class="form-control datepicker" />
+                    </div>
+                </text>
+            })
         </div>
-        <div class="form-group col-sm-4">
-            <label for="txtDP2">Datepicker custom</label>
-            <input type="text" id="txtDP2" class="form-control" />
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Datepicker (custom selector and options)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <input type="text" id="txtDP2" class="form-control" />
+                    </div>
+                </text>
+            })
         </div>
     </div>
-</form>
+</div>
 <script type="text/javascript">
     $(function () {
         nmd.ui.controls.initDatePicker('#txtDP2', {

@@ -1,17 +1,32 @@
-﻿<form id="frmSPA">
+﻿@using namasdev.Web.JS.Sample.Models;
+<div>
     <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label for="ddlSPA1">Select (default)</label>
-            <select id="ddlSPA1" class="form-control selectpicker-ajax" data-abs-ajax-url="@Url.Action("GetSelectpickerAjaxItems")"></select>
-            <small class="text-muted">Type 3 chars to start searching</small>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Selectpicker (default selector)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <select class="form-control selectpicker-ajax" data-abs-ajax-url="@Url.Action("GetSelectpickerAjaxItems")"></select>
+                        <small class="text-muted">Type 3 chars to start searching</small>
+                    </div>
+                </text>
+            })
         </div>
-        <div class="form-group col-sm-6">
-            <label for="ddlSPA2">Select custom</label>
-            <select id="ddlSPA2" class="form-control selectpicker-ajax" data-abs-ajax-url="@Url.Action("GetSelectpickerAjaxItems")"></select>
-            <small class="text-muted">Type 2 chars to start searching</small>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Selectpicker (custom selector and options)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <select id="ddlSPA2" class="form-control selectpicker-ajax" data-abs-ajax-url="@Url.Action("GetSelectpickerAjaxItems")"></select>
+                        <small class="text-muted">Type 2 chars to start searching</small>
+                    </div>
+                </text>
+            })
         </div>
     </div>
-</form>
+</div>
 <script type="text/javascript">
     $(function () {
         nmd.ui.controls.initSelectpickerAjax('#ddlSPA2', {

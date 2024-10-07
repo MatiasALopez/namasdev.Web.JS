@@ -1,28 +1,66 @@
-﻿<form id="frmLC">
+﻿@using namasdev.Web.JS.Sample.Models;
+<div>
     <div class="form-row">
-        <div class="form-group col-sm-4">
-            <label for="ddlLC1">Combo (default)</label>
-            <select id="ddlLC1" class="form-control"></select>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo (default)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <select id="ddlLC1" class="form-control"></select>
+                    </div>
+                </text>
+            })
         </div>
-        <div class="form-group col-sm-4">
-            <label for="ddlLC2">Combo (custom)</label>
-            <select id="ddlLC2" class="form-control"></select>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo (custom)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <select id="ddlLC2" class="form-control"></select>
+                        <small class="text-muted">Empty option text, custom properties, selected value</small>
+                    </div>
+                </text>,
+            })
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-sm-4">
-            <label for="ddlLC3">Combo selectpicker</label>
-            <select id="ddlLC3" class="form-control selectpicker"></select>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Combo selectpicker",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <select id="ddlLC3" class="form-control selectpicker"></select>
+                    </div>
+                </text>
+            })
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-sm-4">
-            <label for="ddlLC4">Combo multiselect (default)</label>
-            <select id="ddlLC4" class="form-control multiselect" multiple></select>
-        </div>
-        <div class="form-group col-sm-4">
-            <label for="ddlLC5">Combo multiselect (custom)</label>
-            <select id="ddlLC5" class="form-control multiselect" multiple></select>
-        </div>
+         <div class="col-lg-4 col-md-6 mb-3">
+             @Html.Partial("_ControlContainer", new ControlContainer
+             {
+                 Title = "Combo multiselect (default)",
+                 MainHtml = @<text>
+                    <div class="form-group">
+                        <select id="ddlLC4" class="form-control multiselect" multiple></select>
+                    </div>
+                 </text>
+             })
+         </div>
+         <div class="col-lg-4 col-md-6 mb-3">
+             @Html.Partial("_ControlContainer", new ControlContainer
+             {
+                 Title = "Combo multiselect (custom)",
+                 MainHtml = @<text>
+                    <div class="form-group">
+                        <select id="ddlLC5" class="form-control multiselect" multiple></select>
+                        <small class="text-muted">Select all</small>
+                    </div>
+                 </text>,
+             })
+         </div>
     </div>
-</form>
+</div>

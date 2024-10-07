@@ -11,14 +11,11 @@
         setupMultiselectCustom();
 
         function setupCombo(comboId, options) {
-            $(nmd.utils.stringFormat('label[for="{0}"]', comboId))
-                .after('<button class="btn btn-sm btn-primary dropdown-toggle ml-2" type="button" data-toggle="dropdown" aria-expanded="false">Load</button><div class="dropdown-menu"><button class="dropdown-item" data-error="0">Success</button><button class="dropdown-item" data-error="1">Error</button></div>');
+            var $combo = $('#' + comboId),
+                $btnInitContainer = $combo.closest('div.control-container').find('.btn-init-container');
 
-            var $combo = $('#' + comboId);
-            $combo
-                .closest('div.form-group')
-                .find('button.dropdown-item')
-                .on('click', function (ev) {
+            $btnInitContainer
+                .on('click', 'button.btn-init-item', function (ev) {
                     ev.preventDefault();
 
                     loadCombo($(this));

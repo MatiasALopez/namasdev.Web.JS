@@ -1,19 +1,30 @@
-﻿<div class="row">
-    <div class="col-sm-6">
-        <div class="border border-dark p-3">
-            Started: <span id="spET1Started">-</span><br/>
-            Elapsed: <span id="spET1Elapsed">-</span>
+﻿@using namasdev.Web.JS.Sample.Models;
+<div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Id = "divET1",
+                MainHtml = @<text>
+                    Started: <span id="spET1Started">-</span><br />
+                    Elapsed: <span id="spET1Elapsed">-</span>
+                </text>,
+            })
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Id = "divET2",
+                MainHtml = @<text>
+                    Started: <span id="spET2Started">-</span><br />
+                    Max. allowed: 1min<br />
+                    Elapsed: <span id="spET2Elapsed">-</span>
+                </text>,
+            })
         </div>
     </div>
-    <div class="col-sm-6">
-        <div id="divET2" class="border border-dark p-3">
-            Started: <span id="spET2Started">-</span><br />
-            Max. allowed: 1min<br />
-            Elapsed: <span id="spET2Elapsed">-</span>
-        </div>
-    </div>
+    <button id="btnETStart" class="btn btn-primary">Start</button>
 </div>
-<button id="btnETStart" class="btn btn-primary">Start</button>
 <script type="text/javascript">
     $('#btnETStart').on('click', function () {
         var started = new Date();

@@ -16,9 +16,9 @@
         })
         .ToArray();
 }
-<form id="frmCCJ">
+<div>
     <div class="form-row">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ControlContainer", new ControlContainer
             {
                 Title = "Combo",
@@ -35,7 +35,7 @@
                     </text>
             })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ControlContainer", new ControlContainer
             {
                 Title = "Combo (custom)",
@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ControlContainer", new ControlContainer
             {
                 Title = "Combo selectpicker (default)",
@@ -72,7 +72,7 @@
                     </text>,
             })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ControlContainer", new ControlContainer
             {
                 Title = "Combo selectpicker (custom)",
@@ -92,7 +92,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ControlContainer", new ControlContainer
             {
                 Title = "Combo multiselect (default)",
@@ -109,7 +109,7 @@
                     </text>,
          })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ControlContainer", new ControlContainer
             {
                 Title = "Combo multiselect (custom)",
@@ -128,7 +128,7 @@
          })
         </div>
     </div>
-</form>
+</div>
 <script type="text/javascript">
     var ccjItemsJson = @Html.Raw(Json.Encode(itemsJson));
 </script>

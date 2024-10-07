@@ -1,5 +1,5 @@
 ﻿@model namasdev.Web.JS.Sample.Models.ControlContainer
-<div @{if (!string.IsNullOrWhiteSpace(Model.Id)){<text>id="@Model.Id"</text>}} class="card mb-3 control-container @Model.CssClass">
+<div @{if (!string.IsNullOrWhiteSpace(Model.Id)){<text>id="@Model.Id"</text>}} class="card h-100 control-container @Model.CssClass">
     <div class="card-body">
         @if (!string.IsNullOrWhiteSpace(Model.Title))
         {
@@ -9,7 +9,9 @@
         {
             @Model.PreMainHtml(null);
         }
-        @Model.MainHtml(null)
+        <div class="mt-2">
+            @Model.MainHtml(null)
+        </div>
         @if (Model.PostMainHtml != null)
         {
             @Model.PostMainHtml(null);

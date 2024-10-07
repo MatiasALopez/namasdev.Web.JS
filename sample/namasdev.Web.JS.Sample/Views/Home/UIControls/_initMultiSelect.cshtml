@@ -1,27 +1,37 @@
-﻿<form id="frmMS">
+﻿@using namasdev.Web.JS.Sample.Models;
+@{
+    var selectList = new SelectList(Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = $"Option {i}", Value = i.ToString() }), "Value", "Text");
+}
+<div>
     <div class="form-row">
-        <div class="form-group col-sm-6">
-            <label for="ddlMS1">Select (default)</label>
-            <select id="ddlMS1" class="form-control multiselect" multiple>
-                @for (int i = 1; i <= 10; i++)
-                {
-                    <option value="@i">Option @i</option>
-                }
-            </select>
-            <small class="text-muted">Select/Total label shown for more than 3 selected options</small>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Multiselect (default selector)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            @Html.DropDownList("ddlMS1", selectList, "", new { id = "ddlMS1", @class = "form-control multiselect", multiple = "" })
+                            <small class="text-muted">Select/Total label shown for more than 3 selected options</small>
+                        </div>
+                    </text>
+            })
         </div>
-        <div class="form-group col-sm-6">
-            <label for="ddlMS2">Select custom</label>
-            <select id="ddlMS2" class="form-control" multiple>
-                @for (int i = 1; i <= 10; i++)
-                {
-                    <option value="@i">Option @i</option>
-                }
-            </select>
-            <small class="text-muted">Select/Total label shown for more than 5 selected options</small>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Multiselect (custom selector and options)",
+                MainHtml =
+                    @<text>
+                        <div class="form-group">
+                            @Html.DropDownList("ddlMS2", selectList, "", new { id = "ddlMS2", @class = "form-control", multiple = "" })
+                            <small class="text-muted">Select/Total label shown for more than 5 selected options, custom messages</small>
+                        </div>
+                    </text>
+            })
         </div>
     </div>
-</form>
+</div>
 <script type="text/javascript">
     $(function () {
         nmd.ui.controls.initMultiSelect('#ddlMS2', {

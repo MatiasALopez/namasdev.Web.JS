@@ -3,9 +3,9 @@
     var parent1SelectList = new SelectList(Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = $"P{i}", Value = i.ToString() }), "Value", "Text");
     var parent2SelectList = new SelectList(Enumerable.Range(1, 10).Select(i => new SelectListItem { Text = $"PP{i}", Value = i.ToString() }), "Value", "Text");
 }
-<form id="frmCCA">
+<div>
     <div class="form-row">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Title = "Combo",
@@ -22,7 +22,7 @@
                     </text>
             })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Title = "Combo multi-parent",
@@ -45,7 +45,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Title = "Combo (custom 1)",
@@ -63,7 +63,7 @@
                     </text>,
             })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Id = "divCCACus2",
@@ -84,7 +84,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Title = "Combo selectpicker (default)",
@@ -101,7 +101,7 @@
                     </text>,
             })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Id = "divCCASPCus",
@@ -122,24 +122,24 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Title = "Combo multiselect (default)",
                 MainHtml =
-                        @<text>
-                            <div class="form-group">
-                                <label for="ddlCCAMSDefParent">Parent</label>
-                                @Html.DropDownList("ddlCCAMSDefParent", parent1SelectList, "", new { id = "ddlCCAMSDefParent", @class = "form-control" })
-                            </div>
-                            <div class="form-group">
-                                <label for="ddlCCAMSDefChild">Child</label>
-                                <select id="ddlCCAMSDefChild" class="form-control multiselect" multiple></select>
-                            </div>
-                        </text>,
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCAMSDefParent">Parent</label>
+                            @Html.DropDownList("ddlCCAMSDefParent", parent1SelectList, "", new { id = "ddlCCAMSDefParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCAMSDefChild">Child</label>
+                            <select id="ddlCCAMSDefChild" class="form-control multiselect" multiple></select>
+                        </div>
+                    </text>,
          })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Title = "Combo multiselect & parent multiple (default)",
@@ -156,24 +156,24 @@
                     </text>,
          })
         </div>
-        <div class="col-lg-5 col-md-6">
+        <div class="col-lg-4 col-md-6 mb-3">
             @Html.Partial("_ComboControlContainer", new ControlContainer
             {
                 Id = "divCCAMSCus",
                 Title = "Combo multiselect (custom)",
                 MainHtml =
-                        @<text>
-                            <div class="form-group">
-                                <label for="ddlCCAMSCusParent">Parent</label>
-                                @Html.DropDownList("ddlCCAMSCusParent", parent1SelectList, "", new { id = "ddlCCAMSCusParent", @class = "form-control" })
-                            </div>
-                            <div class="form-group">
-                                <label for="ddlCCAMSCusChild">Child</label>
-                                <select id="ddlCCAMSCusChild" class="form-control multiselect" multiple></select>
-                            </div>
-                            <small class="text-muted">Loading scoped, select all</small>
-                        </text>,
+                    @<text>
+                        <div class="form-group">
+                            <label for="ddlCCAMSCusParent">Parent</label>
+                            @Html.DropDownList("ddlCCAMSCusParent", parent1SelectList, "", new { id = "ddlCCAMSCusParent", @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ddlCCAMSCusChild">Child</label>
+                            <select id="ddlCCAMSCusChild" class="form-control multiselect" multiple></select>
+                        </div>
+                        <small class="text-muted">Loading scoped, select all</small>
+                    </text>,
          })
         </div>
     </div>
-</form>
+</div>

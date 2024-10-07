@@ -1,19 +1,39 @@
-﻿<div class="row">
-    <div class="col-sm-4">
-        <form>
-            <div class="form-group">
-                <label for="txtCC1">Character counter (default)</label>
-                <textarea id="txtCC1" class="form-control character-counter"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="txtCC2">Character counter (with max-length)</label>
-                <textarea id="txtCC2" class="form-control character-counter" maxlength="50"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="txtCC3">Character counter custom</label>
-                <textarea id="txtCC3" class="form-control"></textarea>
-            </div>
-        </form>
+﻿@using namasdev.Web.JS.Sample.Models;
+<div>
+    <div class="form-row">
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Character counter (default selector)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <textarea class="form-control character-counter"></textarea>
+                    </div>
+                </text>
+            })
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Character counter (default selector, with maxlength)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <textarea id="txtDP2" class="form-control character-counter" maxlength="100"></textarea>
+                    </div>
+                </text>
+            })
+        </div>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Character counter (custom selector and options)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <textarea id="txtCC3" class="form-control"></textarea>
+                    </div>
+                </text>
+            })
+        </div>
     </div>
 </div>
 <script type="text/javascript">

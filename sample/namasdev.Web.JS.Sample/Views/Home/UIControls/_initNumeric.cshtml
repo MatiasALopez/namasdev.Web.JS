@@ -1,27 +1,56 @@
-﻿<form id="frmNum">
+﻿@using namasdev.Web.JS.Sample.Models;
+<div>
     <div class="form-row">
-        <div class="form-group col-sm-3">
-            <label for="ddlNum1">Number (default)</label>
-            <input type="text" id="txtNum1" class="form-control numeric" />
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Numeric (default selector)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <input type="text" id="txtNum1" class="form-control numeric" />
+                    </div>
+                </text>
+            })
         </div>
-        <div class="form-group col-sm-3">
-            <label for="txtNum2">Number (custom)</label>
-            <input type="text" id="txtNum2" class="form-control" />
-            <small class="text-muted">Allow negatives, ',' separator, 2 decimal places</small>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Number (custom selector and options)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <input type="text" id="txtNum2" class="form-control" />
+                        <small class="text-muted">Allow negatives, ',' separator, 2 decimal places</small>
+                    </div>
+                </text>
+            })
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-sm-3">
-            <label for="txtNumInt1">Integer (default)</label>
-            <input type="text" id="txtNumInt1" class="form-control numeric-integer" />
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Numeric integer (default selector)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <input type="text" id="txtNumInt1" class="form-control numeric-integer" />
+                    </div>
+                </text>
+            })
         </div>
-        <div class="form-group col-sm-3">
-            <label for="txtNumInt2">Integer (custom)</label>
-            <input type="text" id="txtNumInt2" class="form-control" />
-            <small class="text-muted">Allow negatives</small>
+        <div class="col-lg-4 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Number integer (custom selector and options)",
+                MainHtml = @<text>
+                    <div class="form-group">
+                        <input type="text" id="txtNumInt2" class="form-control" />
+                        <small class="text-muted">Allow negatives</small>
+                    </div>
+                </text>
+            })
         </div>
     </div>
-</form>
+</div>
 <script type="text/javascript">
     $(function () {
         nmd.ui.controls.initNumeric('#txtNum2', {
