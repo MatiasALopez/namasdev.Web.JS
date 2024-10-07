@@ -1,4 +1,11 @@
 ﻿@{
     ViewBag.Title = "Sample";
 }
-@Html.ActionLink("UI Controls", "UIControls")
+<ul class="nav flex-column">
+    <li class="nav-item">
+        @Html.ActionLink("UI Controls", "UIControls", null, new { @class = "nav-link active" })
+    </li>
+    <li class="nav-item">
+        @Html.ActionLink("UI Forms", "UIForms", null, new { @class = "nav-link active" })
+    </li>
+</ul>

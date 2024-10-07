@@ -2,12 +2,89 @@
     ViewBag.Title = "UI Forms";
 }
 <h1>UI Forms</h1>
+<form id="frmUIForms" class="d-none">
+    @Html.AntiForgeryToken()
+</form>
+<div class="card mb-2">
+    <div class="card-header p-0">
+        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#setAntiForgeryTokenToData">setAntiForgeryTokenToData</button>
+    </div>
+    <div id="setAntiForgeryTokenToData" class="collapse">
+        <div class="card-body">
+            @Html.Partial("~/Views/Home/UIForms/_setAntiForgeryTokenToData.cshtml")
+        </div>
+    </div>
+</div>
+<div class="card mb-2">
+    <div class="card-header p-0">
+        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#createDataWithAntiForgeryToken">
+            createDataWithAntiForgeryToken
+        </button>
+    </div>
+    <div id="createDataWithAntiForgeryToken" class="collapse">
+        <div class="card-body">
+            @Html.Partial("~/Views/Home/UIForms/_createDataWithAntiForgeryToken.cshtml")
+        </div>
+    </div>
+</div>
+<div class="card mb-2">
+    <div class="card-header p-0">
+        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#setAntiForgeryTokenToFormData">
+            setAntiForgeryTokenToFormData
+        </button>
+    </div>
+    <div id="setAntiForgeryTokenToFormData" class="collapse">
+        <div class="card-body">
+            @Html.Partial("~/Views/Home/UIForms/_setAntiForgeryTokenToFormData.cshtml")
+        </div>
+    </div>
+</div>
+<div class="card mb-2">
+    <div class="card-header p-0">
+        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#disableEnterSubmit">
+            disableEnterSubmit
+        </button>
+    </div>
+    <div id="disableEnterSubmit" class="collapse">
+        <div class="card-body">
+            @Html.Partial("~/Views/Home/UIForms/_disableEnterSubmit.cshtml")
+        </div>
+    </div>
+</div>
 
-<h4>setAntiForgeryTokenToData</h4>
-<h4>createDataWithAntiForgeryToken</h4>
-<h4>setAntiForgeryTokenToFormData</h4>
-<h4>disableEnterSubmit</h4>
-
-<h4>configJQueryValidationDates</h4>
-<h4>initDisableOnSubmitButtons</h4>
-<h4>setValidationSummaryVisibility</h4>
+<div class="card mb-2">
+    <div class="card-header p-0">
+        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#configJQueryValidationDates">
+            configJQueryValidationDates
+        </button>
+    </div>
+    <div id="configJQueryValidationDates" class="collapse">
+        <div class="card-body">
+            @Html.Partial("~/Views/Home/UIForms/_configJQueryValidationDates.cshtml")
+        </div>
+    </div>
+</div>
+<div class="card mb-2">
+    <div class="card-header p-0">
+        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initDisableOnSubmitButtons">
+            initDisableOnSubmitButtons
+        </button>
+    </div>
+    <div id="initDisableOnSubmitButtons" class="collapse">
+        <div class="card-body">
+            @Html.Partial("~/Views/Home/UIForms/_initDisableOnSubmitButtons.cshtml")
+        </div>
+    </div>
+</div>
+<div class="card mb-2">
+    <div class="card-header p-0">
+        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#setValidationSummaryVisibility">
+            setValidationSummaryVisibility
+        </button>
+    </div>
+    <div id="setValidationSummaryVisibility" class="collapse">
+        <div class="card-body">
+            @Html.Partial("~/Views/Home/UIForms/_setValidationSummaryVisibility.cshtml")
+        </div>
+    </div>
+</div>

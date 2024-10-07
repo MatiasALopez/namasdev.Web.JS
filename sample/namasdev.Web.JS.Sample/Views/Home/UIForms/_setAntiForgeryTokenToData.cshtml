@@ -1,0 +1,30 @@
+﻿<div>
+    <button id="btnAFTD" type="button" class="btn btn-primary">Submit</button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnAFTD').on('click', function (ev) {
+            ev.preventDefault();
+
+            var data = {
+                text: 'text',
+                number: 123.45,
+                boolean: true
+            };
+            nmd.ui.forms.setAntiForgeryTokenToData(data, '#frmUIForms');
+
+            $.post(
+                '@Url.Action("AjaxPost", "Home")',
+                data,
+                function (resp) {
+                    console.log(resp);
+                    alert('Submitted with Anti-Forgery Token successfully');
+                })
+                .fail(function () {
+                    alert('Error');
+                });
+
+            return false;
+        });
+    });
+</script>

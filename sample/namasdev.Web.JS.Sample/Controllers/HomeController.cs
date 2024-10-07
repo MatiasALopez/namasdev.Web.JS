@@ -33,6 +33,13 @@ namespace namasdev.Web.JS.Sample.Controllers
             return View();
         }
 
+        [HttpPost,
+        ValidateAntiForgeryToken]
+        public ActionResult AjaxPost()
+        {
+            return Json(Request.Form);
+        }
+
         public ActionResult Format()
         {
             return View();

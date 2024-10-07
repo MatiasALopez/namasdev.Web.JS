@@ -217,6 +217,13 @@
     <Content Include="Views\Home\_ControlContainer.cshtml" />
     <Content Include="Views\Home\_ComboControlContainer.cshtml" />
     <Content Include="Views\Home\UIControls\_initComboCascadeJSON_Scripts.cshtml" />
+    <Content Include="Views\Home\UIForms\_setAntiForgeryTokenToData.cshtml" />
+    <Content Include="Views\Home\UIForms\_createDataWithAntiForgeryToken.cshtml" />
+    <Content Include="Views\Home\UIForms\_setAntiForgeryTokenToFormData.cshtml" />
+    <Content Include="Views\Home\UIForms\_disableEnterSubmit.cshtml" />
+    <Content Include="Views\Home\UIForms\_configJQueryValidationDates.cshtml" />
+    <Content Include="Views\Home\UIForms\_initDisableOnSubmitButtons.cshtml" />
+    <Content Include="Views\Home\UIForms\_setValidationSummaryVisibility.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
