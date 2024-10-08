@@ -1,1 +1,33 @@
-﻿setAntiForgeryTokenToFormData
+﻿<div>
+    <button id="btnAFTFD" type="button" class="btn btn-primary">Submit</button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnAFTFD').on('click', function (ev) {
+            ev.preventDefault();
+
+            var formData = new FormData();
+            formData.append('text', 'text');
+            formData.append('number', '123.45');
+            formData.append('boolean', 'true');
+            nmd.ui.forms.setAntiForgeryTokenToFormData(formData, '#frmUIForms');
+
+            $.ajax({
+                url: '@Url.Action("AjaxPost", "Home")',
+                type: "POST",
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (resp) {
+                    console.log(resp);
+                    alert('Submitted with Anti-Forgery Token successfully');
+                }
+            })
+            .fail(function () {
+                alert('Error');
+            });
+
+            return false;
+        });
+    });
+</script>

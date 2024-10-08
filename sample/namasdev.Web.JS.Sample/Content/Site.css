@@ -18,6 +18,21 @@
 .table-order-post th[data-order] { cursor: pointer; }
     .table-order-post th[data-order]::after { font: normal normal normal 14px/1 FontAwesome; margin-left: 10px; content: '\f0dc'; }
 
+/* Validacion */
+.validation-summary-errors {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+.validation-summary-errors ul { list-style: none; margin: 0; padding: 0; }
+.validation-summary-valid { display: none; }
+/******/
+
 /** Bootstrap fixes **/
 .col-form-label { font-weight: bold; } 
 .text-success { color: #008542 !important; } 

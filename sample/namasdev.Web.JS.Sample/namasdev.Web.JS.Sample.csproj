@@ -127,6 +127,7 @@
     <Compile Include="Models\ComboControlContainer.cs" />
     <Compile Include="Models\ControlContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\UIForms\UIFormsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ajax-bootstrap-select.min.css" />
@@ -221,7 +222,6 @@
     <Content Include="Views\Home\UIForms\_createDataWithAntiForgeryToken.cshtml" />
     <Content Include="Views\Home\UIForms\_setAntiForgeryTokenToFormData.cshtml" />
     <Content Include="Views\Home\UIForms\_disableEnterSubmit.cshtml" />
-    <Content Include="Views\Home\UIForms\_configJQueryValidationDates.cshtml" />
     <Content Include="Views\Home\UIForms\_initDisableOnSubmitButtons.cshtml" />
     <Content Include="Views\Home\UIForms\_setValidationSummaryVisibility.cshtml" />
   </ItemGroup>

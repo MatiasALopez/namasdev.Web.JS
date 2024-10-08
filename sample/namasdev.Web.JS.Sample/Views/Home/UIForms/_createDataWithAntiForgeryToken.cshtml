@@ -1,1 +1,23 @@
-﻿createDataWithAntiForgeryToken
+﻿<div>
+    <button id="btnAFT" type="button" class="btn btn-primary">Submit</button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnAFT').on('click', function (ev) {
+            ev.preventDefault();
+
+            $.post(
+                '@Url.Action("AjaxPost", "Home")',
+                nmd.ui.forms.createDataWithAntiForgeryToken('#frmUIForms'),
+                function (resp) {
+                    console.log(resp);
+                    alert('Submitted with Anti-Forgery Token successfully');
+                })
+                .fail(function () {
+                    alert('Error');
+                });
+
+            return false;
+        });
+    });
+</script>

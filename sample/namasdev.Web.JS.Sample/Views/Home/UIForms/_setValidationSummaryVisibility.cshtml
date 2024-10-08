@@ -1,1 +1,11 @@
-﻿setValidationSummaryVisibility
+﻿@model namasdev.Web.JS.Sample.ViewModels.UIForms.UIFormsViewModel
+<form id="frmVSV" action="@Url.Action("UIForms")" method="post">
+    <input type="hidden" name="section" value="vsv" />
+    @Html.ValidationSummary(excludePropertyErrors: true)
+    <div class="form-group">
+        <label for="txtVSVText">Text</label>
+        @Html.TextBoxFor(m => m.Text, new { id = "txtVSVText", @class = "form-control" })
+        <small class="text-muted">Type "error" to trigger validation error after submit</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,1 +1,10 @@
-﻿initDisableOnSubmitButtons
+﻿@model namasdev.Web.JS.Sample.ViewModels.UIForms.UIFormsViewModel
+<form id="frmDOSB" action="@Url.Action("UIForms")" method="post">
+    <div class="form-group">
+        <label for="txtDOSBText">Text</label>
+        @Html.TextBoxFor(m => m.Text, new { id = "txtDOSBText", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Text)
+    </div>
+    <button type="submit" class="btn btn-primary disable-on-submit">Submit A</button>
+    <button type="submit" class="btn btn-secondary disable-on-submit">Submit B</button>
+</form>

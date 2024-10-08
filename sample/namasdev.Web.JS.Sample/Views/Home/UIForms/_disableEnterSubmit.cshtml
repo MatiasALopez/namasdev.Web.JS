@@ -1,1 +1,27 @@
-﻿disableEnterSubmit
+﻿<form id="frmDES">
+    <div class="form-group">
+        <label for="txtDESText">Text</label>
+        <input id="txtDESText" type="text" value="text" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="txtDESPassword">Password</label>
+        <input id="txtDESPassword" type="password" value="password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="txtDESTextarea">Text area</label>
+        <textarea id="txtDESTextarea" class="form-control">text</textarea>
+    </div>
+    <div class="form-group">
+        <label for="ddlDES">Select</label>
+        <select id="ddlDES" class="form-control">
+            <option>A</option>
+            <option selected>B</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.forms.disableEnterSubmit();
+    });
+</script>

@@ -1190,7 +1190,7 @@ var nmd = function () {
             }
 
             function disableEnterSubmit() {
-                $(document).on('keydown', 'form', function (event) {
+                $(document).on('keydown', ':input:not(textarea)', function (event) {
                     return event.key != 'Enter';
                 });
             }
@@ -1200,23 +1200,23 @@ var nmd = function () {
                     cssDisabledOnSubmit = 'disabled-on-submit';
 
                 $(document).on('invalid-form.validate', 'form', function () {
-                    var $btn = $(this)
-                        .find(selector + ' .' + cssDisabledOnSubmit);
-                    setTimeout(function () {
-                        $btn
-                            .prop('disabled', false)
-                            .removeClass(cssDisabledOnSubmit);
-                    }, 1);
+                    var $controlsToDisable = $(this).find(selector + ' .' + cssDisabledOnSubmit);
+                    setTimeout(
+                        function () {
+                            $controlsToDisable
+                                .prop('disabled', false)
+                                .removeClass(cssDisabledOnSubmit);
+                        }, 1);
                 });
 
                 $(document).on('submit', 'form', function () {
-                    var $btn = $(this)
-                        .find(selector);
-                    setTimeout(function () {
-                        $btn
-                            .prop('disabled', true)
-                            .addClass(cssDisabledOnSubmit);
-                    }, 0);
+                    var $controlsToDisable = $(this).find(selector);
+                    setTimeout(
+                        function () {
+                            $controlsToDisable
+                                .prop('disabled', true)
+                                .addClass(cssDisabledOnSubmit);
+                        }, 0);
                 });
             }
 
