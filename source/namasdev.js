@@ -94,26 +94,26 @@ var nmd = function () {
             monthAndDayFormat = '2-digit',
             hourAndMinuteFormat = '2-digit';
 
-        function formateDate(date) {
+        function formatDate(date) {
             return new Date(date).toLocaleDateString(culture, { year: yearFormat, month: monthAndDayFormat, day: monthAndDayFormat });
         }
 
-        function formateDateTime(date) {
-            return new Date(date).toLocaleDateString(culture, { year: yearFormat, month: monthAndDayFormat, day: monthAndDayFormat, hour: hourAndMinuteFormat, minute: hourAndMinuteFormat, hour12: false });
+        function formatTime(dateTime) {
+            return new Date(dateTime).toLocaleTimeString(culture, { hour: hourAndMinuteFormat, minute: hourAndMinuteFormat, hour12: false });
         }
 
-        function formatDateTimeFromUnixTimestamp(unixTimestamp) {
-            return formateDateTime(createDateTimeFromUnixTimestamp(unixTimestamp));
+        function formatDateTime(date) {
+            return formatDate(date) + ' ' + formatTime(date);
         }
 
         function formatNumber(number, decimalDigits) {
-            return numeral(number).format('0,0.' + repeatString('0', decimalDigits));
+            return numeral(number).format('0,0.' + nmd.utils.repeatString('0', decimalDigits));
         }
 
         return {
-            formateDate,
-            formateDateTime,
-            formatDateTimeFromUnixTimestamp,
+            formatDate,
+            formatTime,
+            formatDateTime,
             formatNumber,
         };
     }();
