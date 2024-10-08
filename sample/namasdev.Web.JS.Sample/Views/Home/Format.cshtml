@@ -3,7 +3,20 @@
 }
 <h1>Format</h1>
 
-<h4>formateDate</h4>
-<h4>formateDateTime</h4>
-<h4>formatDateTimeFromUnixTimestamp</h4>
-<h4>formatNumber</h4>
+<div>
+    Date: <span id="spFormatDate"></span><br />
+    Time: <span id="spFormatTime"></span><br />
+    Date/Time: <span id="spFormatDateTime"></span><br />
+    Number (int): <span id="spFormatNumber1"></span><br />
+    Number (decimal): <span id="spFormatNumber2"></span><br />
+</div>
+<script type="text/javascript">
+    $(function () {
+        var date = new Date();
+        $('#spFormatDate').text(nmd.format.formatDate(date));
+        $('#spFormatTime').text(nmd.format.formatTime(date));
+        $('#spFormatDateTime').text(nmd.format.formatDateTime(date));
+        $('#spFormatNumber1').text(nmd.format.formatNumber(12345));
+        $('#spFormatNumber2').text(nmd.format.formatNumber(12345.6789,2));
+    });
+</script>
