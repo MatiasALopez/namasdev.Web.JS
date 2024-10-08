@@ -145,11 +145,11 @@ var nmd = function () {
             window.location = window.location;
         }
 
-        function isMobileScreen() {
-            return $(window).width() < 768;
+        function isSmallScreen() {
+            return window.matchMedia("(max-width: 767px)").matches;
         }
 
-        function disablePageRefresh() {
+        function disableF5Refresh() {
             $(document).on('keydown', function (event) {
                 return (event.which || event.keyCode) != 116;
             });
@@ -166,8 +166,8 @@ var nmd = function () {
             print,
             getQueryStringObject,
             reloadPage,
-            isMobileScreen,
-            disablePageRefresh,
+            isSmallScreen,
+            disableF5Refresh,
             disableCopyAndPaste,
         };
     }();

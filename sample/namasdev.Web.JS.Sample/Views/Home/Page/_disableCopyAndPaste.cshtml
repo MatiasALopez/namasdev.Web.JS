@@ -1,0 +1,20 @@
+﻿<div>
+    <div class="form-group">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent bibendum, elit at pharetra luctus, mi urna pretium dui, vitae pellentesque nunc neque ac quam.
+    </div>
+    <div class="form-group">
+        <textarea class="form-control"></textarea>
+    </div>
+    <button id="btnDisableCopyPaste" type="button" class="btn btn-primary">Disable Cut/Copy/Paste</button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnDisableCopyPaste').on('click', function (ev) {
+            ev.preventDefault();
+
+            nmd.page.disableCopyAndPaste();
+
+            return false;
+        });
+    });
+</script>

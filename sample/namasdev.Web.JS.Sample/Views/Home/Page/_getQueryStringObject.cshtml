@@ -1,0 +1,22 @@
+﻿<div>
+    <p>
+        Click <a href="@Url.Action("Page")?section=qso&a=123&b=text&c=true&d=">here</a> to test non-empty Query String.<br />
+    </p>
+    <button id="btnQSO" type="button" class="btn btn-primary">Get Query String</button>
+    <textarea id="txtQSO" class="form-control mt-3" readonly style="display: none;"></textarea>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnQSO').on('click', function (ev) {
+            ev.preventDefault();
+
+            var text = JSON.stringify(nmd.page.getQueryStringObject(), null, 4);
+            $('#txtQSO')
+                .val(text)
+                .attr('rows', Math.min(10, text.split('\n').length))
+                .show();
+
+            return false;
+        });
+    });
+</script>

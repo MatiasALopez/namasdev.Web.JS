@@ -1,0 +1,14 @@
+﻿<div>
+    <button id="btnPrint" type="button" class="btn btn-primary">Submit</button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnPrint').on('click', function (ev) {
+            ev.preventDefault();
+
+            nmd.page.print();
+
+            return false;
+        });
+    });
+</script>

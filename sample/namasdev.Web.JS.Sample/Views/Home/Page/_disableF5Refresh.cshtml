@@ -1,0 +1,14 @@
+﻿<div>
+    <button id="btnDisableF5Refresh" type="button" class="btn btn-primary">Disable F5 refresh</button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#btnDisableF5Refresh').on('click', function (ev) {
+            ev.preventDefault();
+
+            nmd.page.disableF5Refresh();
+
+            return false;
+        });
+    });
+</script>

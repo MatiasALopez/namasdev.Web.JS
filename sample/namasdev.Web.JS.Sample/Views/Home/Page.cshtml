@@ -3,9 +3,65 @@
 }
 <h1>Page</h1>
 
-<h4>print</h4>
-<h4>getQueryStringObject</h4>
-<h4>reloadPage</h4>
-<h4>isMobileScreen</h4>
-<h4>disablePageRefresh</h4>
-<h4>disableCopyAndPaste</h4>
+<div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#print">print</button>
+        </div>
+        <div id="print" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/Page/_print.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#getQueryStringObject">getQueryStringObject</button>
+        </div>
+        <div id="getQueryStringObject" class="collapse @(Request["section"] == "qso" ? "show" : "")">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/Page/_getQueryStringObject.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#reloadPage">reloadPage</button>
+        </div>
+        <div id="reloadPage" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/Page/_reloadPage.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#isSmallScreen">isSmallScreen</button>
+        </div>
+        <div id="isSmallScreen" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/Page/_isSmallScreen.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#disableF5Refresh">disableF5Refresh</button>
+        </div>
+        <div id="disableF5Refresh" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/Page/_disableF5Refresh.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#disableCopyAndPaste">disableCopyAndPaste</button>
+        </div>
+        <div id="disableCopyAndPaste" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/Page/_disableCopyAndPaste.cshtml")
+            </div>
+        </div>
+    </div>
+</div>

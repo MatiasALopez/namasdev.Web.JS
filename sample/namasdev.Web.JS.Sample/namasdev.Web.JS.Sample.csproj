@@ -224,6 +224,12 @@
     <Content Include="Views\Home\UIForms\_disableEnterSubmit.cshtml" />
     <Content Include="Views\Home\UIForms\_initDisableOnSubmitButtons.cshtml" />
     <Content Include="Views\Home\UIForms\_setValidationSummaryVisibility.cshtml" />
+    <Content Include="Views\Home\Page\_print.cshtml" />
+    <Content Include="Views\Home\Page\_getQueryStringObject.cshtml" />
+    <Content Include="Views\Home\Page\_reloadPage.cshtml" />
+    <Content Include="Views\Home\Page\_isSmallScreen.cshtml" />
+    <Content Include="Views\Home\Page\_disableF5Refresh.cshtml" />
+    <Content Include="Views\Home\Page\_disableCopyAndPaste.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
