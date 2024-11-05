@@ -9,6 +9,8 @@
         nmd.ui.controls.initScrollFocus();
         nmd.ui.controls.initInputFileButtons();
         nmd.ui.controls.initInputFiltering();
+        nmd.ui.controls.initClickControls();
+        nmd.ui.controls.initToggleStateControls();
         nmd.ui.controls.initBootstrapTooltips();
         nmd.ui.controls.initBootstrapCustomFileInput();
         nmd.ui.controls.initTableCheckBoxSelection();
@@ -22,6 +24,8 @@
         nmd.ui.controls.initCharacterCounter();
         nmd.ui.controls.initNumeric();
         nmd.ui.controls.initNumericInteger();
+        nmd.ui.controls.initInputMaskNumeric();
+        nmd.ui.controls.initInputMaskInteger();
     }
 
     return {

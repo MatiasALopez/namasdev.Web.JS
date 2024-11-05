@@ -243,6 +243,7 @@ var nmd = function () {
                 }
             }
 
+            // Input File Buttons
             var inputFileButtonsConstants = {
                 dataAttr: {
                     inputFile: 'input-file',
@@ -278,7 +279,9 @@ var nmd = function () {
                         return false;
                     });
             }
+            //---
 
+            // Input Filtering
             var inputFilteringConstants = {
                 class: {
                     inputFiltering: 'input-filtering'
@@ -311,6 +314,56 @@ var nmd = function () {
                     return new RegExp('[' + (negate == true ? '^' : '') + ($input.data(inputFilteringConstants.dataAttr.regex) || opts.pattern) + ']','g');
                 }
             }
+            //---
+
+            // click controls
+            var clickControlsConstants = {
+                dataAttr: {
+                    target: 'click-target'
+                }
+            };
+
+            function initClickControls() {
+                $(nmd.utils.stringFormat('[data-{0}]', clickControlsConstants.dataAttr.target))
+                    .on('click', function (ev) {
+                        ev.preventDefault();
+
+                        var target = $(ev.target).data(clickControlsConstants.dataAttr.target);
+                        if (target) {
+                            $(target).click();
+                        }
+
+                        return false;
+                    });
+            }
+            //---
+
+            // toggle state controls
+            var toggleStateControlsConstants = {
+                dataAttr: {
+                    stateContainer: 'toggle-state-container'
+                }
+            };
+
+            function initToggleStateControls() {
+                $(nmd.util.stringFormat('[data-{0}]', toggleStateControlsConstants.dataAttr.stateContainer))
+                    .each(function () {
+                        var $control = $(this),
+                            containerSelector = $control.data(toggleStateControlsConstants.dataAttr.stateContainer);
+
+                        updateControlStatus();
+
+                        $('.' + nmd.ui.forms.formsConstants.class.formControlRequired, containerSelector)
+                            .on('change', function () {
+                                updateControlStatus();
+                            });
+
+                        function updateControlStatus() {
+                            $control.prop('disabled', !nmd.ui.forms.validateRequiredControls(containerSelector));
+                        }
+                    });
+            }
+            //---
 
             // bootstrap tooltips (requires: bootstrap)
             function initBootstrapTooltips() {
@@ -801,7 +854,7 @@ var nmd = function () {
             }
             //---
 
-            // (TODO: try bootbox, requires bootbox)
+            // (TODO: try bootbox)
             var iframeModalsConstants = {
                 templates: {
                     modal: '<div class="modal fade" id="{0}" tabindex="-1" role="dialog" aria-labelledby="{0}Label"  aria-hidden="true"><div class="modal-dialog" role="document" ><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="{0}Label"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"></div></div></div></div>',
@@ -872,7 +925,6 @@ var nmd = function () {
             };
 
             // auth (requires bootbox)
-            // TODO: revisar
             function initSessionTimeoutCheck(options) {
                 var optsDefaults = {
                     timeoutInMin: 10,
@@ -1117,6 +1169,46 @@ var nmd = function () {
             }
             //---
 
+            // InputMask (requires: jquery.inputmask)
+            var inputMaskConstants = {
+                class: {
+                    numeric: 'inputmask-numeric',
+                    integer: 'inputmask-integer'
+                }
+            };
+
+            function initInputMaskNumeric(selector, options, context) {
+                var optsDefaults = {
+                    groupSeparator: ",",
+                    digits: 2,
+                    rightAlign: true
+                };
+
+                var opts = $.extend({}, optsDefaults, options);
+
+                _initInputMask(selector || '.' + inputMaskConstants.class.numeric, context, 'numeric', opts);
+            }
+
+            function initInputMaskInteger(selector, options, context) {
+                var optsDefaults = {
+                    groupSeparator: ",",
+                    rightAlign: true
+                };
+
+                var opts = $.extend({}, optsDefaults, options);
+
+                _initInputMask(selector || '.' + inputMaskConstants.class.integer, context, 'integer', opts);
+            }
+
+            function _initInputMask(selector, context, style, options) {
+                $(selector, context).inputmask(style, options)
+            }
+
+            function getInputMaskValue(selector, context) {
+                return $(selector, context).inputmask('unmaskedvalue');
+            }
+            //---
+
             return {
                 clearControls: clearControls,
 
@@ -1129,6 +1221,8 @@ var nmd = function () {
                 initScrollFocus,
                 initInputFileButtons,
                 initInputFiltering,
+                initClickControls,
+                initToggleStateControls,
 
                 initBootstrapTooltips,
 
@@ -1169,7 +1263,11 @@ var nmd = function () {
                 initCharacterCounter,
 
                 initNumeric,
-                initNumericInteger
+                initNumericInteger,
+
+                initInputMaskNumeric,
+                initInputMaskInteger,
+                getInputMaskValue,
             };
         }();
 
@@ -1225,6 +1323,25 @@ var nmd = function () {
                     $(".validation-summary-errors").hide();
                 }
             }
+
+
+            var formsConstants = {
+                class: {
+                    formControlRequired: 'form-control-required'
+                }
+            };
+
+            function validateRequiredControls(context) {
+                var missingValues = false;
+
+                $('.' + formsConstants.class.formControlRequired, context).each(function () {
+                    if (!$(this).val().trim()) {
+                        missingValues = true;
+                    }
+                });
+
+                return !missingValues;
+            }
             //---
 
             return {
@@ -1235,6 +1352,9 @@ var nmd = function () {
 
                 initDisableOnSubmitButtons,
                 setValidationSummaryVisibility,
+
+                formsConstants,
+                validateRequiredControls
             };
         }();
 

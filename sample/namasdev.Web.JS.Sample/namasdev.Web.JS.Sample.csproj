@@ -151,6 +151,7 @@
     <Content Include="scripts\bs-custom-file-input.min.js" />
     <Content Include="scripts\jquery-3.4.1.min.js" />
     <Content Include="scripts\jquery.charactercounter.min.js" />
+    <Content Include="scripts\jquery.inputmask.min.js" />
     <Content Include="scripts\jquery.numeric.js" />
     <Content Include="scripts\jquery.validate-es.js" />
     <None Include="scripts\jquery.validate-vsdoc.js" />
@@ -230,6 +231,10 @@
     <Content Include="Views\Home\Page\_isSmallScreen.cshtml" />
     <Content Include="Views\Home\Page\_disableF5Refresh.cshtml" />
     <Content Include="Views\Home\Page\_disableCopyAndPaste.cshtml" />
+    <Content Include="Views\Home\UIControls\_initInputMask.cshtml" />
+    <Content Include="Views\Home\UIControls\_initToggleStateControls.cshtml" />
+    <Content Include="Views\Home\UIControls\_initClickControls.cshtml" />
+    <Content Include="Views\Home\UIForms\_validateRequiredControls.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
