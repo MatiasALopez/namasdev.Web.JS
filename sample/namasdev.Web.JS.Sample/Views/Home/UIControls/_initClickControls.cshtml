@@ -1,1 +1,42 @@
-﻿_initClickControls
+﻿<div class="row">
+    <div class="col-md-6">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="btnIClCTab1" data-toggle="tab" data-target="#divIClCTab1" type="button" role="tab" aria-controls="divIClCTab1" aria-selected="true">Step 1</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="btnIClCTab2" data-toggle="tab" data-target="#divIClCTab2" type="button" role="tab" aria-controls="divIClCTab2" aria-selected="false">Step 2</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="btnIClCTab3" data-toggle="tab" data-target="#divIClCTab3" type="button" role="tab" aria-controls="divIClCTab3" aria-selected="false">Step 3</button>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="divIClCTab1" role="tabpanel" aria-labelledby="btnIClCTab1">
+                <p>
+                    Step 1 content
+                </p>
+                <div>
+                    <button type="button" class="btn btn-outline-info" data-click-target="#btnIClCTab2">Next</button>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="divIClCTab2" role="tabpanel" aria-labelledby="btnIClCTab2">
+                <p>
+                    Step 2 content
+                </p>
+                <div>
+                    <button type="button" class="btn btn-outline-warning" data-click-target="#btnIClCTab1">Previous</button>
+                    <button type="button" class="btn btn-outline-info" data-click-target="#btnIClCTab3">Next</button>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="divIClCTab3" role="tabpanel" aria-labelledby="btnIClCTab3">
+                <p>
+                    Step 3 content
+                </p>
+                <div>
+                    <button type="button" class="btn btn-outline-warning" data-click-target="#btnIClCTab2">Previous</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

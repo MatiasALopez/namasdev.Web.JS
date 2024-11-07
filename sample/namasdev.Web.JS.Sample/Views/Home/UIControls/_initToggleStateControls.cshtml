@@ -1,1 +1,60 @@
-﻿_initToggleStateControls
+﻿<div>
+    <form id="frmTSC">
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <label for="txtTSCText1">Text</label>
+                <input id="txtTSCText1" name="txtTSCText1" type="text" class="form-control" />
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="txtTSCText2">Text (required)</label>
+                <input id="txtTSCText2" name="txtTSCText2" type="text" class="form-control form-control-required" />
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <label for="txtTSCTextarea1">Text area</label>
+                <textarea id="txtTSCTextarea1" name="txtTSCTextarea1" class="form-control"></textarea>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="txtTSCTextarea2">Text area (required)</label>
+                <textarea id="txtTSCTextarea2" name="txtTSCTextarea2" class="form-control form-control-required"></textarea>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <label>File</label>
+                <div class="custom-file">
+                    <input id="fiTSC1" name="fiTSC1" type="file" class="custom-file-input">
+                    <label class="custom-file-label" for="fiTSC1"></label>
+                </div>
+            </div>
+            <div class="form-group col-sm-6">
+                <label>File (required)</label>
+                <div class="custom-file">
+                    <input id="fiTSC2" name="fiTSC2" type="file" class="custom-file-input form-control-required">
+                    <label class="custom-file-label" for="fiTSC2"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <label for="ddlTSC1">Select</label>
+                <select id="ddlTSC1" name="ddlTSC1" class="form-control">
+                    <option></option>
+                    <option value="a">A</option>
+                    <option value="b">B</option>
+                </select>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="ddlTSC2">Select (required)</label>
+                <select id="ddlTSC2" name="ddlTSC2" class="form-control form-control-required">
+                    <option></option>
+                    <option value="a">A</option>
+                    <option value="b">B</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle-state-container="#frmTSC">Save</button>
+        <button type="reset" class="btn btn-danger">Reset</button>
+    </form>
+</div>

@@ -28,13 +28,25 @@
     </div>
     <div class="card mb-2">
         <div class="card-header p-0">
-            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showAlert">
-                showAlert / hideAlert
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initClickControls">
+                initClickControls
             </button>
         </div>
-        <div id="showAlert" class="collapse">
+        <div id="initClickControls" class="collapse">
             <div class="card-body">
-                @Html.Partial("~/Views/Home/UIControls/_showAlert.cshtml")
+                @Html.Partial("~/Views/Home/UIControls/_initClickControls.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#initToggleStateControls">
+                initToggleStateControls
+            </button>
+        </div>
+        <div id="initToggleStateControls" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_initToggleStateControls.cshtml")
             </div>
         </div>
     </div>
@@ -239,6 +251,18 @@
         <div id="initSessionTimeoutCheck" class="collapse">
             <div class="card-body">
                 @Html.Partial("~/Views/Home/UIControls/_initSessionTimeoutCheck.cshtml")
+            </div>
+        </div>
+    </div>
+    <div class="card mb-2">
+        <div class="card-header p-0">
+            <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#showAlert">
+                showAlert / hideAlert
+            </button>
+        </div>
+        <div id="showAlert" class="collapse">
+            <div class="card-body">
+                @Html.Partial("~/Views/Home/UIControls/_showAlert.cshtml")
             </div>
         </div>
     </div>

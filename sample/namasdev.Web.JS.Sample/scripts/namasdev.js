@@ -346,7 +346,7 @@ var nmd = function () {
             };
 
             function initToggleStateControls() {
-                $(nmd.util.stringFormat('[data-{0}]', toggleStateControlsConstants.dataAttr.stateContainer))
+                $(nmd.utils.stringFormat('[data-{0}]', toggleStateControlsConstants.dataAttr.stateContainer))
                     .each(function () {
                         var $control = $(this),
                             containerSelector = $control.data(toggleStateControlsConstants.dataAttr.stateContainer);
@@ -357,6 +357,13 @@ var nmd = function () {
                             .on('change', function () {
                                 updateControlStatus();
                             });
+
+                        $(containerSelector).on('reset', function () {
+                            // NOTE (ML): use setTimeout to execute AFTER the form is reset
+                            setTimeout(function () {
+                                updateControlStatus();
+                            }, 50);
+                        });
 
                         function updateControlStatus() {
                             $control.prop('disabled', !nmd.ui.forms.validateRequiredControls(containerSelector));
