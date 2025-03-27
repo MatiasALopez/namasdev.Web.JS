@@ -1012,7 +1012,7 @@ var nmd = function () {
             }
             //---
 
-            // loading (requires: LoadingOverlay)
+            // loading (requires: LoadingOverlay, font-awesome styles)
             function showLoading(selector) {
                 var options = { image: '', fontawesome: 'fa fa-spinner fa-spin', size: 15 };
                 if (selector) {
@@ -1216,6 +1216,78 @@ var nmd = function () {
             }
             //---
 
+            // toggle password visibility (requires: font-awesome styles)
+            var togglePasswordVisibilityConstants = {
+                class: {
+                    togglePasswordVisibility: 'toggle-password-visibility',
+                    toggleButton: 'toggle-button',
+                    toggleButtonShow: 'fa fa-eye',
+                    toggleButtonHide: 'fa fa-eye-slash',
+                },
+                attributes: {
+                    type: 'type',
+                    password: 'password',
+                    text: 'text'
+                }
+            };
+
+            function initPasswordVisibility(selector) {
+                $(selector || '.' + togglePasswordVisibilityConstants.class.togglePasswordVisibility)
+                    .each(function () {
+                        var $control = $(this);
+                        $this.after(nmd.utils.stringFormat('<i class="{0}"></i>', togglePasswordVisibilityConstants.class.toggleButton));
+
+                        setControlState($this, false);
+
+                        var $button = getButtonControl($control);
+                        $button.on('click', function () {
+                            var $control = getPasswordControl($(this));
+                            toggleControlState($control);
+                        })
+                    });
+
+                function toggleControlState($control) {
+                    setControlState($control, !isVisible($control));
+                }
+
+                function setControlState($control, visible) {
+                    var $button = getButtonControl($control),
+                        isCurrentlyVisible = isVisible($control);
+                    if (visible) {
+                        if (isCurrentlyVisible) {
+                            return;
+                        }
+
+                        $control.attr(togglePasswordVisibilityConstants.attributes.type, togglePasswordVisibilityConstants.attributes.text);
+                        $button
+                            .removeClass(togglePasswordVisibilityConstants.class.toggleButtonHide)
+                            .addClass(togglePasswordVisibilityConstants.class.toggleButtonShow);
+                    } else {
+                        if (!isCurrentlyVisible) {
+                            return;
+                        }
+
+                        $control.attr(togglePasswordVisibilityConstants.attributes.type, togglePasswordVisibilityConstants.attributes.password);
+                        $button
+                            .removeClass(togglePasswordVisibilityConstants.class.toggleButtonShow)
+                            .addClass(togglePasswordVisibilityConstants.class.toggleButtonHide);
+                    }
+                }
+
+                function getPasswordControl($button) {
+                    return $button.siblings('input.' + togglePasswordVisibilityConstants.class.togglePasswordVisibility);
+                }
+
+                function getButtonControl($control) {
+                    return $control.siblings('i.' + togglePasswordVisibilityConstants.class.toggleButton);
+                }
+
+                function isVisible($control) {
+                    return $control.attr(togglePasswordVisibilityConstants.attributes.type) === togglePasswordVisibilityConstants.attributes.text;
+                }
+            }
+            //---
+
             return {
                 clearControls: clearControls,
 
@@ -1275,6 +1347,8 @@ var nmd = function () {
                 initInputMaskNumeric,
                 initInputMaskInteger,
                 getInputMaskValue,
+
+                initPasswordVisibility
             };
         }();
 
