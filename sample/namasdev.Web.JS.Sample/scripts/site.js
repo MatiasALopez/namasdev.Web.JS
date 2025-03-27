@@ -26,6 +26,7 @@
         nmd.ui.controls.initNumericInteger();
         nmd.ui.controls.initInputMaskNumeric();
         nmd.ui.controls.initInputMaskInteger();
+        nmd.ui.controls.initPasswordVisibility();
     }
 
     return {

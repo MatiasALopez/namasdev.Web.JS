@@ -172,7 +172,7 @@ var nmd = function () {
         };
     }();
 
-    var ui = function () { 
+    var ui = function () {
 
         var controls = function () {
 
@@ -307,11 +307,11 @@ var nmd = function () {
                     .on('input', function () {
                         var $input = $(this),
                             regex = getRegexForInput($input, true);
-                        $input.val($input.val().replace(regex,''));
+                        $input.val($input.val().replace(regex, ''));
                     });
 
                 function getRegexForInput($input, negate) {
-                    return new RegExp('[' + (negate == true ? '^' : '') + ($input.data(inputFilteringConstants.dataAttr.regex) || opts.pattern) + ']','g');
+                    return new RegExp('[' + (negate == true ? '^' : '') + ($input.data(inputFilteringConstants.dataAttr.regex) || opts.pattern) + ']', 'g');
                 }
             }
             //---
@@ -778,7 +778,7 @@ var nmd = function () {
                             .removeClass(tableSortingConstants.class.sortedNone)
                             .addClass(asc ? tableSortingConstants.class.sortedAsc : tableSortingConstants.class.sortedDesc)
                             .data(tableSortingConstants.dataAttr.sortAsc, asc ? '0' : '1');
-                    } 
+                    }
                 }
             }
 
@@ -1012,7 +1012,7 @@ var nmd = function () {
             }
             //---
 
-            // loading (requires: LoadingOverlay)
+            // loading (requires: LoadingOverlay, font-awesome styles)
             function showLoading(selector) {
                 var options = { image: '', fontawesome: 'fa fa-spinner fa-spin', size: 15 };
                 if (selector) {
@@ -1216,6 +1216,73 @@ var nmd = function () {
             }
             //---
 
+            // toggle password visibility (requires: bootstrap styles, font-awesome styles)
+            var togglePasswordVisibilityConstants = {
+                class: {
+                    togglePasswordVisibility: 'toggle-password-visibility',
+                    toggleButton: 'toggle-button',
+                    toggleButtonShow: 'fa fa-eye',
+                    toggleButtonHide: 'fa fa-eye-slash',
+                },
+                attributes: {
+                    type: 'type',
+                    password: 'password',
+                    text: 'text'
+                }
+            };
+
+            function initPasswordVisibility(selector) {
+                $(selector || '.' + togglePasswordVisibilityConstants.class.togglePasswordVisibility)
+                    .each(function () {
+                        var $control = $(this);
+                        $control
+                            .css('border-right', 'none')
+                            .wrap('<div class="input-group flex-nowrap"></div>')
+                            .after(nmd.utils.stringFormat('<div class="input-group-append {0}" style="cursor: pointer;"><span class="input-group-text" style="background: none;"><i></i><span></div>', togglePasswordVisibilityConstants.class.toggleButton));
+
+                        setControlState($control, false);
+
+                        var $button = getButtonControl($control);
+                        $button.on('click', function () {
+                            var $control = getPasswordControl($(this));
+                            toggleControlState($control);
+                        })
+                    });
+
+                function toggleControlState($control) {
+                    setControlState($control, !isVisible($control));
+                }
+
+                function setControlState($control, visible) {
+                    var $button = getButtonControl($control);
+                    if (visible) {
+                        $control.attr(togglePasswordVisibilityConstants.attributes.type, togglePasswordVisibilityConstants.attributes.text);
+
+                        $button.find('i')
+                            .removeClass(togglePasswordVisibilityConstants.class.toggleButtonShow)
+                            .addClass(togglePasswordVisibilityConstants.class.toggleButtonHide);
+                    } else {
+                        $control.attr(togglePasswordVisibilityConstants.attributes.type, togglePasswordVisibilityConstants.attributes.password);
+                        $button.find('i')
+                            .removeClass(togglePasswordVisibilityConstants.class.toggleButtonHide)
+                            .addClass(togglePasswordVisibilityConstants.class.toggleButtonShow);
+                    }
+                }
+
+                function getPasswordControl($button) {
+                    return $button.siblings('input.' + togglePasswordVisibilityConstants.class.togglePasswordVisibility);
+                }
+
+                function getButtonControl($control) {
+                    return $control.siblings('.' + togglePasswordVisibilityConstants.class.toggleButton);
+                }
+
+                function isVisible($control) {
+                    return $control.attr(togglePasswordVisibilityConstants.attributes.type) === togglePasswordVisibilityConstants.attributes.text;
+                }
+            }
+            //---
+
             return {
                 clearControls: clearControls,
 
@@ -1275,6 +1342,8 @@ var nmd = function () {
                 initInputMaskNumeric,
                 initInputMaskInteger,
                 getInputMaskValue,
+
+                initPasswordVisibility
             };
         }();
 

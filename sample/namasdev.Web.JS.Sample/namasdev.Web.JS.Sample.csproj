@@ -235,6 +235,7 @@
     <Content Include="Views\Home\UIControls\_initToggleStateControls.cshtml" />
     <Content Include="Views\Home\UIControls\_initClickControls.cshtml" />
     <Content Include="Views\Home\UIForms\_validateRequiredControls.cshtml" />
+    <Content Include="Views\Home\UIControls\_initPasswordVisibility.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
