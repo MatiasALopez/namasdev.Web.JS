@@ -1188,7 +1188,8 @@ var nmd = function () {
                 var optsDefaults = {
                     groupSeparator: ",",
                     digits: 2,
-                    rightAlign: true
+                    rightAlign: true,
+                    allowMinus: false,
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -1199,7 +1200,8 @@ var nmd = function () {
             function initInputMaskInteger(selector, options, context) {
                 var optsDefaults = {
                     groupSeparator: ",",
-                    rightAlign: true
+                    rightAlign: true,
+                    allowMinus: false,
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
