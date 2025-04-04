@@ -1188,7 +1188,8 @@ var nmd = function () {
                 var optsDefaults = {
                     groupSeparator: ",",
                     digits: 2,
-                    rightAlign: true
+                    rightAlign: true,
+                    allowMinus: false,
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -1199,7 +1200,8 @@ var nmd = function () {
             function initInputMaskInteger(selector, options, context) {
                 var optsDefaults = {
                     groupSeparator: ",",
-                    rightAlign: true
+                    rightAlign: true,
+                    allowMinus: false,
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -1216,7 +1218,7 @@ var nmd = function () {
             }
             //---
 
-            // toggle password visibility (requires: font-awesome styles)
+            // toggle password visibility (requires: bootstrap styles, font-awesome styles)
             var togglePasswordVisibilityConstants = {
                 class: {
                     togglePasswordVisibility: 'toggle-password-visibility',
@@ -1235,9 +1237,12 @@ var nmd = function () {
                 $(selector || '.' + togglePasswordVisibilityConstants.class.togglePasswordVisibility)
                     .each(function () {
                         var $control = $(this);
-                        $this.after(nmd.utils.stringFormat('<i class="{0}"></i>', togglePasswordVisibilityConstants.class.toggleButton));
+                        $control
+                            .css('border-right', 'none')
+                            .wrap('<div class="input-group flex-nowrap"></div>')
+                            .after(nmd.utils.stringFormat('<div class="input-group-append {0}" style="cursor: pointer;"><span class="input-group-text" style="background: none;"><i></i><span></div>', togglePasswordVisibilityConstants.class.toggleButton));
 
-                        setControlState($this, false);
+                        setControlState($control, false);
 
                         var $button = getButtonControl($control);
                         $button.on('click', function () {
@@ -1251,26 +1256,18 @@ var nmd = function () {
                 }
 
                 function setControlState($control, visible) {
-                    var $button = getButtonControl($control),
-                        isCurrentlyVisible = isVisible($control);
+                    var $button = getButtonControl($control);
                     if (visible) {
-                        if (isCurrentlyVisible) {
-                            return;
-                        }
-
                         $control.attr(togglePasswordVisibilityConstants.attributes.type, togglePasswordVisibilityConstants.attributes.text);
-                        $button
-                            .removeClass(togglePasswordVisibilityConstants.class.toggleButtonHide)
-                            .addClass(togglePasswordVisibilityConstants.class.toggleButtonShow);
-                    } else {
-                        if (!isCurrentlyVisible) {
-                            return;
-                        }
 
-                        $control.attr(togglePasswordVisibilityConstants.attributes.type, togglePasswordVisibilityConstants.attributes.password);
-                        $button
+                        $button.find('i')
                             .removeClass(togglePasswordVisibilityConstants.class.toggleButtonShow)
                             .addClass(togglePasswordVisibilityConstants.class.toggleButtonHide);
+                    } else {
+                        $control.attr(togglePasswordVisibilityConstants.attributes.type, togglePasswordVisibilityConstants.attributes.password);
+                        $button.find('i')
+                            .removeClass(togglePasswordVisibilityConstants.class.toggleButtonHide)
+                            .addClass(togglePasswordVisibilityConstants.class.toggleButtonShow);
                     }
                 }
 
@@ -1279,7 +1276,7 @@ var nmd = function () {
                 }
 
                 function getButtonControl($control) {
-                    return $control.siblings('i.' + togglePasswordVisibilityConstants.class.toggleButton);
+                    return $control.siblings('.' + togglePasswordVisibilityConstants.class.toggleButton);
                 }
 
                 function isVisible($control) {
