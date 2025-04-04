@@ -1153,7 +1153,6 @@ var nmd = function () {
             function initNumeric(selector, options) {
                 var optsDefaults = {
                     decimal: '.',
-                    negative: false,
                     decimalPlaces: -1
                 };
 
@@ -1164,7 +1163,6 @@ var nmd = function () {
 
             function initNumericInteger(selector, options) {
                 var optsDefaults = {
-                    negative: false
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -1188,8 +1186,6 @@ var nmd = function () {
                 var optsDefaults = {
                     groupSeparator: ",",
                     digits: 2,
-                    rightAlign: true,
-                    allowMinus: false,
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
@@ -1200,8 +1196,6 @@ var nmd = function () {
             function initInputMaskInteger(selector, options, context) {
                 var optsDefaults = {
                     groupSeparator: ",",
-                    rightAlign: true,
-                    allowMinus: false,
                 };
 
                 var opts = $.extend({}, optsDefaults, options);
