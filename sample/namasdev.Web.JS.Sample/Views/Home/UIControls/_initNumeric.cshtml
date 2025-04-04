@@ -19,7 +19,7 @@
                 MainHtml = @<text>
                     <div class="form-group">
                         <input type="text" id="txtNum2" class="form-control" />
-                        <small class="text-muted">Allow negatives, ',' separator, 2 decimal places</small>
+                        <small class="text-muted">Prevent negatives, ',' separator, 2 decimal places</small>
                     </div>
                 </text>
             })
@@ -44,7 +44,7 @@
                 MainHtml = @<text>
                     <div class="form-group">
                         <input type="text" id="txtNumInt2" class="form-control" />
-                        <small class="text-muted">Allow negatives</small>
+                        <small class="text-muted">Prevent negatives</small>
                     </div>
                 </text>
             })
@@ -55,12 +55,12 @@
     $(function () {
         nmd.ui.controls.initNumeric('#txtNum2', {
             decimal: ',',
-            negative: true,
+            negative: false,
             decimalPlaces: 2
         });
 
         nmd.ui.controls.initNumericInteger('#txtNumInt2', {
-            negative: true,
+            negative: false,
         });
     });
 </script>

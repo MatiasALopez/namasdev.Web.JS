@@ -18,8 +18,8 @@
                 Title = "InputMask Numeric (default selector and data attributes)",
                 MainHtml = @<text>
                     <div class="form-group">
-                        <input type="text" id="txtIMN2" class="form-control inputmask-numeric" data-inputmask-allowMinus="true" data-inputmask-groupSeparator="," data-inputmask-digits="3" data-inputmask-min="-9999.999" data-inputmask-max="9999.999" />
-                        <small class="text-muted">Allow negatives, ',' separator, 3 decimal places, min -9,999.999 and max 9,999.999</small>
+                        <input type="text" id="txtIMN2" class="form-control inputmask-numeric" data-inputmask-allowMinus="false" data-inputmask-groupSeparator="," data-inputmask-digits="3" data-inputmask-min="0.999" data-inputmask-max="9999.999" />
+                        <small class="text-muted">Prevent negatives, ',' separator, 3 decimal places, min 0.999 and max 9,999.999</small>
                     </div>
                 </text>
             })
@@ -31,7 +31,7 @@
                 MainHtml = @<text>
                     <div class="form-group">
                         <input type="text" id="txtIMN3" class="form-control" />
-                        <small class="text-muted">Allow negatives, ',' separator, 4 decimal places, min -99,999.5 max 99,999.5</small>
+                        <small class="text-muted">',' separator, 4 decimal places, min -99,999.5 max 99,999.5</small>
                     </div>
                 </text>
             })
@@ -55,8 +55,8 @@
                 Title = "InputMask Integer (default selector and data attributes)",
                 MainHtml = @<text>
                     <div class="form-group">
-                        <input type="text" id="txtIMI2" class="form-control inputmask-integer" data-inputmask-allowMinus="true" data-inputmask-groupSeparator="," data-inputmask-min="-9999" data-inputmask-max="9999" />
-                        <small class="text-muted">Allow negatives, ',' separator, min -9,999 and max 9,999</small>
+                        <input type="text" id="txtIMI2" class="form-control inputmask-integer" data-inputmask-allowMinus="false" data-inputmask-groupSeparator="," data-inputmask-min="10" data-inputmask-max="9999" />
+                        <small class="text-muted">Prevent negatives, ',' separator, min 10 and max 9999</small>
                     </div>
                 </text>
             })
@@ -68,7 +68,7 @@
                 MainHtml = @<text>
                     <div class="form-group">
                         <input type="text" id="txtIMI3" class="form-control" />
-                        <small class="text-muted">Allow negatives, ',' separator, min -99,999 max 99,999</small>
+                        <small class="text-muted">',' separator, min -99,999 max 99,999</small>
                     </div>
                 </text>
             })
@@ -78,7 +78,6 @@
 <script type="text/javascript">
     $(function () {
         nmd.ui.controls.initInputMaskNumeric('#txtIMN3', {
-            allowMinus: true,
             groupSeparator: ',',
             digits: 4,
             min: -99999.5,
@@ -86,7 +85,6 @@
         });
 
         nmd.ui.controls.initInputMaskInteger('#txtIMI3', {
-            allowMinus: true,
             groupSeparator: ',',
             min: -99999,
             max: 99999,
