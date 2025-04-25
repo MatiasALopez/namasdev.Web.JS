@@ -236,6 +236,7 @@
     <Content Include="Views\Home\UIControls\_initClickControls.cshtml" />
     <Content Include="Views\Home\UIForms\_validateRequiredControls.cshtml" />
     <Content Include="Views\Home\UIControls\_initPasswordVisibility.cshtml" />
+    <Content Include="Views\Home\UIControls\_initCheckBoxSelection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

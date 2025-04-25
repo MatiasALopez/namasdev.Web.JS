@@ -1,0 +1,111 @@
+﻿@using namasdev.Web.JS.Sample.Models;
+<div>
+    <div class="row">
+        <div class="col-lg-5 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Default checkbox selector",
+                MainHtml = @<text>
+                    <div class="checkbox-selection">
+                        <div class="row">
+                            <div class="col-6">
+                                <label>
+                                    <input type="checkbox" class="checkbox-selection-all" />
+                                    Check All
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>
+                                    <input type="checkbox" class="checkbox-selection-one" />
+                                    Check
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label>
+                                    <input type="checkbox" class="checkbox-selection-one" />
+                                    Check
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label>
+                                    <input type="checkbox" class="checkbox-selection-one" />
+                                    Check
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <label>
+                                    <input type="checkbox" class="checkbox-selection-one" />
+                                    Check
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </text>
+            })
+        </div>
+        <div class="col-lg-5 col-md-6 mb-3">
+            @Html.Partial("_ControlContainer", new ControlContainer
+            {
+                Title = "Custom table selector",
+                MainHtml = @<text>
+                    <div id="cbsCont1">
+                        <div class="head">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>
+                                        <input type="checkbox" />
+                                        Check All
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>
+                                        <input type="checkbox" />
+                                        Check
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <label>
+                                        <input type="checkbox" />
+                                        Check
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>
+                                        <input type="checkbox" class="checkbox-selection-one" />
+                                        Check
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <label>
+                                        <input type="checkbox" class="checkbox-selection-one" />
+                                        Check
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </text>
+            })
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        nmd.ui.controls.initCheckBoxSelection(
+            '#cbsCont1',
+            {
+                checkBoxAllSelector: '.head input[type="checkbox"]',
+                checkBoxOneSelector: '.body input[type="checkbox"]',
+            });
+    });
+</script>

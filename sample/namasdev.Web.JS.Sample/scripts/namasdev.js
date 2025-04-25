@@ -678,31 +678,40 @@ var nmd = function () {
             }
             //---
 
-            // Tablas
-            var tableCheckBoxSelectionConstants = {
+            // CheckBox selection
+            var checkBoxSelectionConstants = {
                 class: {
-                    checkBoxSelection: 'checkbox-selection'
+                    checkBoxSelection: 'checkbox-selection',
+                    checkBoxSelectionOne: 'checkbox-selection-one',
+                    checkBoxSelectionAll: 'checkbox-selection-all'
                 }
             };
 
-            function initTableCheckBoxSelection(tableSelector) {
-                tableSelector = tableSelector || '.' + tableCheckBoxSelectionConstants.class.checkBoxSelection;
+            function initCheckBoxSelection(containerSelector, options) {
+                var optsDefaults = {
+                    checkBoxOneSelector: '.' + checkBoxSelectionConstants.class.checkBoxSelectionOne,
+                    checkBoxAllSelector: '.' + checkBoxSelectionConstants.class.checkBoxSelectionAll,
+                };
 
-                var selectAllSelector = 'thead input[type=checkbox]',
-                    selectOneSelector = 'tbody input[type=checkbox]',
-                    selectAllFullSelector = tableSelector + ' ' + selectAllSelector,
-                    selectOneFullSelector = tableSelector + ' ' + selectOneSelector;
+                var opts = $.extend({}, optsDefaults, options);
+
+                containerSelector = containerSelector || '.' + checkBoxSelectionConstants.class.checkBoxSelection;
+
+                var selectAllSelector = opts.checkBoxAllSelector,
+                    selectOneSelector = opts.checkBoxOneSelector,
+                    selectAllFullSelector = containerSelector + ' ' + selectAllSelector,
+                    selectOneFullSelector = containerSelector + ' ' + selectOneSelector;
 
                 setCheckboxSelectAllState();
 
-                $(tableSelector).on('change', selectAllSelector, function (e) {
+                $(containerSelector).on('change', selectAllSelector, function (e) {
                     setCheckboxState(
                         $(selectOneFullSelector),
                         $(this).is(':checked')
                     );
                 });
 
-                $(tableSelector).on('change', selectOneSelector, function (e) {
+                $(containerSelector).on('change', selectOneSelector, function (e) {
                     setCheckboxSelectAllState();
                 });
 
@@ -720,6 +729,16 @@ var nmd = function () {
                 function setCheckboxState($checkbox, checked) {
                     $checkbox.prop('checked', checked);
                 }
+            }
+
+            // Tablas
+            function initTableCheckBoxSelection(tableSelector) {
+                initCheckBoxSelection(
+                    tableSelector,
+                    {
+                        checkBoxAllSelector: 'thead input[type=checkbox]',
+                        checkBoxOneSelector: 'tbody input[type=checkbox]',
+                    });
             }
 
             var tableSortingConstants = {
@@ -1306,6 +1325,8 @@ var nmd = function () {
 
                 initElapsedTime,
                 stopElapsedTime,
+
+                initCheckBoxSelection,
 
                 initTableCheckBoxSelection,
                 initTableSorting,
