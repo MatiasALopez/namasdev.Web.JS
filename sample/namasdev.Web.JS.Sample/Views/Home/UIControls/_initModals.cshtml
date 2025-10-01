@@ -41,7 +41,7 @@
         </button>
         <div class="dropdown-menu">
             <button id="btnShowConfirmModal" class="dropdown-item">Default</button>
-            <button id="btnShowConfirmModalCustom" class="dropdown-item">Custom buttons</button>
+            <button id="btnShowConfirmModalCustom" class="dropdown-item">Custom options (buttons text, size)</button>
         </div>
     </div>
 </div>
@@ -86,6 +86,7 @@
             'This is a confirm modal',
             function (confirmation) { alert('You said ' + (confirmation ? 'yes' : 'no')); },
             {
+                size: 'sm',
                 buttons: {
                     confirm: {
                         label: 'Yep',
