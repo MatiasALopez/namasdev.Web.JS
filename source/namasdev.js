@@ -866,17 +866,14 @@ var nmd = function () {
 
             function showConfirmModal(title, message, callback, options) {
                 var optsDefaults = {
-                    buttons: {},
-                }
+                    title: title,
+                    message: message,
+                    callback: callback,
+                };
 
                 var opts = $.extend({}, optsDefaults, options);
 
-                bootbox.confirm({
-                    title: title,
-                    message: message,
-                    buttons: opts.buttons,
-                    callback: callback,
-                });
+                bootbox.confirm(opts);
             }
             //---
 
