@@ -1066,26 +1066,27 @@ var nmd = function () {
 
             function initMultiSelect(selector, options) {
                 var optsDefaults = {
-                    actionsBox: true,
                     maxIndividualOptions: 3,
                     allSelectedText: 'All',
                     countSelectedTextFormat: '{0} of {1}',
-                }
+                };
+
+                optsDefaults.boostrapSelectOpts = {
+                    actionsBox: true,
+                    selectedTextFormat: 'count > ' + optsDefaults.maxIndividualOptions,
+                    countSelectedText: function (selected, total) {
+                        if (selected == total) {
+                            return optsDefaults.allSelectedText;
+                        } else {
+                            return utils.stringFormat(optsDefaults.countSelectedTextFormat, selected, total);
+                        }
+                    }
+                };
 
                 var opts = $.extend({}, optsDefaults, options);
 
                 $(selector || '.' + multiselectConstants.class.multiselect)
-                    .selectpicker({
-                        actionsBox: true,
-                        selectedTextFormat: 'count > ' + opts.maxIndividualOptions,
-                        countSelectedText: function (selected, total) {
-                            if (selected == total) {
-                                return opts.allSelectedText;
-                            } else {
-                                return utils.stringFormat(opts.countSelectedTextFormat, selected, total);
-                            }
-                        }
-                    })
+                    .selectpicker(opts.boostrapSelectOpts)
                     .data(multiselectConstants.dataAttr.options, opts);
             }
             //---
