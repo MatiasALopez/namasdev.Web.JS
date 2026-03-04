@@ -1066,6 +1066,7 @@ var nmd = function () {
 
             function initMultiSelect(selector, options) {
                 var optsDefaults = {
+                    actionsBox: true,
                     maxIndividualOptions: 3,
                     allSelectedText: 'All',
                     countSelectedTextFormat: '{0} of {1}',
