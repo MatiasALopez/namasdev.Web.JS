@@ -532,7 +532,7 @@ var nmd = function () {
             }
 
             function initComboCascadeAjax(comboId, parentComboId, urlFormat, options) {
-                var parentComboIdSelector = '#' + parentComboId.replace(',', ',#');
+                var parentComboIdSelector = '#' + parentComboId.replace(/,/g, ',#');
 
                 $(parentComboIdSelector)
                     .on('change', function () {
