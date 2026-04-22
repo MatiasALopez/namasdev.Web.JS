@@ -898,6 +898,9 @@ var nmd = function () {
 
             // (TODO: try bootbox)
             var iframeModalsConstants = {
+                id: {
+                    modalPrefix: 'mdIframe',
+                },
                 templates: {
                     modal: bsHelper.isBs5
                         ? '<div class="modal fade" id="{0}" tabindex="-1" aria-labelledby="{0}Label" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="{0}Label"></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"></div></div></div></div>'
@@ -918,7 +921,7 @@ var nmd = function () {
             function initIframeModalsLinks() {
                 $(utils.stringFormat('a[data-{0}]', iframeModalsConstants.dataAttr.iframe)).each(function () {
                     var $link = $(this),
-                        modalId = 'mdIframe' + Math.floor(Math.random() * 99999),
+                        modalId = iframeModalsConstants.id.modalPrefix + Math.floor(Math.random() * 99999),
                         modalSelector = '#' + modalId;
 
                     if ($(modalSelector).length == 0) {
@@ -967,6 +970,12 @@ var nmd = function () {
                         });
                 });
             };
+
+            function closeIframeModal() {
+                $('[id^="mdIframe"].modal.show').each(function () {
+                    $(this).modal('hide');
+                });
+            }
 
             // auth (requires bootbox)
             function initSessionTimeoutCheck(options) {
@@ -1364,6 +1373,7 @@ var nmd = function () {
                 showConfirmModal,
 
                 initIframeModalsLinks,
+                closeIframeModal,
 
                 initSessionTimeoutCheck,
 
