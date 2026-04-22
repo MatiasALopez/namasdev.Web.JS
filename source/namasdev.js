@@ -11,6 +11,19 @@
 
 var nmd = function () {
 
+    var bsHelper = (function () {
+        var ver = (typeof bootstrap !== 'undefined' && bootstrap.Tooltip && bootstrap.Tooltip.VERSION)
+            ? parseInt(bootstrap.Tooltip.VERSION)
+            : 4;
+        return {
+            version: ver,
+            isBs5: ver >= 5,
+            toggleAttr: ver >= 5 ? 'data-bs-toggle' : 'data-toggle',
+            targetAttr: ver >= 5 ? 'data-bs-target' : 'data-target',
+            dismissAttr: ver >= 5 ? 'data-bs-dismiss' : 'data-dismiss',
+        };
+    })();
+
     var utils = function () {
         function stringFormat(format, ...args) {
             if (!format) {
@@ -374,7 +387,13 @@ var nmd = function () {
 
             // bootstrap tooltips (requires: bootstrap)
             function initBootstrapTooltips() {
-                $('[data-toggle="tooltip"]').tooltip();
+                if (bsHelper.isBs5) {
+                    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+                        new bootstrap.Tooltip(el);
+                    });
+                } else {
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
             }
             //---
 
@@ -880,7 +899,9 @@ var nmd = function () {
             // (TODO: try bootbox)
             var iframeModalsConstants = {
                 templates: {
-                    modal: '<div class="modal fade" id="{0}" tabindex="-1" role="dialog" aria-labelledby="{0}Label"  aria-hidden="true"><div class="modal-dialog" role="document" ><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="{0}Label"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"></div></div></div></div>',
+                    modal: bsHelper.isBs5
+                        ? '<div class="modal fade" id="{0}" tabindex="-1" aria-labelledby="{0}Label" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="{0}Label"></h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div><div class="modal-body"></div></div></div></div>'
+                        : '<div class="modal fade" id="{0}" tabindex="-1" role="dialog" aria-labelledby="{0}Label" aria-hidden="true"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="{0}Label"></h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"></div></div></div></div>',
                 },
                 defaults: {
                     height: '350px',
@@ -905,8 +926,8 @@ var nmd = function () {
                     }
 
                     $link
-                        .attr('data-toggle', 'modal')
-                        .attr('data-target', modalSelector);
+                        .attr(bsHelper.toggleAttr, 'modal')
+                        .attr(bsHelper.targetAttr, modalSelector);
 
                     $(modalSelector)
                         .on('shown.bs.modal', function () {
@@ -1251,8 +1272,13 @@ var nmd = function () {
                         var $control = $(this);
                         $control
                             .css('border-right', 'none')
-                            .wrap('<div class="input-group flex-nowrap"></div>')
-                            .after(nmd.utils.stringFormat('<div class="input-group-append {0}" style="cursor: pointer;"><span class="input-group-text" style="background: none;"><i></i><span></div>', togglePasswordVisibilityConstants.class.toggleButton));
+                            .wrap('<div class="input-group flex-nowrap"></div>');
+
+                        if (bsHelper.isBs5) {
+                            $control.after(nmd.utils.stringFormat('<span class="input-group-text {0}" style="cursor: pointer; background: none;"><i></i></span>', togglePasswordVisibilityConstants.class.toggleButton));
+                        } else {
+                            $control.after(nmd.utils.stringFormat('<div class="input-group-append {0}" style="cursor: pointer;"><span class="input-group-text" style="background: none;"><i></i></span></div>', togglePasswordVisibilityConstants.class.toggleButton));
+                        }
 
                         setControlState($control, false);
 
